@@ -1,0 +1,12 @@
+<% if user_signed_in? %>
+
+	<center> <%= current_user.email %> </center> <p align="right"> <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %> </p>
+
+<% else %>
+
+	<!-- Header de no logueado. -->
+
+	<center><%= link_to "Iniciar Sesión", new_user_session_path %></center>
+	<center><%= link_to "Registrarse", new_user_registration_path %></center>
+
+<% end %>

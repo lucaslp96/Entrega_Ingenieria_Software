@@ -1,0 +1,15 @@
+<p>
+
+    <h1>Listado de preguntas:</h1>
+
+</p>
+
+<% @questions.each do |preg| %>
+
+        <p>
+
+            <ul><li><%= link_to preg.title, preg %></li></ul>
+
+        </p>
+
+<% end %>

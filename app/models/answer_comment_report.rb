@@ -1,4 +1,4 @@
 class AnswerCommentReport < ApplicationRecord
-	beglons_to:user
-	belongs_to:answerComment
+    beglons_to :user
+	belongs_to :answer_comment
 end

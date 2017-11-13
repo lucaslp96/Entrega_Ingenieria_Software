@@ -1,11 +1,14 @@
 class User < ApplicationRecord
-	has_many:questions
-	has_many:answers
-	has_many:answerComments
-	has_many:answerReports
-	has_many:questionReports
-	has_many:questionComments
-	has_many:questionVotes
-	has_many:answerVotes	
-	has_many_and_belongs_to_many:tags
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+	has_many :questions
+	has_many :answers
+	has_many :answer_comments
+	has_many :answer_reports
+	has_many :question_reports
+	has_many :question_comments
+	has_many :question_votes
+	has_many :answer_votes
 end
