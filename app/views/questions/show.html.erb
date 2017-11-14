@@ -1,31 +1,66 @@
-<p>
+<body>
+<!-- Page Content -->
+    <div class="container">
 
-    <h1> <%= @question.title %> </h1>
+      <div class="row">
 
-</p>
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
 
-<p>
+          <!-- Title -->
+          <h1 class="mt-4"><%= @question.title  %></h1>
 
-    <%= @question.content %>
+          <!-- Author -->
+          <p class="lead">
+            Por:<b>  <%= User.find(@question.user_id).email %></b>
+          </p>
 
-</p>
+          <hr>
 
-<p>
+          <!-- Date/Time -->
+          <p>Fecha y Hora de publicación: <%= @question.created_at  %></p>
 
-	<h1>Respuestas:</h1>
+          <hr>
+          <!-- Post Content -->
+          <p>
+          <%= @question.content %>
+          </p>
+          <hr>
 
-</p>
+          <!-- Comments Form -->
+          <div class="card my-4">
+              <h5 class="card-header">Deja un comentario:</h5>
+              <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <textarea class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">RESPONDER</button>
+              </form>
+            </div>
+          </div>
 
-<p>
+          <!-- respuestas -->
+          <% @answers.each do |answer| %>
+          <div class="media mb-4">
+            <div class="media-body">
+              <h4 class="mt-0"><b><%= answer.user.name %> </b> </h4>
+                  <%= answer.content %><
+                </div>
+          </div>
+          <hr>
+          <% end %>
 
-    <% @answers.each do |resp| %>
 
-        <p>
 
-            <ul><li><%= resp.content %></li></ul>
+        </div>
+        <!-- Sidebar Widgets Column -->
 
-        </p>
+              </div>
+              <!-- /.row -->
 
-    <% end %>
+            </div>
 
-</p>
+
+
+</body>
