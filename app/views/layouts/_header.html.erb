@@ -1,12 +1,30 @@
-<% if user_signed_in? %>
+<header>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
 
-	<center> <%= current_user.email %> </center> <p align="right"> <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %> </p>
 
-<% else %>
+          <%= link_to root_path, class: 'navbar-brand' do %>
+            <%= image_tag "EducandingModificado.png", title: "Logo", class: "logo" %>
+            <%= link_to 'Home', '/questions', class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
+            	<% if user_signed_in? %>
+							<%= link_to current_user.email, '/questions', class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
+								<%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg btn-prymary-spacing',role: 'button' %>
 
-	<!-- Header de no logueado. -->
+						<% else %>
 
-	<center><%= link_to "Iniciar Sesión", new_user_session_path %></center>
-	<center><%= link_to "Registrarse", new_user_registration_path %></center>
+							<!-- Header de no logueado. -->
 
-<% end %>
+							<%= link_to "Iniciar Sesión", new_user_session_path, class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
+							<%= link_to "Registrarse", new_user_registration_path, class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
+
+						<% end %>
+          <% end %>
+        </div>
+        <div class="collapse navbar-collapse">
+
+        </div><!--/.nav-collapse -->
+      </div>
+
+    </div>
+</header>

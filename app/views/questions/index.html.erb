@@ -1,15 +1,10 @@
-<p>
-
-    <h1>Listado de preguntas:</h1>
-
-</p>
-
+<% if user_signed_in? %>
+  <%= link_to '¡Creá tu pregunta acá!', "questions/new", class: 'btn btn-primary btn-block',role: 'button' %>
+<% end %>
 <% @questions.each do |preg| %>
-
-        <p>
-
-            <ul><li><%= link_to preg.title, preg %></li></ul>
-
-        </p>
-
+   <hr>
+        <h3>
+            <li><%= link_to preg.title, preg %></li>
+        </h3>
+    <hr>
 <% end %>
