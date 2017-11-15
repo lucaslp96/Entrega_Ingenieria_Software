@@ -4,7 +4,29 @@
 <% @questions.each do |preg| %>
    <hr>
         <h3>
-            <li><%= link_to preg.title, preg %></li>
+            <li><%= link_to preg.title, preg %> </li> 
+	    <li><%= preg.visits %> visitas </li>
+	    <li>Creado por: <%= User.find(preg.user_id).email %> </li>
         </h3>
     <hr>
 <% end %>
+
+<p>
+
+    <h1>Categorías más usadas:</h1>
+
+</p>
+
+<% @tags.each do |tag| %>
+
+        <p>
+
+            <ul><li><%= tag.content %> - usada <%= tag.usos %> veces</li></ul>
+
+        </p>
+
+<% end %>
+
+<p><li><ul> <%= link_to "Ver categorías", tags_path %> </li></ul></p>
+
+<hr>

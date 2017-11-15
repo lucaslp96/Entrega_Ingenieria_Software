@@ -1,0 +1,13 @@
+<br><br><br><br><br><br><center>
+
+<%= form_for (@tag) do |t| %>
+    <%= t.label 'Etiqueta:' %>
+    <%= t.text_field :content %>
+    <%= t.submit 'Crear' %>
+<% end %>
+
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+</center><br><br><br><br><br><br>

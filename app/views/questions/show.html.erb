@@ -27,6 +27,8 @@
           </p>
           <hr>
 
+            <% if user_signed_in? %>
+
           <!-- Comments Form -->
           <div class="card my-4">
               <h5 class="card-header">Deja un comentario:</h5>
@@ -39,6 +41,8 @@
               </form>
             </div>
           </div>
+
+            <% end %>
 
           <!-- respuestas -->
           <% @answers.each do |answer| %>
@@ -60,7 +64,5 @@
               <!-- /.row -->
 
             </div>
-
-
 
 </body>

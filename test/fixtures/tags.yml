@@ -2,8 +2,8 @@
 
 one:
   content: MyString
-  string: MyString
+  usos: 1
 
 two:
   content: MyString
-  string: MyString
+  usos: 1

@@ -4,8 +4,12 @@ one:
   user_id: 1
   title: MyString
   content: MyText
+  visits: 1
+  votes: 1
 
 two:
   user_id: 1
   title: MyString
   content: MyText
+  visits: 1
+  votes: 1
