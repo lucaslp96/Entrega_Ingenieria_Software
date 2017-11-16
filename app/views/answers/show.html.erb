@@ -7,46 +7,53 @@
         <!-- Post Content Column -->
         <div class="col-lg-8">
 
-          <!-- Title -->
-          <h1 class="mt-4"><%= @question.title  %></h1>
+            <!-- Respuesta -->
+            <h1 class="mt-4"><%= @answer.content  %></h1>
 
-          <!-- Author -->
-          <p class="lead">
-            Por:<b>  <%= User.find(@question.user_id).email %></b>
-          </p>
+            <!-- Autor -->
+            <p class="lead">
+                Por:<b>  <%= User.find(@answer.user_id).email %></b>
+            </p>
+
+            <!-- Pregutna -->
+            <p class="lead">
+                Pregunta: <b><%= Question.find(@answer.question_id).title %></b>
+            </p>
 
           <hr>
 
           <!-- Date/Time -->
-          <p>Fecha y Hora de publicación: <%= @question.created_at  %></p>
+          <p>Fecha y Hora de publicación: <%= @answer.created_at  %></p>
 
-          <hr>
-          <!-- Post Content -->
-          <p>
-          <%= @question.content %>
-          </p>
-	<p>
-            Votos: <%= @question.votes %>
+            <p>
+                Votos: <%= @answer.votes %>
             </p>
+
           <hr>
 
-	 <!-- aca un voton para botarla -->
 
-            <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+
+            <!-- aca un voton para botarla -->
+
+            <% if ((user_signed_in?) and ((current_user.id) != (@answer.user_id))) %>
 
                 <% if (@vote.exists?) %>
 
-                    <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>
+                    <td><%= button_to 'Remover Voto', unvote_answer_path(@answer), method: :post %></td>
 
                 <% else %>
 
-                    <td><%= button_to 'Votar', votar_question_path(@question), method: :post %></td>
+                    <td><%= button_to 'Votar +', upvote_answer_path(@answer), method: :post %></td>
+
+                    <td><%= button_to 'Votar -', downvote_answer_path(@answer), method: :post %></td>
 
                 <% end %>
 
             <% end %>
 
             <!-- aca un voton para botarla -->
+
+
 
             <% if user_signed_in? %>
 
@@ -66,11 +73,11 @@
             <% end %>
 
           <!-- respuestas -->
-          <% @answers.each do |answer| %>
+          <% @comments.each do |com| %>
           <div class="media mb-4">
             <div class="media-body">
-              <h4 class="mt-0"><b><%= answer.user.name %> </b> </h4>
-                  <%= answer.content %><
+              <h4 class="mt-0"><b><%= com.user.name %> </b> </h4>
+                  <%= com.content %><
                 </div>
           </div>
           <hr>

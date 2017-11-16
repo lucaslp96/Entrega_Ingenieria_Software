@@ -1,12 +1,26 @@
 <% if user_signed_in? %>
   <%= link_to '¡Creá tu pregunta acá!', "questions/new", class: 'btn btn-primary btn-block',role: 'button' %>
 <% end %>
+
+
+<hr>
+        <h3>
+	    <li>Pregunta más visitada:</li>
+            <li><%= link_to @questionMoreVisited.title, @questionMoreVisited %> </li> 
+	    <li><%= @questionMoreVisited.visits %> visitas - <%= @questionMoreVisited.votes %> votos</li>
+	    <li>Creado por: <%= User.find(@questionMoreVisited.user_id).email %> </li>
+	    <li>Fecha: <%= User.find(@questionMoreVisited.user_id).created_at %> </li>
+        </h3>
+<hr>
+
+
 <% @questions.each do |preg| %>
    <hr>
         <h3>
             <li><%= link_to preg.title, preg %> </li> 
-	    <li><%= preg.visits %> visitas </li>
+	    <li><%= preg.visits %> visitas - <%= preg.votes %> votos</li>
 	    <li>Creado por: <%= User.find(preg.user_id).email %> </li>
+	    <li>Fecha: <%= User.find(preg.user_id).created_at %> </li>
         </h3>
     <hr>
 <% end %>
