@@ -49,11 +49,13 @@ class QuestionsController < ApplicationController
 
 	@question.save	
 
-        @answers = @question.answers    #anda por las relaciones
+        @answers = @question.answers    
 
-		#@answerscom = 
+	if (user_signed_in?)
 
-        #Answer.where("question_id =  " + params[:id])
+            @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id)
+
+        end
 
     end
 

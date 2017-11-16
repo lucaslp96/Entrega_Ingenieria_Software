@@ -23813,3 +23813,1399 @@ Processing by QuestionsController#index as HTML
 Completed 200 OK in 614ms (Views: 550.2ms | ActiveRecord: 15.5ms)
 
 
+Started GET "/questions/2" for 127.0.0.1 at 2017-11-16 19:10:58 -0300
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 1], ["updated_at", "2017-11-16 22:10:58.647963"], ["id", 2]]
+  [1m[35m (8.8ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.5ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 2]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (37.5ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 437ms (Views: 292.9ms | ActiveRecord: 27.3ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-11-16 19:11:02 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (35.6ms)
+  Rendered layouts/_header.html.erb (3.2ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 80ms (Views: 76.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-11-16 19:11:04 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"h7ZTEcp6UlNkhff76zktiOJ0X24qnAE70QmXdOiQ8ayY8+XzLTKPXijwl5bHxp7oZokzH8Kq1MzwW121LRXqig==", "user"=>{"email"=>"pepe@tuhermana.com", "password"=>"[FILTERED]"}, "commit"=>"Iniciar"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "pepe@tuhermana.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 6ms (ActiveRecord: 1.2ms)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"h7ZTEcp6UlNkhff76zktiOJ0X24qnAE70QmXdOiQ8ayY8+XzLTKPXijwl5bHxp7oZokzH8Kq1MzwW121LRXqig==", "user"=>{"email"=>"pepe@tuhermana.com", "password"=>"[FILTERED]"}, "commit"=>"Iniciar"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.4ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (5.6ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 305ms (Views: 31.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-11-16 19:11:06 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (11.1ms)
+  Rendered layouts/_header.html.erb (3.4ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 60ms (Views: 57.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-11-16 19:11:17 -0300
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"XCc0NkuuEgiweIdjn8YdI+uHs6FcSBJhAJPtEif9IidJTmA7D0Fh3n6CWzRxZqXchW4g/5oJj9zTLvs6UplGtA==", "user"=>{"email"=>"pepe@hotmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Registrarse"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "pepe@hotmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "encrypted_password") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2017-11-16 22:11:17.502946"], ["updated_at", "2017-11-16 22:11:17.502946"], ["email", "pepe@hotmail.com"], ["encrypted_password", "$2a$11$9SPDgoFOaw4KG6CVd0prxO/K60JC5jDpgUyHtGhZ0Y2kAi7N2qj96"]]
+  [1m[35m (10.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "sign_in_count" = $2, "current_sign_in_at" = $3, "last_sign_in_at" = $4, "current_sign_in_ip" = $5, "last_sign_in_ip" = $6 WHERE "users"."id" = $7[0m  [["updated_at", "2017-11-16 22:11:17.516923"], ["sign_in_count", 1], ["current_sign_in_at", "2017-11-16 22:11:17.516038"], ["last_sign_in_at", "2017-11-16 22:11:17.516038"], ["current_sign_in_ip", "127.0.0.1/32"], ["last_sign_in_ip", "127.0.0.1/32"], ["id", 7]]
+  [1m[35m (6.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 291ms (ActiveRecord: 18.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-16 19:11:17 -0300
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" ORDER BY visits desc LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (0.6ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" ORDER BY usos DESC LIMIT $1[0m  [["LIMIT", 5]]
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.8ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered questions/index.html.erb within layouts/application (15.1ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 63ms (Views: 39.9ms | ActiveRecord: 7.6ms)
+
+
+Started GET "/questions/3" for 127.0.0.1 at 2017-11-16 19:11:23 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (2.2ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 1], ["updated_at", "2017-11-16 22:11:23.103214"], ["id", 3]]
+  [1m[35m (16.9ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (11.4ms)
+Completed 500 Internal Server Error in 48ms (ActiveRecord: 21.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists?) %>
+    38: 
+    39:                     <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742__633478648'
+Started GET "/" for 127.0.0.1 at 2017-11-16 19:11:33 -0300
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" ORDER BY visits desc LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (2.1ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" ORDER BY usos DESC LIMIT $1[0m  [["LIMIT", 5]]
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered questions/index.html.erb within layouts/application (15.8ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 53ms (Views: 44.1ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2017-11-16 19:11:36 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (2.5ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 4], ["updated_at", "2017-11-16 22:11:36.286433"], ["id", 1]]
+  [1m[35m (56.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (10.2ms)
+Completed 500 Internal Server Error in 86ms (ActiveRecord: 60.9ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists?) %>
+    38: 
+    39:                     <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742__641940818'
+Started GET "/" for 127.0.0.1 at 2017-11-16 19:12:04 -0300
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" ORDER BY visits desc LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (3.3ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" ORDER BY usos DESC LIMIT $1[0m  [["LIMIT", 5]]
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered questions/index.html.erb within layouts/application (22.5ms)
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 60ms (Views: 48.1ms | ActiveRecord: 6.8ms)
+
+
+Started GET "/questions/new" for 127.0.0.1 at 2017-11-16 19:12:12 -0300
+Processing by QuestionsController#new as HTML
+  Rendering questions/new.html.erb within layouts/application
+  Rendered questions/_form.html.erb (5.3ms)
+  Rendered questions/new.html.erb within layouts/application (7.7ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (5.8ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 55ms (Views: 51.6ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/questions" for 127.0.0.1 at 2017-11-16 19:12:24 -0300
+Processing by QuestionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7x2wL6NGQhtZGpnbB+W6eS0sRqFvjjB7cQg+zZZRsfmDum9cvM7QTTu7Kdanxx+PfWHiUG+ZJ3ia76bG+cBmkA==", "question"=>{"title"=>"preguntando?", "content"=>"que preguntaaaaaaaaa"}, "commit"=>"Publicar"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "questions" ("user_id", "title", "content", "visits", "votes", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["user_id", 7], ["title", "preguntando?"], ["content", "que preguntaaaaaaaaa"], ["visits", 0], ["votes", 0], ["created_at", "2017-11-16 22:12:24.762594"], ["updated_at", "2017-11-16 22:12:24.762594"]]
+  [1m[35m (29.0ms)[0m  [1m[35mCOMMIT[0m
+No template found for QuestionsController#create, rendering head :no_content
+Completed 204 No Content in 82ms (ActiveRecord: 31.8ms)
+
+
+Started GET "/questions" for 127.0.0.1 at 2017-11-16 19:13:33 -0300
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (0.8ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" ORDER BY visits desc LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (2.5ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" ORDER BY usos DESC LIMIT $1[0m  [["LIMIT", 5]]
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/index.html.erb within layouts/application (34.3ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 86ms (Views: 69.7ms | ActiveRecord: 6.4ms)
+
+
+Started GET "/questions/7" for 127.0.0.1 at 2017-11-16 19:13:38 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (1.4ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 1], ["updated_at", "2017-11-16 22:13:38.792608"], ["id", 7]]
+  [1m[35m (10.3ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 7]]
+  Rendered questions/show.html.erb within layouts/application (7.7ms)
+  Rendered layouts/_header.html.erb (3.3ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 65ms (Views: 39.3ms | ActiveRecord: 14.5ms)
+
+
+Started GET "/questions/7" for 127.0.0.1 at 2017-11-16 19:13:41 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mQuestion Load (1.1ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (3.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 2], ["updated_at", "2017-11-16 22:13:41.860334"], ["id", 7]]
+  [1m[35m (20.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.5ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 7]]
+  Rendered questions/show.html.erb within layouts/application (8.2ms)
+  Rendered layouts/_header.html.erb (3.3ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 84ms (Views: 43.1ms | ActiveRecord: 27.8ms)
+
+
+Started GET "/questions/7" for 127.0.0.1 at 2017-11-16 19:13:48 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (1.5ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 3], ["updated_at", "2017-11-16 22:13:48.716760"], ["id", 7]]
+  [1m[35m (19.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 7]]
+  Rendered questions/show.html.erb within layouts/application (6.8ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 79ms (Views: 42.2ms | ActiveRecord: 26.9ms)
+
+
+Started GET "/questions" for 127.0.0.1 at 2017-11-16 19:13:51 -0300
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (0.8ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" ORDER BY visits desc LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (0.6ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" ORDER BY usos DESC LIMIT $1[0m  [["LIMIT", 5]]
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/index.html.erb within layouts/application (50.2ms)
+  Rendered layouts/_header.html.erb (3.2ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 106ms (Views: 91.5ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:13:59 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 1], ["updated_at", "2017-11-16 22:13:59.422429"], ["id", 5]]
+  [1m[35m (37.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (12.7ms)
+Completed 500 Internal Server Error in 68ms (ActiveRecord: 41.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists?) %>
+    38: 
+    39:                     <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742__643048338'
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:18:08 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 2], ["updated_at", "2017-11-16 22:18:08.704867"], ["id", 5]]
+  [1m[35m (11.1ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.6ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 5]]
+  Rendered questions/show.html.erb within layouts/application (10.1ms)
+  Rendered layouts/_header.html.erb (3.0ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 79ms (Views: 45.8ms | ActiveRecord: 15.4ms)
+
+
+Started POST "/questions/5/votar" for 127.0.0.1 at 2017-11-16 19:18:13 -0300
+Processing by QuestionsController#votar as HTML
+  Parameters: {"authenticity_token"=>"VBcEP09Uaw+3YPEITHYukb30MMegYFFaq3Z6gtTo3cXytE1X3tQI8V+ywPw0xVYe6obFodqQwNQN4dUABMBDTA==", "id"=>"5"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "question_votes" ("user_id", "question_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 7], ["question_id", 5], ["created_at", "2017-11-16 22:18:13.265348"], ["updated_at", "2017-11-16 22:18:13.265348"]]
+  [1m[35m (13.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 1], ["updated_at", "2017-11-16 22:18:13.284886"], ["id", 5]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/questions/5
+Completed 302 Found in 83ms (ActiveRecord: 29.3ms)
+
+
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:18:13 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 3], ["updated_at", "2017-11-16 22:18:13.307865"], ["id", 5]]
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 5]]
+  Rendered questions/show.html.erb within layouts/application (8.3ms)
+  Rendered layouts/_header.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 62ms (Views: 46.7ms | ActiveRecord: 6.8ms)
+
+
+Started POST "/questions/5/votar" for 127.0.0.1 at 2017-11-16 19:18:15 -0300
+Processing by QuestionsController#votar as HTML
+  Parameters: {"authenticity_token"=>"N5Grqfd9p0i5dZt1ZiI0vBTLUNQrkL81iwK/VEjodU2RMuLBZv3EtlGnqoEekUwzQ7mlslFgLrstlRDWmMDrxA==", "id"=>"5"}
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "question_votes" ("user_id", "question_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 7], ["question_id", 5], ["created_at", "2017-11-16 22:18:15.232167"], ["updated_at", "2017-11-16 22:18:15.232167"]]
+  [1m[35m (4.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 2], ["updated_at", "2017-11-16 22:18:15.245886"], ["id", 5]]
+  [1m[35m (12.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/questions/5
+Completed 302 Found in 45ms (ActiveRecord: 21.7ms)
+
+
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:18:15 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 4], ["updated_at", "2017-11-16 22:18:15.277558"], ["id", 5]]
+  [1m[35m (3.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 5]]
+  Rendered questions/show.html.erb within layouts/application (7.5ms)
+  Rendered layouts/_header.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 55ms (Views: 38.4ms | ActiveRecord: 6.2ms)
+
+
+Started POST "/questions/5/votar" for 127.0.0.1 at 2017-11-16 19:18:17 -0300
+Processing by QuestionsController#votar as HTML
+  Parameters: {"authenticity_token"=>"gFkhr74K64b5rewUi1Q/Rpeowq/s8cobYvpmtAO9rRMm+mjHL4qIeBF/3eDz50fJwNo3yZYBW5XEbck205Uzmg==", "id"=>"5"}
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "question_votes" ("user_id", "question_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 7], ["question_id", 5], ["created_at", "2017-11-16 22:18:17.278648"], ["updated_at", "2017-11-16 22:18:17.278648"]]
+  [1m[35m (27.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 3], ["updated_at", "2017-11-16 22:18:17.312263"], ["id", 5]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/questions/5
+Completed 302 Found in 57ms (ActiveRecord: 36.9ms)
+
+
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:18:17 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 5], ["updated_at", "2017-11-16 22:18:17.342681"], ["id", 5]]
+  [1m[35m (7.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 5]]
+  Rendered questions/show.html.erb within layouts/application (9.1ms)
+  Rendered layouts/_header.html.erb (3.0ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 60ms (Views: 39.9ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:18:38 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 6], ["updated_at", "2017-11-16 22:18:38.248115"], ["id", 5]]
+  [1m[35m (14.9ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (10.7ms)
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 17.9ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists?) %>
+    38: 
+    39:                     <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742_32656220'
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:24:58 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.5ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 7], ["updated_at", "2017-11-16 22:24:58.599868"], ["id", 5]]
+  [1m[35m (16.8ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (20.9ms)
+Completed 500 Internal Server Error in 57ms (ActiveRecord: 20.6ms)
+
+
+  
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::Vote):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (Vote.exists?(@vote)) %>
+    38: 
+    39:                     <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742_28500920'
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:25:38 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 8], ["updated_at", "2017-11-16 22:25:38.382563"], ["id", 5]]
+  [1m[35m (22.6ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (11.3ms)
+Completed 500 Internal Server Error in 52ms (ActiveRecord: 26.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists?) %>
+    38: 
+    39:                     <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742__641298458'
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:25:53 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (1.6ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 9], ["updated_at", "2017-11-16 22:25:53.615664"], ["id", 5]]
+  [1m[35m (27.9ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (8.2ms)
+Completed 500 Internal Server Error in 51ms (ActiveRecord: 33.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists?()) %>
+    38: 
+    39:                     <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742__644862068'
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:27:57 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (4.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 10], ["updated_at", "2017-11-16 22:27:57.766005"], ["id", 5]]
+  [1m[35m (19.1ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (12.6ms)
+Completed 500 Internal Server Error in 56ms (ActiveRecord: 27.5ms)
+
+
+  
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::Vote):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (Vote.exists?(vote => @vote)) %>
+    38: 
+    39:                     <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742__636923058'
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:30:21 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 11], ["updated_at", "2017-11-16 22:30:21.960765"], ["id", 5]]
+  [1m[35m (19.1ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 5]]
+  Rendered questions/show.html.erb within layouts/application (8.8ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 79ms (Views: 42.7ms | ActiveRecord: 22.6ms)
+
+
+Started POST "/questions/5/votar" for 127.0.0.1 at 2017-11-16 19:30:23 -0300
+Processing by QuestionsController#votar as HTML
+  Parameters: {"authenticity_token"=>"jqUoUXV+HNVcGTkbapXXyoi6DawgukL/oXV7vRMVqEQoBmE55P5/K7TLCO8SJq9F38j4ylpK03EH4tQ/wz02zQ==", "id"=>"5"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Load (0.8ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "question_votes" ("user_id", "question_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 7], ["question_id", 5], ["created_at", "2017-11-16 22:30:23.483502"], ["updated_at", "2017-11-16 22:30:23.483502"]]
+  [1m[35m (10.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 4], ["updated_at", "2017-11-16 22:30:23.501614"], ["id", 5]]
+  [1m[35m (4.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/questions/5
+Completed 302 Found in 41ms (ActiveRecord: 20.4ms)
+
+
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:30:23 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 12], ["updated_at", "2017-11-16 22:30:23.524857"], ["id", 5]]
+  [1m[35m (13.6ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 5]]
+  Rendered questions/show.html.erb within layouts/application (7.8ms)
+  Rendered layouts/_header.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 66ms (Views: 40.4ms | ActiveRecord: 16.7ms)
+
+
+Started POST "/questions/5/votar" for 127.0.0.1 at 2017-11-16 19:30:24 -0300
+Processing by QuestionsController#votar as HTML
+  Parameters: {"authenticity_token"=>"79GKNCOZgMJ5xRuq8Yv6uLEPJhDW5yuuAxI9k9S0BOFJcsNcshnjPJEXKl6JOII35n3TdqwXuiClhZIRBJyaaA==", "id"=>"5"}
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "question_votes" ("user_id", "question_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 7], ["question_id", 5], ["created_at", "2017-11-16 22:30:24.970726"], ["updated_at", "2017-11-16 22:30:24.970726"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (2.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 5], ["updated_at", "2017-11-16 22:30:24.987373"], ["id", 5]]
+  [1m[35m (6.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/questions/5
+Completed 302 Found in 47ms (ActiveRecord: 17.3ms)
+
+
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:30:25 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 13], ["updated_at", "2017-11-16 22:30:25.019199"], ["id", 5]]
+  [1m[35m (10.9ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 5]]
+  Rendered questions/show.html.erb within layouts/application (8.0ms)
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 62ms (Views: 38.4ms | ActiveRecord: 15.2ms)
+
+
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:34:52 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 14], ["updated_at", "2017-11-16 22:34:52.732476"], ["id", 5]]
+  [1m[35m (16.0ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (10.2ms)
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 19.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists) %>
+    38: 
+    39: 		    <td><%= button_to 'Votar', votar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742_28540210'
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:36:00 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 15], ["updated_at", "2017-11-16 22:36:00.912357"], ["id", 5]]
+  [1m[35m (25.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.6ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."question_id" = $1 LIMIT $2[0m  [["question_id", 5], ["LIMIT", 11]]
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."question_id" = $1 LIMIT $2[0m  [["question_id", 5], ["LIMIT", 11]]
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."question_id" = $1 LIMIT $2[0m  [["question_id", 5], ["LIMIT", 11]]
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."question_id" = $1 LIMIT $2[0m  [["question_id", 5], ["LIMIT", 11]]
+  Rendered questions/show.html.erb within layouts/application (210.6ms)
+Completed 500 Internal Server Error in 254ms (ActiveRecord: 29.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for #<#<Class:0x035457b0>:0xb38c6820>
+Did you mean?  exit):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (exists?(@vote)) %>
+    38: 
+    39: 		    <td><%= button_to 'Votar', votar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742__641321288'
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:39:24 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 16], ["updated_at", "2017-11-16 22:39:24.968426"], ["id", 5]]
+  [1m[35m (15.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (8.7ms)
+Completed 500 Internal Server Error in 120ms (ActiveRecord: 29.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists?) %>
+    38: 
+    39: 		    <td><%= button_to 'Votar', votar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742__643111678'
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:41:07 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 17], ["updated_at", "2017-11-16 22:41:07.399210"], ["id", 5]]
+  [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (8.3ms)
+Completed 500 Internal Server Error in 100ms (ActiveRecord: 19.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists?) %>
+    38: 
+    39: 		    <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>		    
+    40: 			
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742__644359088'
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:41:48 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (1.1ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 18], ["updated_at", "2017-11-16 22:41:48.147359"], ["id", 5]]
+  [1m[35m (29.0ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  Rendered questions/show.html.erb within layouts/application (2.4ms)
+Completed 500 Internal Server Error in 55ms (ActiveRecord: 34.5ms)
+
+
+  
+SyntaxError (/home/lucas/Educanding/app/views/questions/show.html.erb:37: syntax error, unexpected '=', expecting ')'
+  if (@vote.exists?(:user_id = current_user.id)) 
+                              ^
+/home/lucas/Educanding/app/views/questions/show.html.erb:37: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+?(:user_id = current_user.id)) 
+                              ^
+/home/lucas/Educanding/app/views/questions/show.html.erb:93: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+                ^):
+  
+app/views/questions/show.html.erb:37: syntax error, unexpected '=', expecting ')'
+app/views/questions/show.html.erb:37: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+app/views/questions/show.html.erb:93: syntax error, unexpected keyword_ensure, expecting end-of-input
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:42:11 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 19], ["updated_at", "2017-11-16 22:42:11.016338"], ["id", 5]]
+  [1m[35m (17.6ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (9.0ms)
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 20.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists?(:user_id == current_user.id)) %>
+    38: 
+    39: 		    <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>		    
+    40: 			
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___205461742__640326928'
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:52:29 -0300
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 20], ["updated_at", "2017-11-16 22:52:29.561880"], ["id", 5]]
+  [1m[35m (17.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (11.4ms)
+Completed 500 Internal Server Error in 141ms (ActiveRecord: 30.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `empty?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.empty?) %>
+    38: 
+    39: 		    <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>		    
+    40: 			
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb__767673058_27515880'
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:52:40 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (1.1ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 21], ["updated_at", "2017-11-16 22:52:40.694980"], ["id", 5]]
+  [1m[35m (28.3ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (1.8ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 5]]
+  Rendered questions/show.html.erb within layouts/application (15.4ms)
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 271ms (Views: 222.3ms | ActiveRecord: 37.3ms)
+
+
+Started POST "/questions/5/desvotar" for 127.0.0.1 at 2017-11-16 19:52:43 -0300
+Processing by QuestionsController#desvotar as HTML
+  Parameters: {"authenticity_token"=>"k7inFCktvHiTuHYL15kewW0XVvr1gz9Q3jN9lHhQJR81G+58uK3fhntqR/+vKmZOOmWjnI9zrt54pNIWqHi7lg==", "id"=>"5"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mQuestionVote Load (1.2ms)[0m  [1m[34mSELECT  "question_votes".* FROM "question_votes" WHERE "question_votes"."user_id" = $1 AND "question_votes"."question_id" = $2 ORDER BY "question_votes"."id" ASC LIMIT $3[0m  [["user_id", 7], ["question_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[31mDELETE FROM "question_votes" WHERE "question_votes"."id" = $1[0m  [["id", 1]]
+  [1m[35m (12.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 4], ["updated_at", "2017-11-16 22:52:43.507823"], ["id", 5]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/questions/5
+Completed 302 Found in 61ms (ActiveRecord: 29.2ms)
+
+
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:52:43 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 22], ["updated_at", "2017-11-16 22:52:43.530004"], ["id", 5]]
+  [1m[35m (5.3ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 5]]
+  Rendered questions/show.html.erb within layouts/application (7.8ms)
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 51ms (Views: 34.5ms | ActiveRecord: 9.0ms)
+
+
+Started POST "/questions/5/desvotar" for 127.0.0.1 at 2017-11-16 19:52:44 -0300
+Processing by QuestionsController#desvotar as HTML
+  Parameters: {"authenticity_token"=>"LpBLCVycj+paGdefoYlEBDlbSflUquQBicbxkV9DxsmIMwJhzRzsFLLL5mvZOjyLbim8ny5adY8vUV4Tj2tYQA==", "id"=>"5"}
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mQuestionVote Load (0.7ms)[0m  [1m[34mSELECT  "question_votes".* FROM "question_votes" WHERE "question_votes"."user_id" = $1 AND "question_votes"."question_id" = $2 ORDER BY "question_votes"."id" ASC LIMIT $3[0m  [["user_id", 7], ["question_id", 5], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[31mDELETE FROM "question_votes" WHERE "question_votes"."id" = $1[0m  [["id", 2]]
+  [1m[35m (118.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.6ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 3], ["updated_at", "2017-11-16 22:52:44.921354"], ["id", 5]]
+  [1m[35m (11.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/questions/5
+Completed 302 Found in 159ms (ActiveRecord: 137.0ms)
+
+
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:52:44 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.7ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 23], ["updated_at", "2017-11-16 22:52:44.965788"], ["id", 5]]
+  [1m[35m (11.8ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 5]]
+  Rendered questions/show.html.erb within layouts/application (9.9ms)
+  Rendered layouts/_header.html.erb (3.2ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 76ms (Views: 50.5ms | ActiveRecord: 16.4ms)
+
+
+Started POST "/questions/5/desvotar" for 127.0.0.1 at 2017-11-16 19:52:45 -0300
+Processing by QuestionsController#desvotar as HTML
+  Parameters: {"authenticity_token"=>"fmLM4t8Es80v33hNmwkz48Wps1q2HwJtG7oQUcvKRhXYwYWKToTQM8cNSbnjuktskttGPMzvk+O9Lb/TG+LYnA==", "id"=>"5"}
+  [1m[36mQuestion Load (1.3ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mQuestionVote Load (0.9ms)[0m  [1m[34mSELECT  "question_votes".* FROM "question_votes" WHERE "question_votes"."user_id" = $1 AND "question_votes"."question_id" = $2 ORDER BY "question_votes"."id" ASC LIMIT $3[0m  [["user_id", 7], ["question_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[31mDELETE FROM "question_votes" WHERE "question_votes"."id" = $1[0m  [["id", 3]]
+  [1m[35m (22.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 2], ["updated_at", "2017-11-16 22:52:45.919722"], ["id", 5]]
+  [1m[35m (4.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/questions/5
+Completed 302 Found in 53ms (ActiveRecord: 34.7ms)
+
+
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:52:45 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 24], ["updated_at", "2017-11-16 22:52:45.943679"], ["id", 5]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 5]]
+  Rendered questions/show.html.erb within layouts/application (8.1ms)
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 79ms (Views: 64.5ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/questions/5" for 127.0.0.1 at 2017-11-16 19:53:15 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 25], ["updated_at", "2017-11-16 22:53:15.073940"], ["id", 5]]
+  [1m[35m (28.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (7.7ms)
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 30.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists?) %>
+    38: 
+    39: 		    <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>		    
+    40: 			
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb__767673058__632874318'
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mQuestion Load (0.9ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" ORDER BY "questions"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 10], ["updated_at", "2017-11-16 23:04:06.060408"], ["id", 1]]
+  [1m[35m (12.0ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/questions" for 127.0.0.1 at 2017-11-16 20:04:14 -0300
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" ORDER BY visits desc LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (0.7ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" ORDER BY usos DESC LIMIT $1[0m  [["LIMIT", 5]]
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered questions/index.html.erb within layouts/application (54.7ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 380ms (Views: 308.5ms | ActiveRecord: 18.4ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2017-11-16 20:04:21 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (1.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 5], ["updated_at", "2017-11-16 23:04:21.887893"], ["id", 1]]
+  [1m[35m (8.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (14.5ms)
+Completed 500 Internal Server Error in 93ms (ActiveRecord: 13.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists?) %>
+    38: 
+    39:                     <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___598352919__634149458'
+Started GET "/questions/1" for 127.0.0.1 at 2017-11-16 20:04:41 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 6], ["updated_at", "2017-11-16 23:04:42.142261"], ["id", 1]]
+  [1m[35m (18.7ms)[0m  [1m[35mCOMMIT[0m
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered questions/show.html.erb within layouts/application (12.0ms)
+Completed 500 Internal Server Error in 110ms (ActiveRecord: 31.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `exists?' for nil:NilClass):
+    34: 
+    35:             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+    36: 
+    37:                 <% if (@vote.exists?) %>
+    38: 
+    39:                     <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>
+    40: 
+  
+app/views/questions/show.html.erb:37:in `_app_views_questions_show_html_erb___598352919_31718370'
+Started GET "/questions/1" for 127.0.0.1 at 2017-11-16 20:06:09 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 7], ["updated_at", "2017-11-16 23:06:09.915431"], ["id", 1]]
+  [1m[35m (19.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestionVote Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "question_votes" WHERE "question_votes"."user_id" = $1 AND "question_votes"."question_id" = $2 LIMIT $3[0m  [["user_id", 7], ["question_id", 1], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.5ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 1]]
+  Rendered questions/show.html.erb within layouts/application (13.1ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 146ms (Views: 37.2ms | ActiveRecord: 37.9ms)
+
+
+Started POST "/questions/1/votar" for 127.0.0.1 at 2017-11-16 20:06:12 -0300
+Processing by QuestionsController#votar as HTML
+  Parameters: {"authenticity_token"=>"VnIfjWf82sSa9j5nxqxltdzs7fVOH/H2ujMqyl4u+Unw0Vbl9ny5OnIkD5O+Hx06i54YkzTvYHgcpIVIjgZnwA==", "id"=>"1"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "question_votes" ("user_id", "question_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 7], ["question_id", 1], ["created_at", "2017-11-16 23:06:12.531218"], ["updated_at", "2017-11-16 23:06:12.531218"]]
+  [1m[35m (13.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 11], ["updated_at", "2017-11-16 23:06:12.550543"], ["id", 1]]
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/questions/1
+Completed 302 Found in 61ms (ActiveRecord: 25.1ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2017-11-16 20:06:12 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 8], ["updated_at", "2017-11-16 23:06:12.575435"], ["id", 1]]
+  [1m[35m (13.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestionVote Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "question_votes" WHERE "question_votes"."user_id" = $1 AND "question_votes"."question_id" = $2 LIMIT $3[0m  [["user_id", 7], ["question_id", 1], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.6ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 1]]
+  Rendered questions/show.html.erb within layouts/application (8.0ms)
+  Rendered layouts/_header.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 62ms (Views: 34.7ms | ActiveRecord: 17.7ms)
+
+
+Started POST "/questions/1/desvotar" for 127.0.0.1 at 2017-11-16 20:06:13 -0300
+Processing by QuestionsController#desvotar as HTML
+  Parameters: {"authenticity_token"=>"FYmhjciBXbuyPcomR7E9Go7WIvq7fhPizmKht4zwb92zKujlWQE+RVrv+9I/AkWV2aTXnMGOgmxo9Q41XNjxVA==", "id"=>"1"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mQuestionVote Load (0.6ms)[0m  [1m[34mSELECT  "question_votes".* FROM "question_votes" WHERE "question_votes"."user_id" = $1 AND "question_votes"."question_id" = $2 ORDER BY "question_votes"."id" ASC LIMIT $3[0m  [["user_id", 7], ["question_id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM "question_votes" WHERE "question_votes"."id" = $1[0m  [["id", 11]]
+  [1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 10], ["updated_at", "2017-11-16 23:06:13.661836"], ["id", 1]]
+  [1m[35m (5.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/questions/1
+Completed 302 Found in 32ms (ActiveRecord: 14.8ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2017-11-16 20:06:13 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 9], ["updated_at", "2017-11-16 23:06:13.694543"], ["id", 1]]
+  [1m[35m (5.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestionVote Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "question_votes" WHERE "question_votes"."user_id" = $1 AND "question_votes"."question_id" = $2 LIMIT $3[0m  [["user_id", 7], ["question_id", 1], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.5ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 1]]
+  Rendered questions/show.html.erb within layouts/application (6.4ms)
+  Rendered layouts/_header.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 52ms (Views: 32.9ms | ActiveRecord: 9.3ms)
+
+
+Started POST "/questions/1/votar" for 127.0.0.1 at 2017-11-16 20:06:39 -0300
+Processing by QuestionsController#votar as HTML
+  Parameters: {"authenticity_token"=>"0HLpSVWvR02u4UNFKtfdGQoH53i9BZRobRlartfRLKJ20aAhxC8ks0YzcrFSZKWWXXUSHsf1BebLjvUsB/myKw==", "id"=>"1"}
+  [1m[36mQuestion Load (0.9ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Load (1.3ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "question_votes" ("user_id", "question_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 7], ["question_id", 1], ["created_at", "2017-11-16 23:06:39.797944"], ["updated_at", "2017-11-16 23:06:39.797944"]]
+  [1m[35m (12.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 11], ["updated_at", "2017-11-16 23:06:39.818409"], ["id", 1]]
+  [1m[35m (3.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/questions/1
+Completed 302 Found in 49ms (ActiveRecord: 26.0ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2017-11-16 20:06:39 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 10], ["updated_at", "2017-11-16 23:06:39.840455"], ["id", 1]]
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestionVote Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "question_votes" WHERE "question_votes"."user_id" = $1 AND "question_votes"."question_id" = $2 LIMIT $3[0m  [["user_id", 7], ["question_id", 1], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.5ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 1]]
+  Rendered questions/show.html.erb within layouts/application (6.7ms)
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 53ms (Views: 35.9ms | ActiveRecord: 6.9ms)
+
+
+Started POST "/questions/1/desvotar" for 127.0.0.1 at 2017-11-16 20:06:40 -0300
+Processing by QuestionsController#desvotar as HTML
+  Parameters: {"authenticity_token"=>"UE92DqCMHohUvqlqhBYDBlCnDR/tNQw980iGhG2GCKr27D9mMQx9drxsmJ78pXuJB9X4eZfFnbNV3ykGva6WIw==", "id"=>"1"}
+  [1m[36mQuestion Load (1.2ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mQuestionVote Load (0.8ms)[0m  [1m[34mSELECT  "question_votes".* FROM "question_votes" WHERE "question_votes"."user_id" = $1 AND "question_votes"."question_id" = $2 ORDER BY "question_votes"."id" ASC LIMIT $3[0m  [["user_id", 7], ["question_id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[31mDELETE FROM "question_votes" WHERE "question_votes"."id" = $1[0m  [["id", 12]]
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "questions" SET "votes" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["votes", 10], ["updated_at", "2017-11-16 23:06:40.585097"], ["id", 1]]
+  [1m[35m (12.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/questions/1
+Completed 302 Found in 44ms (ActiveRecord: 24.3ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2017-11-16 20:06:40 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 11], ["updated_at", "2017-11-16 23:06:40.619662"], ["id", 1]]
+  [1m[35m (9.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestionVote Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "question_votes" WHERE "question_votes"."user_id" = $1 AND "question_votes"."question_id" = $2 LIMIT $3[0m  [["user_id", 7], ["question_id", 1], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.6ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 1]]
+  Rendered questions/show.html.erb within layouts/application (9.0ms)
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 69ms (Views: 40.4ms | ActiveRecord: 13.5ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2017-11-16 20:06:44 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 12], ["updated_at", "2017-11-16 23:06:44.965626"], ["id", 1]]
+  [1m[35m (41.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestionVote Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "question_votes" WHERE "question_votes"."user_id" = $1 AND "question_votes"."question_id" = $2 LIMIT $3[0m  [["user_id", 7], ["question_id", 1], ["LIMIT", 1]]
+  [1m[36mAnswer Load (1.0ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 1]]
+  Rendered questions/show.html.erb within layouts/application (8.5ms)
+  Rendered layouts/_header.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 97ms (Views: 37.1ms | ActiveRecord: 46.5ms)
+
+
+Started GET "/questions" for 127.0.0.1 at 2017-11-16 20:06:49 -0300
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" ORDER BY visits desc LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (2.4ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" ORDER BY usos DESC LIMIT $1[0m  [["LIMIT", 5]]
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered questions/index.html.erb within layouts/application (18.2ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 81ms (Views: 48.2ms | ActiveRecord: 10.2ms)
+
+
+Started GET "/questions/7" for 127.0.0.1 at 2017-11-16 20:06:54 -0300
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "questions" SET "visits" = $1, "updated_at" = $2 WHERE "questions"."id" = $3[0m  [["visits", 4], ["updated_at", "2017-11-16 23:06:54.021029"], ["id", 7]]
+  [1m[35m (15.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.6ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 7]]
+  Rendered questions/show.html.erb within layouts/application (6.4ms)
+  Rendered layouts/_header.html.erb (3.3ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 85ms (Views: 47.0ms | ActiveRecord: 20.2ms)
+
+
+Started GET "/questions" for 127.0.0.1 at 2017-11-16 20:06:55 -0300
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (1.9ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" ORDER BY visits desc LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (2.8ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" ORDER BY usos DESC LIMIT $1[0m  [["LIMIT", 5]]
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Load (2.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered questions/index.html.erb within layouts/application (32.0ms)
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 93ms (Views: 75.3ms | ActiveRecord: 9.8ms)
+
+
