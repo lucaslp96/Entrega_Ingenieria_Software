@@ -31,11 +31,25 @@ class QuestionsController < ApplicationController
     end
 
 
-    def index	
+    def index
 
-	@questions = Question.all
+	if (params[:sort].present?)
+		if (params[:sort] == "fecha")
+			@questions = Question.porfecha
+		end
+		if (params[:sort] == "votos")
+			@questions = Question.porvotos
+		end
+		if (params[:sort] == "visitas")
+			@questions = Question.porvisitas
+		end		
+	else
+		@questions = Question.porfecha
+	end
 	
 	@questionMoreVisited = Question.masvisitada
+
+	@questionMoreVoted = Question.masvotada
 
 	@tags = Tag.order("usos DESC").first(5)
 
@@ -69,20 +83,11 @@ class QuestionsController < ApplicationController
 
     end
 	
+
     def create
 
     	@question = Question.create(user_id: current_user.id, visits: 0, votes: 0, title: params[:question][:title], content: params[:question][:content])
 
     end
-
-  #  def orderDate
-   #	params{orden} : 2
-#	redirect_to questions_path
- #   end	
-#
- #   def orderVote
-  # 	params{orden} : 1
-#	redirect_to questions_path
- #   end	
 
 end

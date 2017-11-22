@@ -7,7 +7,4 @@ session_controller
 modelo question
 routes.rb
 
-<!-- Ordenar por: 
-<td><%= button_to 'Fecha', orderDate_question_path(@questions), method: :post %></td>
-<td><%= button_to 'Votos', orderVote_question_path(@questions), method: :post %></td>
--->
+

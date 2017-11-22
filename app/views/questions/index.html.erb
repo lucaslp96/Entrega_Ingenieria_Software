@@ -13,6 +13,21 @@
         </h3>
 <hr>
 
+<hr>
+        <h3>
+	    <li>Pregunta más votada:</li>
+            <li><%= link_to @questionMoreVoted.title, @questionMoreVoted %> </li> 
+	    <li><%= @questionMoreVoted.visits %> visitas - <%= @questionMoreVoted.votes %> votos</li>
+	    <li>Creado por: <%= User.find(@questionMoreVoted.user_id).email %> </li>
+	    <li>Fecha: <%= User.find(@questionMoreVoted.user_id).created_at %> </li>
+        </h3>
+<hr>
+
+    
+<li>Ordenar por:<a href="?sort=fecha">Fecha</a>
+<a href="?sort=votos">Votos</a>
+<a href="?sort=visitas">Visitas</a></li> 
+
 
 <% @questions.each do |preg| %>
    <hr>

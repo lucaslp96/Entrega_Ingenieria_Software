@@ -5,30 +5,26 @@ Rails.application.routes.draw do
     root 'questions#index'
     #root 'home#main'
     resources :questions do
-		member do
-        		post 'orderDate'
-       		end
-        	member do
-       		 	post 'orderVote'
-       		end
-		member do
-        post 'votar'
+	member do
+        	post 'votar'
         end
         member do
-        post 'desvotar'
+        	post 'desvotar'
         end
-	end
+    end
+   
     resources:users
     resources:tags
     resources:answers do
-        member do
-        post 'upvote'
+       
+	member do
+        	post 'upvote'
         end
         member do
-        post 'downvote'
+        	post 'downvote'
         end
         member do
-        post 'unvote'
+        	post 'unvote'
         end
     end
 
