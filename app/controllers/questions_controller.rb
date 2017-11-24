@@ -80,52 +80,52 @@ class QuestionsController < ApplicationController
 
   end
 
-    def index
+  def index
 
-	if (params[:sort].present?)
-		if (params[:sort] == "fecha")
-			@questions = Question.porfecha
-		end
-		if (params[:sort] == "votos")
-			@questions = Question.porvotos
-		end
-		if (params[:sort] == "visitas")
-			@questions = Question.porvisitas
-		end
-	else
-		@questions = Question.porfecha
-	end
+	   if (params[:sort].present?)
+		     if (params[:sort] == "fecha")
+			        @questions = Question.porfecha
+		     end
+		 if (params[:sort] == "votos")
+			   @questions = Question.porvotos
+		 end
+		 if (params[:sort] == "visitas")
+			 @questions = Question.porvisitas
+		 end
+	   else
+		   @questions = Question.porfecha
+	   end
 
-	@questionMoreVisited = Question.masvisitada
+	   @questionMoreVisited = Question.masvisitada
 
-	@questionMoreVoted = Question.masvotada
+	   @questionMoreVoted = Question.masvotada
 
-	@tags = Tag.order("usos DESC").first(5)
+	   @tags = Tag.order("usos DESC").first(5)
 
-    end
+  end
 
-    def show
+  def show
 
-        @question = Question.find(params[:id])
+         @question = Question.find(params[:id])
 
-	@question.visits += 1
+	       @question.visits += 1
 
-	@question.save
+	       @question.save
 
-        @answers = @question.answers
+         @answers = @question.answers
 
-	if (user_signed_in?)
+	        if (user_signed_in?)
 
             @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id)
 
-        end
+          end
 
-    end
+  end
 
-    def new
+  def new
 
-  	@question = Question.new
-      	@tags=Tag.all
+  	   @question = Question.new
+       @tags=Tag.all
       end
 
       def edit
@@ -143,7 +143,7 @@ class QuestionsController < ApplicationController
   		  else
   		        render :new
   		  end
-  		end
+  end
 
 
   end
