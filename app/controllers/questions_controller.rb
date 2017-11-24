@@ -83,14 +83,14 @@ class QuestionsController < ApplicationController
   def index
 
 	   if (params[:sort].present?)
-		     if (params[:sort] == "fecha")
-			        @questions = Question.porfecha
-		     end
+		 if (params[:sort] == "fecha")
+		        @questions = Question.porfecha
+		 end
 		 if (params[:sort] == "votos")
-			   @questions = Question.porvotos
+			@questions = Question.porvotos
 		 end
 		 if (params[:sort] == "visitas")
-			 @questions = Question.porvisitas
+			@questions = Question.porvisitas
 		 end
 	   else
 		   @questions = Question.porfecha
@@ -106,21 +106,21 @@ class QuestionsController < ApplicationController
 
   def show
 
-        @comments = Question.question_comments
+	@question = Question.find(params[:id])
 
-         @question = Question.find(params[:id])
+        @comments = @question.question_comments
 
-	       @question.visits += 1
+	@question.visits += 1
 
-	       @question.save
+	@question.save
 
-         @answers = @question.answers
+        @answers = @question.answers
 
-	        if (user_signed_in?)
+	if (user_signed_in?)
 
             @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id)
 
-          end
+        end
 
   end
 
@@ -136,9 +136,9 @@ class QuestionsController < ApplicationController
 
       def create
         @question = Question.new(params.require(:question).permit(:title, :content, tag_ids: []))
-  	    @question.user_id = current_user.id
-  	    @question.votes=0
-  		  @question.visits=0
+  	@question.user_id = current_user.id
+  	@question.votes=0
+  	@question.visits=0
   		  if @question.save
   		#create(user_id: current_user.id, title: params[:question][:title], content: params[:question][:content], visits: 0, votes: 0)    #cambio
              redirect_to questions_path

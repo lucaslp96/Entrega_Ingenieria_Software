@@ -2,7 +2,7 @@ class Question < ApplicationRecord
 
 	scope :porfecha, -> { order("created_at desc") }
 		scope :porvotos, -> { order("votes desc") }
-		scope :masvisitada, -> { order("visits desc").first }
+		scope :porvisitas, -> { order("visits desc") }
 
 		belongs_to :user
 		has_many :answers
