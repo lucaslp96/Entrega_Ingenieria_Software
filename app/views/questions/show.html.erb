@@ -10,10 +10,12 @@
           <!-- Title -->
           <h1 class="mt-4"><%= @question.title  %></h1>
 
-          <!-- Author -->
-          <p class="lead">
-            Por:<b>  <%= User.find(@question.user_id).email %></b>
-          </p>
+
+            <!-- Author -->
+            <p class="lead">
+              Por:<b>  <%= User.find(@question.user_id).email %> - Puntos: <%= User.find(@question.user_id).points %></b>
+            </p>
+
 
           <hr>
 
@@ -34,13 +36,17 @@
 
             <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
 
+              <p> <%= link_to "Comentar", new_question_question_comment_path(@question), class: "btn btn-primary" %>
+              </p>
+
                 <% if (@vote.exists?) %>
 
-                    <td><%= button_to 'Remover Voto', desvotar_question_path(@question), method: :post %></td>
+                    <td><%= button_to 'Remover Voto', unvote_question_path(@question), method: :post %></td>
 
                 <% else %>
 
-                    <td><%= button_to 'Votar', votar_question_path(@question), method: :post %></td>
+                    <td><%= button_to 'Votar +', upvote_question_path(@question), method: :post %></td>
+                    <td><%= button_to 'Votar -', downvote_question_path(@question), method: :post %></td>
 
                 <% end %>
 

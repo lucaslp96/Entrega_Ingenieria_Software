@@ -1,93 +1,151 @@
 class QuestionsController < ApplicationController
 
-    def desvotar
+  def upvote
 
-        @question = Question.find(params[:id])
+      @question = Question.find(params[:id])
 
-        @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id).first
+      QuestionVote.create(user_id: current_user.id, question_id: @question.id, good: true)
 
-        @vote.destroy
+      @aux = User.find(@question.user_id)
 
-        @question.votes -= 1
+      @aux.points += 10
 
-        @question.save
+      @aux.save
 
-        redirect_to question_path
+      @question.votes += 1
 
-    end
+      @question.save
 
-    def votar
+      redirect_to question_path
 
-        @question = Question.find(params[:id])
+  end
 
-        QuestionVote.create(user_id: current_user.id, question_id: @question.id)
+  def downvote
 
-        @question.votes += 1
+      @question = Question.find(params[:id])
 
-        @question.save
+      QuestionVote.create(user_id: current_user.id, question_id: @question.id, good: false)
 
-        redirect_to question_path
+      current_user.points -= 1
 
-    end
+      @aux = User.find(@question.user_id)
 
+      @aux.points -= 10
 
-    def index
+      @aux.save
 
-	if (params[:sort].present?)
-		if (params[:sort] == "fecha")
-			@questions = Question.porfecha
-		end
-		if (params[:sort] == "votos")
-			@questions = Question.porvotos
-		end
-		if (params[:sort] == "visitas")
-			@questions = Question.porvisitas
-		end		
-	else
-		@questions = Question.porfecha
-	end
-	
-	@questionMoreVisited = Question.masvisitada
+      @question.votes -= 1
 
-	@questionMoreVoted = Question.masvotada
+      @question.save
 
-	@tags = Tag.order("usos DESC").first(5)
+      redirect_to question_path
 
-    end
+  end
 
-    def show
+  def unvote
 
-        @question = Question.find(params[:id])
-	
-	@question.visits += 1
+      @question = Question.find(params[:id])
 
-	@question.save	
+      @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id).first      #sin el .first no anda... habria que hacer un uniqueness
 
-        @answers = @question.answers    
+      if (@vote.good == true)
 
-	if (user_signed_in?)
+          @question.votes -= 1
+
+          @aux = User.find(@question.user_id)
+
+          @aux.points -= 10
+
+          @aux.save
+
+      else
+
+          @question.votes += 1
+
+          @aux = User.find(@question.user_id)
+
+          @aux.points += 10
+
+          @aux.save
+
+          current_user.points += 1
+
+      end
+
+      @question.save
+
+      @vote.destroy
+
+      redirect_to question_path
+
+  end
+
+  def index
+
+	   if (params[:sort].present?)
+		     if (params[:sort] == "fecha")
+			        @questions = Question.porfecha
+		     end
+		 if (params[:sort] == "votos")
+			   @questions = Question.porvotos
+		 end
+		 if (params[:sort] == "visitas")
+			 @questions = Question.porvisitas
+		 end
+	   else
+		   @questions = Question.porfecha
+	   end
+
+	   @questionMoreVisited = Question.masvisitada
+
+	   @questionMoreVoted = Question.masvotada
+
+	   @tags = Tag.order("usos DESC").first(5)
+
+  end
+
+  def show
+
+        @comments = Question.question_comments
+
+         @question = Question.find(params[:id])
+
+	       @question.visits += 1
+
+	       @question.save
+
+         @answers = @question.answers
+
+	        if (user_signed_in?)
 
             @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id)
 
-        end
+          end
 
-    end
+  end
 
-    def new
+  def new
 
-	@question = Question.new
+  	   @question = Question.new
+       @tags=Tag.all
+      end
 
-    end
+      def edit
 
-    def edit
+      end
 
-    end
-	
+      def create
+        @question = Question.new(params.require(:question).permit(:title, :content, tag_ids: []))
+  	    @question.user_id = current_user.id
+  	    @question.votes=0
+  		  @question.visits=0
+  		  if @question.save
+  		#create(user_id: current_user.id, title: params[:question][:title], content: params[:question][:content], visits: 0, votes: 0)    #cambio
+             redirect_to questions_path
+  		  else
+  		        render :new
+  		  end
+  end
 
-    def create
 
-    	@question = Question.create(user_id: current_user.id, visits: 0, votes: 0, title: params[:question][:title], content: params[:question][:content])
-
-    end
-
-end
+  end

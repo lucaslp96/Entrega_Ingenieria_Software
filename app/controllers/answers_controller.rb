@@ -6,7 +6,13 @@ class AnswersController < ApplicationController
 
         AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, good: true)
 
-        @answer.votes += 1
+        @aux = User.find(@answer.user_id)    #duda sobre si se guarda
+
+        @aux.points += 10
+
+        @aux.save
+
+        @answer.votes += 10
 
         @answer.save
 
@@ -20,7 +26,15 @@ class AnswersController < ApplicationController
 
         AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, good: false)
 
-        @answer.votes -= 1
+        current_user.points -= 1
+
+        @aux = User.find(@answer.user_id)    #duda sobre si se guarda
+
+        @aux.points -= 10
+
+        @aux.save
+
+        @answer.votes -= 10
 
         @answer.save
 
@@ -36,11 +50,25 @@ class AnswersController < ApplicationController
 
         if (@vote.good == true)
 
-            @answer.votes -= 1
+            @answer.votes -= 10
+
+            @aux = User.find(@answer.user_id)    #duda sobre si se guarda
+
+            @aux.points -= 10
+
+            @aux.save
 
         else
 
-            @answer.votes += 1
+            @answer.votes += 10
+
+            @aux = User.find(@answer.user_id)    #duda sobre si se guarda
+
+            @aux.points += 10
+
+            @aux.save
+
+            current_user.points += 1
 
         end
 
@@ -58,7 +86,7 @@ class AnswersController < ApplicationController
 
         @comments = AnswerComment.where(answer_id: params[:id])    # como seria con las relaciones? .answer_comments    ?
 
-        if ((user_signed_in?) and ((current_user.id) != (@answer.user_id)))      #misma condicion que en la vista, no se si esta bien 
+        if ((user_signed_in?) and ((current_user.id) != (@answer.user_id)))      #misma condicion que en la vista, no se si esta bien
 
             @vote = AnswerVote.where(user_id: current_user.id, answer_id: @answer.id)
 

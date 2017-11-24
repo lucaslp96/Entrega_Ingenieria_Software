@@ -11,8 +11,9 @@
 
             	<% if user_signed_in? %>
 
-							<%= link_to current_user.email, '/questions', class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
-								<%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg btn-prymary-spacing',role: 'button' %>
+                      <%= link_to current_user.email, '/questions', class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
+                     <%= link_to 'Mi Perfil', current_user, class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
+                     <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg btn-prymary-spacing',role: 'button' %>
 
 						<% else %>
 

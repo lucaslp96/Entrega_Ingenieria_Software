@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Edu2</title>
+    <title>Educanding</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,15 +9,23 @@
   </head>
 
   <body>
+    <%= render "layouts/header" %>
 
-	<%= render "layouts/header" %>
-
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
+    <center>
+    <% if (flash[:notice]) %>
+        <br>
+        <%= notice %>
+        <br>
+    <% end %>
+    <% if (flash[:alert]) %>
+        <br>
+        <%= alert %>
+        <br>
+    <% end %>
+    </center>
 
     <%= yield %>
 
 	<%= render "layouts/footer" %>
-
   </body>
 </html>

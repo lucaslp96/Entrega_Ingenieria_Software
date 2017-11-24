@@ -11,4 +11,5 @@ class User < ApplicationRecord
 	has_many :question_comments
 	has_many :question_votes
 	has_many :answer_votes
+  has_one :university
 end
