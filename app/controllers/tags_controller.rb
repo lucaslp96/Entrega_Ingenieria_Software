@@ -18,15 +18,23 @@ class TagsController < ApplicationController
 
     def create
 
-        if  not(Tag.exists?(:content => params[:tag][:content]))
+        if  not(Tag.exists?(:content => params[:tag][:content].upcase))    #no se si es necesario ya que está el validates
 
-            if (Tag.create(content: params[:tag][:content], usos: 0))
+            if ((params[:tag][:content].length < 4) or (params[:tag][:content].length > 16))
 
-                flash[:notice] = "Creada exitosamente."
+                flash[:notice] = "La etiqueta debe tener de 4 a 16 caracteres."
 
             else
 
-                flash[:notice] = "Problema al crear"
+                if (Tag.create(content: params[:tag][:content].upcase, usos: 0))
+
+                    flash[:notice] = "Creada exitosamente."
+
+                else
+
+                    flash[:notice] = "Problema al crear."
+
+                end
 
             end
 

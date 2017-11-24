@@ -15,24 +15,10 @@ ActiveRecord::Schema.define(version: 20171115124551) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answer_comment_reports", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "answer_comment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "answer_comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "answer_id"
     t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "answer_reports", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "answer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -50,13 +36,6 @@ ActiveRecord::Schema.define(version: 20171115124551) do
     t.integer "question_id"
     t.text "content"
     t.integer "votes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "question_comment_reports", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "question_comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -86,6 +65,7 @@ ActiveRecord::Schema.define(version: 20171115124551) do
   create_table "question_votes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "question_id"
+    t.boolean "good"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -109,13 +89,14 @@ ActiveRecord::Schema.define(version: 20171115124551) do
 
   create_table "universities", force: :cascade do |t|
     t.string "name"
-    t.string "string"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
+    t.integer "points", default: 0
+    t.integer "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

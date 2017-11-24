@@ -1,35 +1,84 @@
 class QuestionsController < ApplicationController
 
-    def desvotar
+  def upvote
 
-        @question = Question.find(params[:id])
+      @question = Question.find(params[:id])
 
-        @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id).first
+      QuestionVote.create(user_id: current_user.id, question_id: @question.id, good: true)
 
-        @vote.destroy
+      @aux = User.find(@question.user_id)
 
-        @question.votes -= 1
+      @aux.points += 10
 
-        @question.save
+      @aux.save
 
-        redirect_to question_path
+      @question.votes += 1
 
-    end
+      @question.save
 
-    def votar
+      redirect_to question_path
 
-        @question = Question.find(params[:id])
+  end
 
-        QuestionVote.create(user_id: current_user.id, question_id: @question.id)
+  def downvote
 
-        @question.votes += 1
+      @question = Question.find(params[:id])
 
-        @question.save
+      QuestionVote.create(user_id: current_user.id, question_id: @question.id, good: false)
 
-        redirect_to question_path
+      current_user.points -= 1
 
-    end
+      @aux = User.find(@question.user_id)
 
+      @aux.points -= 10
+
+      @aux.save
+
+      @question.votes -= 1
+
+      @question.save
+
+      redirect_to question_path
+
+  end
+
+  def unvote
+
+      @question = Question.find(params[:id])
+
+      @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id).first      #sin el .first no anda... habria que hacer un uniqueness
+
+      if (@vote.good == true)
+
+          @question.votes -= 1
+
+          @aux = User.find(@question.user_id)
+
+          @aux.points -= 10
+
+          @aux.save
+
+      else
+
+          @question.votes += 1
+
+          @aux = User.find(@question.user_id)
+
+          @aux.points += 10
+
+          @aux.save
+
+          current_user.points += 1
+
+      end
+
+      @question.save
+
+      @vote.destroy
+
+      redirect_to question_path
+
+  end
 
     def index
 
@@ -42,11 +91,11 @@ class QuestionsController < ApplicationController
 		end
 		if (params[:sort] == "visitas")
 			@questions = Question.porvisitas
-		end		
+		end
 	else
 		@questions = Question.porfecha
 	end
-	
+
 	@questionMoreVisited = Question.masvisitada
 
 	@questionMoreVoted = Question.masvotada
@@ -58,12 +107,12 @@ class QuestionsController < ApplicationController
     def show
 
         @question = Question.find(params[:id])
-	
+
 	@question.visits += 1
 
-	@question.save	
+	@question.save
 
-        @answers = @question.answers    
+        @answers = @question.answers
 
 	if (user_signed_in?)
 
@@ -75,19 +124,26 @@ class QuestionsController < ApplicationController
 
     def new
 
-	@question = Question.new
+  	@question = Question.new
+      	@tags=Tag.all
+      end
 
-    end
+      def edit
 
-    def edit
+      end
 
-    end
-	
+      def create
+        @question = Question.new(params.require(:question).permit(:title, :content, tag_ids: []))
+  	    @question.user_id = current_user.id
+  	    @question.votes=0
+  		  @question.visits=0
+  		  if @question.save
+  		#create(user_id: current_user.id, title: params[:question][:title], content: params[:question][:content], visits: 0, votes: 0)    #cambio
+             redirect_to questions_path
+  		  else
+  		        render :new
+  		  end
+  		end
 
-    def create
 
-    	@question = Question.create(user_id: current_user.id, visits: 0, votes: 0, title: params[:question][:title], content: params[:question][:content])
-
-    end
-
-end
+  end
