@@ -106,6 +106,8 @@ class QuestionsController < ApplicationController
 
   def show
 
+        @comments = Question.question_comments
+
          @question = Question.find(params[:id])
 
 	       @question.visits += 1
