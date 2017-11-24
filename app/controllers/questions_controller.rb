@@ -40,9 +40,9 @@ class QuestionsController < ApplicationController
 
       redirect_to question_path
 
-  end
+    end
 
-  def unvote
+    def unvote
 
       @question = Question.find(params[:id])
 
@@ -72,80 +72,102 @@ class QuestionsController < ApplicationController
 
       end
 
-      @question.save
+        @question.save
 
-      @vote.destroy
+        @vote.destroy
 
-      redirect_to question_path
+        redirect_to question_path
 
-  end
+    end
 
-  def index
+    def index
 
-	   if (params[:sort].present?)
-		     if (params[:sort] == "fecha")
-			        @questions = Question.porfecha
-		     end
-		 if (params[:sort] == "votos")
-			   @questions = Question.porvotos
-		 end
-		 if (params[:sort] == "visitas")
-			 @questions = Question.porvisitas
-		 end
-	   else
-		   @questions = Question.porfecha
-	   end
+        if (params[:sort].present?)
 
-	   @questionMoreVisited = Question.masvisitada
+            if (params[:sort] == "fecha")
 
-	   @questionMoreVoted = Question.masvotada
+                @questions = Question.porfecha
 
-	   @tags = Tag.order("usos DESC").first(5)
+            elsif (params[:sort] == "votos")
 
-  end
+                @questions = Question.porvotos
 
-  def show
+		    elsif (params[:sort] == "visitas")
 
-        @comments = Question.question_comments
+                @questions = Question.porvisitas
 
-         @question = Question.find(params[:id])
+            else
 
-	       @question.visits += 1
+                @questions = Question.porvisitas   #seria un error creo
 
-	       @question.save
+            end
 
-         @answers = @question.answers
+        else
 
-	        if (user_signed_in?)
+            @questions = Question.porfecha
+
+        end
+
+        @questionMoreVisited = Question.masvisitada
+
+        @questionMoreVoted = Question.masvotada
+
+        @tags = Tag.order("usos DESC").first(5)
+
+    end
+
+    def show
+
+        #@comments = Question.question_comments
+
+        @question = Question.find(params[:id])
+
+        @question.visits += 1
+
+        @question.save
+
+        @answers = @question.answers
+
+        if (user_signed_in?)
 
             @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id)
 
-          end
+        end
 
-  end
+    end
 
-  def new
+    def new
 
-  	   @question = Question.new
-       @tags=Tag.all
-      end
+        @question = Question.new
 
-      def edit
+        @tags=Tag.all
 
-      end
+    end
 
-      def create
+    def edit
+
+    end
+
+    def create
+
         @question = Question.new(params.require(:question).permit(:title, :content, tag_ids: []))
-  	    @question.user_id = current_user.id
-  	    @question.votes=0
-  		  @question.visits=0
-  		  if @question.save
-  		#create(user_id: current_user.id, title: params[:question][:title], content: params[:question][:content], visits: 0, votes: 0)    #cambio
-             redirect_to questions_path
-  		  else
-  		        render :new
-  		  end
-  end
 
+        @question.user_id = current_user.id
 
-  end
+        @question.votes = 0
+
+        @question.visits = 0
+
+        if @question.save
+
+            redirect_to questions_path
+
+        else
+
+            render :new
+
+        end
+
+    end
+
+end
