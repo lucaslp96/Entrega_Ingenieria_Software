@@ -120,13 +120,18 @@ class QuestionsController < ApplicationController
 
         #@comments = Question.question_comments
 
+
         @question = Question.find(params[:id])
+
+        @tags_pregunta=@question.tags
 
         @question.visits += 1
 
         @question.save
 
         @answers = @question.answers
+
+        @question_comments=@question.question_comments
 
         if (user_signed_in?)
 
