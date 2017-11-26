@@ -1,12 +1,26 @@
 <% if user_signed_in? %>
     <%= link_to '¡Creá tu pregunta acá!', "questions/new", class: 'btn btn-primary btn-block',role: 'button' %>
 <% end %>
+<!-- Buscador-->
+<p> <div class="container">
+<%= form_tag(questions_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Ingresa texto" %>
+<%= submit_tag "Buscar" %>
+<% end %>
+</div> </p>
+<% if @search_questions.present? %>
+  <%= render @search_questions %>
+<% else %>
+  <% if !params[:search].blank? %> <!-- esto lo hago porque cuando apretaba en "inicio" buscaba en blanco, una solucion poco elegante -->
+  <p>No hay preguntas que contengan los terminos: <%= params[:search] %>.</p>
+  <% end %>
+<% end %>
 
 <% if (@questionMoreVisited.present?) %>
 <hr>
     <h3>
     <li>Pregunta más visitada:</li>
-    <li><%= link_to @questionMoreVisited.title, @questionMoreVisited %> </li> 
+    <li><%= link_to @questionMoreVisited.title, @questionMoreVisited %> </li>
     <li><%= @questionMoreVisited.visits %> visitas</li>
     </h3>
 <hr>
@@ -16,14 +30,14 @@
 <hr>
     <h3>
     <li>Pregunta más votada:</li>
-    <li><%= link_to @questionMoreVoted.title, @questionMoreVoted %> </li> 
+    <li><%= link_to @questionMoreVoted.title, @questionMoreVoted %> </li>
     <li><%= @questionMoreVoted.votes %> votos</li>
     </h3>
 <hr>
 <% end %>
 
 <ul><li>
-Ordenar por: 
+Ordenar por:
 <a href="?sort=fecha">Fecha</a>
 <a href="?sort=votos">Votos</a>
 <a href="?sort=visitas">Visitas</a>
@@ -33,7 +47,7 @@ Ordenar por:
 <% @questions.each do |preg| %>
    <hr>
     <h3>
-    <li><%= link_to preg.title, preg %> </li> 
+    <li><%= link_to preg.title, preg %> </li>
     <li><%= preg.visits %> visitas - <%= preg.votes %> votos</li>
     <li>Creado por: <%= User.find(preg.user_id).email %> </li>
     <li>Fecha: <%= User.find(preg.user_id).created_at %> </li>

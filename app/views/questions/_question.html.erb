@@ -1,0 +1,13 @@
+<div class="jumbotron">
+  <h2> Preguntas encontradas: </h2>
+  <% @search_questions.each do |preg| %>
+     <hr>
+      <h3>
+      <li><%= link_to preg.title, preg %> </li>
+      <li><%= preg.visits %> visitas - <%= preg.votes %> votos</li>
+      <li>Creado por: <%= User.find(preg.user_id).email %> </li>
+      <li>Fecha: <%= User.find(preg.user_id).created_at %> </li>
+      </h3>
+      <hr>
+  <% end %>
+  </div>

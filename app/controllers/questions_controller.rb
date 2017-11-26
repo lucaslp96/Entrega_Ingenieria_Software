@@ -114,6 +114,11 @@ class QuestionsController < ApplicationController
 
         @tags = Tag.order("usos DESC").first(5)
 
+      #para el buscador
+      if params[:search]
+        @search_questions = Question.search(params[:search]).order("created_at DESC")
+      end
+
     end
 
     def show
@@ -174,5 +179,6 @@ class QuestionsController < ApplicationController
         end
 
     end
+
 
 end
