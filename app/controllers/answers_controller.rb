@@ -114,7 +114,7 @@ class AnswersController < ApplicationController
 
 	q = Question.find(@questionid)
 
-	q.numAanswers += 1
+	q.numanswers += 1
 
 	q.save
     

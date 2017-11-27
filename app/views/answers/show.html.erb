@@ -39,13 +39,13 @@
 
                 <% if (@vote.exists?) %>
 
-                    <td><%= button_to 'Remover Voto', unvote_answer_path(@answer), method: :post %></td>
+                    <%= button_to 'Remover Voto', unvote_answer_path(@answer), method: :post %>
 
                 <% else %>
 
-                    <td><%= button_to 'Votar +', upvote_answer_path(@answer), method: :post %></td>
+                    <%= button_to 'Votar +', upvote_answer_path(@answer), method: :post %>
 
-                    <td><%= button_to 'Votar -', downvote_answer_path(@answer), method: :post %></td>
+                    <%= button_to 'Votar -', downvote_answer_path(@answer), method: :post %>
 
                 <% end %>
 
@@ -72,16 +72,16 @@
 
             <% end %>
 
-          <!-- respuestas -->
-          <% @comments.each do |com| %>
-          <div class="media mb-4">
+        <!-- respuestas -->
+        <% @comments.each do |com| %>
+            <div class="media mb-4">
             <div class="media-body">
-              <h4 class="mt-0"><b><%= com.user.name %> </b> </h4>
-                  <%= com.content %><
-                </div>
-          </div>
-          <hr>
-          <% end %>
+            <h4 class="mt-0"><b><%= com.user.name %> </b> </h4>
+            <%= com.content %>
+            </div>
+            </div>
+            <hr>
+        <% end %>
 
 
 

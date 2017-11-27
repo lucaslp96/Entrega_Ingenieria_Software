@@ -1,44 +1,63 @@
 <% if user_signed_in? %>
-  <%= link_to '¡Creá tu pregunta acá!', "questions/new", class: 'btn btn-primary btn-block',role: 'button' %>
+    <%= link_to '¡Creá tu pregunta acá!', "questions/new", class: 'btn btn-primary btn-block',role: 'button' %>
+<% end %>
+<!-- Buscador-->
+<p> <div class="container">
+<%= form_tag(questions_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Ingresa texto" %>
+<%= submit_tag "Buscar" %>
+<% end %>
+</div> </p>
+<% if @search_questions.present? %>
+  <%= render @search_questions %>
+<% else %>
+  <% if !params[:search].blank? %> <!-- esto lo hago porque cuando apretaba en "inicio" buscaba en blanco, una solucion poco elegante -->
+  <p>No hay preguntas que contengan los terminos: <%= params[:search] %>.</p>
+  <% end %>
 <% end %>
 
-
+<% if (@questionMoreVisited.present?) %>
 <hr>
         <h3>
 	    <li>Pregunta más visitada:</li>
             <li><%= link_to @questionMoreVisited.title, @questionMoreVisited %> </li> 
 	    <li><%= @questionMoreVisited.visits %> visitas - <%= @questionMoreVisited.votes %> votos - <%= @questionMoreVisited.answers.count %> respuestas</li>
-	    <li>Creado por: <%= User.find(@questionMoreVisited.user_id).name %> - <%= User.find(@questionMoreVisited.user_id).email %> </li>
+	    <li>Creado por: <%= User.find(@questionMoreVisited.user_id).name %> </li>
 	    <li>Fecha: <%= User.find(@questionMoreVisited.user_id).created_at %> </li>
         </h3>
 <hr>
+<% end %>
 
+<% if (@questionMoreVoted.present?) %>
 <hr>
         <h3>
 	    <li>Pregunta más votada:</li>
             <li><%= link_to @questionMoreVoted.title, @questionMoreVoted %> </li> 
 	    <li><%= @questionMoreVoted.visits %> visitas - <%= @questionMoreVoted.votes %> votos - <%= @questionMoreVoted.answers.count %> respuestas</li>
-	    <li>Creado por: <%= User.find(@questionMoreVoted.user_id).name %> - <%= User.find(@questionMoreVoted.user_id).email %> </li>
+	    <li>Creado por: <%= User.find(@questionMoreVoted.user_id).name %> </li>
 	    <li>Fecha: <%= User.find(@questionMoreVoted.user_id).created_at %> </li>
         </h3>
 <hr>
+<% end %>
 
+<% if (@questionMoreAnswers.present?) %>
 <hr>
         <h3>
 	    <li>Pregunta más respondida:</li>
             <li><%= link_to @questionMoreAnswers.title, @questionMoreAnswers %> </li> 
 	    <li><%= @questionMoreAnswers.visits %> visitas - <%= @questionMoreAnswers.votes %> votos - <%= @questionMoreAnswers.answers.count %> respuestas</li>
-	    <li>Creado por: <%= User.find(@questionMoreAnswers.user_id).name %> - <%= User.find(@questionMoreAnswers.user_id).email %> </li>
+	    <li>Creado por: <%= User.find(@questionMoreAnswers.user_id).name %> </li>
 	    <li>Fecha: <%= User.find(@questionMoreAnswers.user_id).created_at %> </li>
         </h3>
 <hr>
+<% end %>
     
-<li>Ordenar por:     <a href="?sort=fecha">Fecha</a>
+<ul><li>Ordenar por:     <a href="?sort=fecha">Fecha</a>
 <a href="?sort=votos">Votos</a>
 <a href="?sort=visitas">Visitas</a>
 <a href="?sort=respuestas">Respuestas +</a>
 <a href="?sort=respuestasmenor">Respuestas -</a>
-</li> 
+</li> </ul>
 
 
 <% @questions.each do |preg| %>
@@ -46,16 +65,14 @@
         <h3>
             <li><%= link_to preg.title, preg %> </li> 
 	    <li><%= preg.visits %> visitas - <%= preg.votes %> votos - <%= preg.answers.count %> respuestas</li>
-	    <li>Creado por: <%= User.find(preg.user_id).name %> - <%= User.find(preg.user_id).email %> </li>
+	    <li>Creado por: <%= User.find(preg.user_id).name %> </li>
 	    <li>Fecha: <%= User.find(preg.user_id).created_at %> </li>
         </h3>
     <hr>
 <% end %>
 
 <p>
-
-    <h1>Categorías más usadas:</h1>
-
+    <ul><h1>Categorías más usadas:</h1></ul>
 </p>
 
 <% @tags.each do |tag| %>

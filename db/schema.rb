@@ -15,24 +15,10 @@ ActiveRecord::Schema.define(version: 20171115124551) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answer_comment_reports", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "answer_comment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "answer_comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "answer_id"
     t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "answer_reports", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "answer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -50,13 +36,6 @@ ActiveRecord::Schema.define(version: 20171115124551) do
     t.integer "question_id"
     t.text "content"
     t.integer "votes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "question_comment_reports", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "question_comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

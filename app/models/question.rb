@@ -30,9 +30,16 @@ class Question < ApplicationRecord
 		Question.all.order("numanswers desc").first
 	end
 
-	private
+  private
+
+  # para el buscador
+    def self.search(search)
+      where("title ILIKE ?", "%#{search}%")
+    end
+
 
   def tags_between_1_and_5
     errors.add(:tag_ids,"Cantidad errónea de etiquetas") if tag_ids.size > 5 || tag_ids.size < 1
   end
+
 end

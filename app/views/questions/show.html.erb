@@ -13,7 +13,7 @@
 
             <!-- Author -->
             <p class="lead">
-              Por:<b>  <%= User.find(@question.user_id).email %> - Puntos: <%= User.find(@question.user_id).points %></b>
+              Por:<b>  <%= User.find(@question.user_id).name %> - Puntos: <%= User.find(@question.user_id).points %></b>
             </p>
 
 
@@ -46,11 +46,14 @@
                 <% else %>
 
                     <td><%= button_to 'Votar +', upvote_question_path(@question), method: :post %></td>
-                    <td><%= button_to 'Votar -', downvote_question_path(@question), method: :post %></td>
+
+                    <td><%= button_to 'Votar -  ', downvote_question_path(@question), method: :post %></td>
+                    <hr>
 
                 <% end %>
 
             <% end %>
+
 
 	    <!-- aca un boton para responder -->
 
@@ -60,11 +63,19 @@
 	    
 	    <% end %>	
 
-            <!-- aca un boton para votarla -->
+         
+            <% @tags_pregunta.all.each do |tag| %>
+                    <span class="tags"><%= tag.content %></span>
+            <% end %>
 
-            <% if user_signed_in? %>
 
+
+            <hr>
+            <!-- aca un voton para votarla -->
+
+            <% if user_signed_in? and  current_user.id != @question.user_id %>
           <!-- Comments Form -->
+
           <div class="card my-4">
               <h5 class="card-header">Deja un comentario:</h5>
               <div class="card-body">
@@ -78,14 +89,35 @@
             </div>
           </div>
 
+
+                <button type="submit" class="btn btn-primary">RESPONDER</button>
+
             <% end %>
 
+            <hr>
+
+          <!--comentarios -->
+          <ul class="list-group">
+          <% @question_comments.each do |comentario| %>
+              <font size = "2"><li class="list-group-item"><b><%= comentario.user.name %></b> : <%= comentario.content %></li></font>
+          <% end %>
+        </ul>
           <!-- respuestas -->
           <% @answers.each do |answer| %>
           <div class="media mb-4">
             <div class="media-body">
-              <h4 class="mt-0"><b><%= answer.user.name %> </b> </h4>
+
+               <h2 class="mt-4"><b><%= answer.user.name %> </b> </h2 >
+               <p class="lead" > <font size = "5">
                   <%= answer.content %>
+                  <% answer_comments = answer.answer_comments %>
+              </font> </p>
+                  <ul class="list-group">
+                    <% answer_comments.each do |comentario| %>
+                      <li class="list-group-item"><font size = "2"> <b><%= comentario.user.name %></b> : <%= comentario.content %></li>
+                      </font><% end %>
+                  </ul>
+
                 </div>
           </div>
           <hr>

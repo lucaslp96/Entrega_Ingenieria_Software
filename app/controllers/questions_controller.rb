@@ -42,6 +42,7 @@ class QuestionsController < ApplicationController
 
   end
 
+
   def unvote
 
       @question = Question.find(params[:id])
@@ -116,7 +117,13 @@ class QuestionsController < ApplicationController
 
 	   @tags = Tag.order("usos DESC").first(5)
 
+	   #para el buscador
+      	   if params[:search]
+        	@search_questions = Question.search(params[:search]).order("created_at DESC")
+      	   end
+
   end
+
 
   def show
 
@@ -130,7 +137,11 @@ class QuestionsController < ApplicationController
 
         @answers = @question.answers
 
-	if (user_signed_in?)
+        @tags_pregunta=@question.tags
+
+        @question_comments = @question.question_comments
+
+        if (user_signed_in?)
 
             @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id)
 
@@ -139,16 +150,18 @@ class QuestionsController < ApplicationController
   end
 
   def new
-
-  	   @question = Question.new
+	   @question = Question.new
        	   @tags=Tag.all
   end
 
-      def edit
 
-      end
+    def edit
 
-      def create
+    end
+
+
+
+  def create
         @question = Question.new(params.require(:question).permit(:title, :content, tag_ids: []))
   	@question.user_id = current_user.id
   	@question.votes=0
@@ -161,5 +174,6 @@ class QuestionsController < ApplicationController
   		        render :new
   		  end
   end
+
 
 end
