@@ -92,13 +92,27 @@ class QuestionsController < ApplicationController
 		 if (params[:sort] == "visitas")
 			@questions = Question.porvisitas
 		 end
+		 if (params[:sort] == "respuestas")
+			@questions = Question.porrespuestas
+		 end
+		 if (params[:sort] == "respuestasmenor")
+			@questions = Question.porrespuestasmenor
+		 end
 	   else
 		   @questions = Question.porfecha
 	   end
 
-	   @questionMoreVisited = Question.masvisitada
+	   if (Question.nil?) then
 
-	   @questionMoreVoted = Question.masvotada
+	   else
+	   
+		@questionMoreVisited = Question.masvisitada
+
+	   	@questionMoreVoted = Question.masvotada
+
+		@questionMoreAnswers = Question.masrespuestas
+	
+	   end		
 
 	   @tags = Tag.order("usos DESC").first(5)
 
@@ -127,8 +141,8 @@ class QuestionsController < ApplicationController
   def new
 
   	   @question = Question.new
-       @tags=Tag.all
-      end
+       	   @tags=Tag.all
+  end
 
       def edit
 
@@ -139,6 +153,7 @@ class QuestionsController < ApplicationController
   	@question.user_id = current_user.id
   	@question.votes=0
   	@question.visits=0
+	@question.numanswers=0
   		  if @question.save
   		#create(user_id: current_user.id, title: params[:question][:title], content: params[:question][:content], visits: 0, votes: 0)    #cambio
              redirect_to questions_path
@@ -147,5 +162,4 @@ class QuestionsController < ApplicationController
   		  end
   end
 
-
-  end
+end

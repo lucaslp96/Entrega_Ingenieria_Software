@@ -1,8 +1,10 @@
 class Question < ApplicationRecord
 
-	scope :porfecha, -> { order("created_at desc") }
+		scope :porfecha, -> { order("created_at desc") }
 		scope :porvotos, -> { order("votes desc") }
 		scope :porvisitas, -> { order("visits desc") }
+		scope :porrespuestas, -> { order("numanswers desc") }
+		scope :porrespuestasmenor, -> { order("numanswers asc") }
 
 		belongs_to :user
 		has_many :answers
@@ -22,6 +24,10 @@ class Question < ApplicationRecord
 
 	def self.masvotada
 		Question.all.order("votes desc").first
+	end
+
+	def self.masrespuestas
+		Question.all.order("numanswers desc").first
 	end
 
 	private

@@ -1,0 +1,10 @@
+<div class="container">
+<%= form_for @answer do |f| %>
+<div class="form-group">
+<%= f.text_area :content, class:"form-control", rows:"7" , required: true, placeholder: 'Escrbí tu respuesta acá' %>
+<div>
+<div>
+    <%= f.submit 'Publicar',class:'btn btn-primary',role: 'button' %>
+</div>
+<% end %>
+</div>

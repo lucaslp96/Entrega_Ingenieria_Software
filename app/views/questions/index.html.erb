@@ -7,8 +7,8 @@
         <h3>
 	    <li>Pregunta más visitada:</li>
             <li><%= link_to @questionMoreVisited.title, @questionMoreVisited %> </li> 
-	    <li><%= @questionMoreVisited.visits %> visitas - <%= @questionMoreVisited.votes %> votos</li>
-	    <li>Creado por: <%= User.find(@questionMoreVisited.user_id).email %> </li>
+	    <li><%= @questionMoreVisited.visits %> visitas - <%= @questionMoreVisited.votes %> votos - <%= @questionMoreVisited.answers.count %> respuestas</li>
+	    <li>Creado por: <%= User.find(@questionMoreVisited.user_id).name %> - <%= User.find(@questionMoreVisited.user_id).email %> </li>
 	    <li>Fecha: <%= User.find(@questionMoreVisited.user_id).created_at %> </li>
         </h3>
 <hr>
@@ -17,24 +17,36 @@
         <h3>
 	    <li>Pregunta más votada:</li>
             <li><%= link_to @questionMoreVoted.title, @questionMoreVoted %> </li> 
-	    <li><%= @questionMoreVoted.visits %> visitas - <%= @questionMoreVoted.votes %> votos</li>
-	    <li>Creado por: <%= User.find(@questionMoreVoted.user_id).email %> </li>
+	    <li><%= @questionMoreVoted.visits %> visitas - <%= @questionMoreVoted.votes %> votos - <%= @questionMoreVoted.answers.count %> respuestas</li>
+	    <li>Creado por: <%= User.find(@questionMoreVoted.user_id).name %> - <%= User.find(@questionMoreVoted.user_id).email %> </li>
 	    <li>Fecha: <%= User.find(@questionMoreVoted.user_id).created_at %> </li>
         </h3>
 <hr>
 
+<hr>
+        <h3>
+	    <li>Pregunta más respondida:</li>
+            <li><%= link_to @questionMoreAnswers.title, @questionMoreAnswers %> </li> 
+	    <li><%= @questionMoreAnswers.visits %> visitas - <%= @questionMoreAnswers.votes %> votos - <%= @questionMoreAnswers.answers.count %> respuestas</li>
+	    <li>Creado por: <%= User.find(@questionMoreAnswers.user_id).name %> - <%= User.find(@questionMoreAnswers.user_id).email %> </li>
+	    <li>Fecha: <%= User.find(@questionMoreAnswers.user_id).created_at %> </li>
+        </h3>
+<hr>
     
 <li>Ordenar por:     <a href="?sort=fecha">Fecha</a>
 <a href="?sort=votos">Votos</a>
-<a href="?sort=visitas">Visitas</a></li> 
+<a href="?sort=visitas">Visitas</a>
+<a href="?sort=respuestas">Respuestas +</a>
+<a href="?sort=respuestasmenor">Respuestas -</a>
+</li> 
 
 
 <% @questions.each do |preg| %>
    <hr>
         <h3>
             <li><%= link_to preg.title, preg %> </li> 
-	    <li><%= preg.visits %> visitas - <%= preg.votes %> votos</li>
-	    <li>Creado por: <%= User.find(preg.user_id).email %> </li>
+	    <li><%= preg.visits %> visitas - <%= preg.votes %> votos - <%= preg.answers.count %> respuestas</li>
+	    <li>Creado por: <%= User.find(preg.user_id).name %> - <%= User.find(preg.user_id).email %> </li>
 	    <li>Fecha: <%= User.find(preg.user_id).created_at %> </li>
         </h3>
     <hr>

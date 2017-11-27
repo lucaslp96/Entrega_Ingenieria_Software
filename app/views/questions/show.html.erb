@@ -52,7 +52,15 @@
 
             <% end %>
 
-            <!-- aca un voton para votarla -->
+	    <!-- aca un boton para responder -->
+
+	    <% if user_signed_in? %>
+
+	    <%= button_to 'Responder', new_answer_path(@question), class: 'btn btn-primary', method: :get %>
+	    
+	    <% end %>	
+
+            <!-- aca un boton para votarla -->
 
             <% if user_signed_in? %>
 
@@ -64,7 +72,8 @@
                 <div class="form-group">
                   <textarea class="form-control" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">RESPONDER</button>
+                <!-- <button type="submit" class="btn btn-primary">RESPONDER</button> -->
+		
               </form>
             </div>
           </div>
@@ -76,7 +85,7 @@
           <div class="media mb-4">
             <div class="media-body">
               <h4 class="mt-0"><b><%= answer.user.name %> </b> </h4>
-                  <%= answer.content %><
+                  <%= answer.content %>
                 </div>
           </div>
           <hr>

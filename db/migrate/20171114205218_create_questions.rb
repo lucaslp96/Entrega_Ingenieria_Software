@@ -6,6 +6,7 @@ class CreateQuestions < ActiveRecord::Migration[5.1]
       t.text :content
       t.integer :visits
       t.integer :votes
+      t.integer :numanswers
 
       t.timestamps
     end
