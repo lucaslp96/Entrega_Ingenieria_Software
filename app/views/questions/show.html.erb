@@ -34,11 +34,12 @@
           <hr>
 
 	 <!-- aca un voton para votarla -->
-
-            <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+            <% if user_signed_in? %>
 
               <p> <%= link_to "Comentar", new_question_question_comment_path(@question), class: "btn btn-primary" %>
               </p>
+              <% end %>
+            <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
 
                 <% if (@vote.exists?) %>
 
@@ -58,13 +59,8 @@
 
 	    <!-- aca un boton para responder -->
 
-	    <% if user_signed_in? %>
 
-	    <%= button_to 'Responder', new_answer_path(@question), class: 'btn btn-primary', method: :get %>
-	    
-	    <% end %>	
 
-         
             <% @tags_pregunta.all.each do |tag| %>
                     <span class="tags"><%= tag.content %></span>
             <% end %>
@@ -72,26 +68,9 @@
 
 
             <hr>
-            <!-- aca un voton para votarla -->
 
             <% if user_signed_in? and  current_user.id != @question.user_id %>
-          <!-- Comments Form -->
-
-          <div class="card my-4">
-              <h5 class="card-header">Deja un comentario:</h5>
-              <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
-                </div>
-                <!-- <button type="submit" class="btn btn-primary">RESPONDER</button> -->
-		
-              </form>
-            </div>
-          </div>
-
-
-                <button type="submit" class="btn btn-primary">RESPONDER</button>
+            <td><%= link_to "Responder", new_answer_path(:question => @question.id),class: "btn btn-primary" %></td>
 
             <% end %>
 

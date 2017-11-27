@@ -1,7 +1,7 @@
-<h3> Re: @question.title </h3>
+<h3> Re: <%= Question.find(@question_original).title %></h3>
 
 <p>
-@question.content
+<% Question.find(@question_original).title %>
 </p>
-
+<hr>
 <%= render 'form' %>

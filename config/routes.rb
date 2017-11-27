@@ -20,13 +20,13 @@ Rails.application.routes.draw do
 	resources:users
 
     resources:tags
-
-    resources:answers do
+		resources :answers
+		resources:answers do
 		member do
 			post 'upvote'
 			post 'downvote'
 			post 'unvote'
-		end
+			end
     end
 
 end
