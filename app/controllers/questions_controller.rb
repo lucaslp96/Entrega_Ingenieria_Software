@@ -40,10 +40,9 @@ class QuestionsController < ApplicationController
 
       redirect_to question_path
 
-  end
+    end
 
-
-  def unvote
+    def unvote
 
       @question = Question.find(params[:id])
 
@@ -73,15 +72,15 @@ class QuestionsController < ApplicationController
 
       end
 
-      @question.save
+        @question.save
 
-      @vote.destroy
+        @vote.destroy
 
-      redirect_to question_path
+        redirect_to question_path
 
-  end
+    end
 
-  def index
+ def index
 
 	   if (params[:sort].present?)
 		 if (params[:sort] == "fecha")
@@ -174,6 +173,5 @@ class QuestionsController < ApplicationController
   		        render :new
   		  end
   end
-
 
 end

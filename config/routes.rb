@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-	resources:users
-
 	get 'static_views/about', as: "about"
 
 	get 'static_views/contact', as: "contact"
@@ -16,24 +14,19 @@ Rails.application.routes.draw do
 			post 'downvote'
 			post 'unvote'
 		end
-
-	resources:question_comments, except: :index
+		resources:question_comments, except: :index
     end
+
+	resources:users
 
     resources:tags
 
     resources:answers do
-        member do
-        post 'upvote'
-        end
-        member do
-        post 'downvote'
-        end
-        member do
-        post 'unvote'
-        end
+		member do
+			post 'upvote'
+			post 'downvote'
+			post 'unvote'
+		end
     end
-
-
 
 end
