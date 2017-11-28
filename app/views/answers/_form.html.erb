@@ -2,7 +2,7 @@
 <%= form_for @answer do |f| %>
 <div class="container">
 <div class="form-group">
-<%= f.text_area :content, class:"form-control", rows:"3" , required: true, placeholder: 'Escrbí tu respuesta acá' %>
+<%= f.text_area :content, class:"form-control", rows:"3" , required: true, placeholder: 'Escrbí tu respuesta acá (debe contener más de 16 caracteres)' %>
 <%= f.hidden_field :question_id, value: @question_original %>
 <div>
   <%= f.submit 'RESPONDER',class:'btn btn-primary',role: 'button' %>

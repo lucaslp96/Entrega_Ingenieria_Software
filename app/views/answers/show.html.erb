@@ -12,7 +12,7 @@
 
             <!-- Autor -->
             <p class="lead">
-                Por:<b>  <%= User.find(@answer.user_id).name %> -Puntos: <%=User.find(@answer.user_id).points  %></b>
+                Por:<b>  <%= User.find(@answer.user_id).name %> -Puntos: <% if ((User.find(@answer.user_id).points) < 0) %> 0 <% else %> <%= User.find(@answer.user_id).points %> <% end %> </b>
             </p>
 
             <!-- Pregutna -->

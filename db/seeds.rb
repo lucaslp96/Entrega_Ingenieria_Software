@@ -28,7 +28,7 @@ user4 = User.create(name: "Pedro", email: "Pedro@example.com", password: "user12
 user5 = User.create(name: "Santiago", email: "Santiago@example.com", password: "user123")
 user6 = User.create(name: "Seba", email: "Seba@example.com", password: "user123")
 
-question1 = Question.create(title: "¿como derivar 5x?", numanswers: 0, content: "hola, como derivo esto?", user: user1, votes: 40, visits: 40, tags: [tag1,tag2])
+question1 = Question.create(title: "¿como derivar 5x?", numanswers: 0, content: "hola, como derivo esto?", user: user1, votes: 409, visits: 40, tags: [tag1,tag2])
 question2 = Question.create(title: "¿integral de 34e^x?", numanswers: 2, content: "hola, me cuesta integrar", user: user2, votes: 300, visits: 4520, tags: [tag3])
 question3 = Question.create(title: "¿las ballenas azules?", numanswers: 2, content: "hola, tengo una duda sobre las ballenas", user: user1, votes: 20, visits: 0, tags: [tag4, tag5])
 question4 = Question.create(title: "¿metabolismo de los perros?", numanswers: 2, content: "hola, quiero saber mas sobre los perros", user: user4, votes: 156, visits: 0, tags: [tag2])

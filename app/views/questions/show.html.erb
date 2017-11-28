@@ -1,5 +1,4 @@
 <body>
-<body>
 <!-- Page Content -->
     <div class="container">
 
@@ -8,65 +7,46 @@
         <!-- Post Content Column -->
         <div class="col-lg-8">
 
-          <!-- Title -->
-          <h1 class="mt-4"><%= @question.title  %></h1>
+        <!-- Title -->
+        <h1 class="mt-4"><%= @question.title  %></h1>
 
+        <!-- Post Content -->
+        Descripcion: <p><%= @question.content %></p>
 
-            <!-- Author -->
-            <p class="lead">
-              Por:<b>  <%= User.find(@question.user_id).name %> - Puntos: <%= User.find(@question.user_id).points %></b>
-            </p>
+        <!-- Tags -->
+        <% @tags_pregunta.all.each do |tag| %>
+        Etiquetas: <span class="tags"><%= tag.content %></span>
+        <% end %>
 
+        <!-- Author -->
+        <hr>
+        <p class="lead">Por:<b>  <%= User.find(@question.user_id).name %> - Puntos: <% if ((User.find(@question.user_id).points) < 1) %> 1 <% else %> <%= User.find(@question.user_id).points %> <% end %> </b></p>
 
-          <hr>
+        <!-- Date/Time -->
+        <hr>
+        <p>Fecha y Hora de publicación: <%= @question.created_at  %></p>
 
-          <!-- Date/Time -->
-          <p>Fecha y Hora de publicación: <%= @question.created_at  %></p>
+        <!-- Votos -->
+        <hr><p>Votos: <%= @question.votes %></p>
 
-          <hr>
-          <!-- Post Content -->
-          <p>
-          <%= @question.content %>
-          </p>
-	<p>
-            Votos: <%= @question.votes %>
-            </p>
-          <hr>
-
-	 <!-- aca un Boton para votarla -->
-            <% if user_signed_in? %>
-
-              <p> <%= link_to "Comentar", new_question_question_comment_path(@question), class: "btn btn-primary" %>
-              </p>
-              <% end %>
-            <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
-
-                <% if (@vote.exists?) %>
-
-                    <td><%= button_to 'Remover Voto', unvote_question_path(@question), method: :post %></td>
-
-                <% else %>
-
-                    <td><%= button_to 'Votar +', upvote_question_path(@question), method: :post %></td>
-
-                    <td><%= button_to 'Votar -  ', downvote_question_path(@question), method: :post %></td>
-                    <hr>
-
-                <% end %>
-
+        <!-- aca un Boton para votarla -->
+        <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+            <% if (@vote.exists?) %>
+                <td><%= button_to 'Remover Voto', unvote_question_path(@question), method: :post %></td>
+                <hr>
+            <% else %>
+                <td><%= button_to 'Votar +', upvote_question_path(@question), method: :post %></td>
+                <td><%= button_to 'Votar -  ', downvote_question_path(@question), method: :post %></td>
+                <hr>
             <% end %>
+        <% end %>
 
+	    <!-- aca un boton para comentar -->
+        <% if user_signed_in? %>
+            <p> <%= link_to "Comentar", new_question_question_comment_path(@question), class: "btn btn-primary" %></p>
+        <% end %>
 
 	    <!-- aca un boton para responder -->
-
-
-
-            <% @tags_pregunta.all.each do |tag| %>
-                    <span class="tags"><%= tag.content %></span>
-            <% end %>
-
-
-
             <hr>
 
             <% if user_signed_in? and  current_user.id != @question.user_id %>
@@ -77,19 +57,22 @@
             <hr>
 
           <!--comentarios -->
+        <h1 class="mt-4">Comentarios:</h1>
           <ul class="list-group">
           <% @question_comments.each do |comentario| %>
               <font size = "2"><li class="list-group-item"><b><%= comentario.user.name %></b> : <%= comentario.content %></li></font>
           <% end %>
         </ul>
+
           <!-- respuestas -->
+        <h1 class="mt-4">Respuestas:</h1>
           <% @answers.each do |answer| %>
           <div class="media mb-4">
             <div class="media-body">
 
-               <h2 class="mt-4"><b><%= link_to answer.user.name, answer %> </b> </h2 >
+               <h2 class="mt-4"><b> <% if answer.user.name == '' %> <%= answer.user.email %> <% else %> <%= answer.user.name %> <% end %> </b> </h2 >
                <p class="lead" > <font size = "5">
-                  <%= answer.content %>
+            <%= link_to answer.content, answer %>
                   <% answer_comments = answer.answer_comments %>
               </font> </p>
                   <ul class="list-group">
