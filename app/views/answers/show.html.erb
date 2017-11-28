@@ -12,7 +12,7 @@
 
             <!-- Autor -->
             <p class="lead">
-                Por:<b>  <%= User.find(@answer.user_id).email %></b>
+                Por:<b>  <%= User.find(@answer.user_id).name %> -Puntos: <%=User.find(@answer.user_id).points  %></b>
             </p>
 
             <!-- Pregutna -->
@@ -57,18 +57,8 @@
 
             <% if user_signed_in? %>
 
-          <!-- Comments Form -->
-          <div class="card my-4">
-              <h5 class="card-header">Deja un comentario:</h5>
-              <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">RESPONDER</button>
-              </form>
-            </div>
-          </div>
+              <p> <%= link_to "Comentar", new_answer_answer_comment_path(@answer), class: "btn btn-primary" %>
+              </p>
 
             <% end %>
 

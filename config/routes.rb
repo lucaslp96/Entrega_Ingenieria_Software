@@ -16,9 +16,10 @@ Rails.application.routes.draw do
 		end
 		resources:question_comments, except: :index
     end
+		resources :question_comments
 
-	resources:users
-
+		resources:users
+		resources :answer_comments
     resources:tags
 		resources :answers
 		resources:answers do
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
 			post 'downvote'
 			post 'unvote'
 			end
+			resources :answer_comments
     end
 
 end

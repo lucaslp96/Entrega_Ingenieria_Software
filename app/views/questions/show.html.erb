@@ -33,7 +33,7 @@
             </p>
           <hr>
 
-	 <!-- aca un voton para votarla -->
+	 <!-- aca un Boton para votarla -->
             <% if user_signed_in? %>
 
               <p> <%= link_to "Comentar", new_question_question_comment_path(@question), class: "btn btn-primary" %>
@@ -87,7 +87,7 @@
           <div class="media mb-4">
             <div class="media-body">
 
-               <h2 class="mt-4"><b><%= answer.user.name %> </b> </h2 >
+               <h2 class="mt-4"><b><%= link_to answer.user.name, answer %> </b> </h2 >
                <p class="lead" > <font size = "5">
                   <%= answer.content %>
                   <% answer_comments = answer.answer_comments %>

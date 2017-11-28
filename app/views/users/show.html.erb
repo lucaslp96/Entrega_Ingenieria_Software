@@ -34,6 +34,8 @@ Sus preguntas:
 </div>
 -->
 
+<%= debug(params) %>
+
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
 	<div class="row">
@@ -41,24 +43,34 @@ Sus preguntas:
     	 <div class="well profile">
             <div class="col-sm-12">
                 <div class="col-xs-12 ">
-                    <h2><%= current_user.name %></h2>
-                    <p><strong>Email: </strong> <%= current_user.email %> </p>
+                    <p><strong>Nombre: </strong> <%= current_user.name %> </p>
+										<p><strong>Puntos: </strong> <%= current_user.points %> </p>
                     <p><strong>Universidad: </strong> <% if (current_user.university_id != nil) %> <%= current_user.university_id %> <% else %> Todavia no cuenta con una universidad asignada. <% end %> </p>
-                    <p><strong>Etiquetas: </strong>
-                        <span class="tags">Informatica</span>
-                        <span class="tags">Tenis</span>
-                        <span class="tags">Futbol</span>
-                        <span class="tags">Ajedrez</span>
-                        <span class="tags">HTML</span>
-                    </p>
-                      <hr>
-                      <%= link_to 'Editar', '', class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
+										  <hr>
+                      <%= link_to 'Editar', 'user/edit', class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
                 </div>
-
-
             </div>
 
     	 </div>
 		</div>
 	</div>
+	<h2>Preguntas Hechas:</h2>
+	<hr>
+	<% @questions.each do |preg| %>
+
+					<li><%= link_to preg.title, preg %> </li>
+					<li><%= preg.created_at %> </li>
+					<li>Respuestas:<%= preg.answers.size %> </li>
+	<% end %>
+	<hr>
+	<h2>Respuestas Dadas:</h2>
+	<hr>
+	<% @answers.each do |resp| %>
+
+					<li><%= link_to resp.content, resp %> </li>
+					<li><%= resp.created_at %> </li>
+
+	<% end %>
+	<hr>
+</
 </div>
