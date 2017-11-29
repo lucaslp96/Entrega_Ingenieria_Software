@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 
     def bestanswer
-    
+
     preg = Question.find(params[:id])
 
     preg.bestanswer = params[:loque]
@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
   end
 
   def removebestanswer
-    
+
     preg = Question.find(params[:id])
 
     preg.bestanswer = nil
@@ -180,7 +180,7 @@ class QuestionsController < ApplicationController
 
       else
 
-        @answers = @question.answers.porfecha #no se debería entrar acá 
+        @answers = @question.answers.porfecha #no se debería entrar acá
 
       end
 
@@ -226,7 +226,7 @@ class QuestionsController < ApplicationController
         @question.votes=0
         @question.visits=0
       	@question.numanswers=0
-
+        
   		  if @question.save
 
              redirect_to questions_path
