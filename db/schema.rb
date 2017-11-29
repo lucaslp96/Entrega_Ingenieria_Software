@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20171115124551) do
     t.text "content"
     t.integer "visits"
     t.integer "votes"
+    t.integer "bestanswer", default: nil
     t.integer "numanswers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

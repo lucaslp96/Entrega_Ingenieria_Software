@@ -70,10 +70,29 @@
           <div class="media mb-4">
             <div class="media-body">
 
-               <h2 class="mt-4"><b> <% if answer.user.name == '' %> <%= answer.user.email %> <% else %> <%= answer.user.name %> <% end %> </b> </h2 >
+               <h2 class="mt-4"><b> <% if answer.user.name == '' %> <%= link_to answer.user.email, answer.user %> <% else %> <%= link_to answer.user.name, answer.user %> <% end %> </b> </h2 >
                <p class="lead" > <font size = "5">
             <%= link_to answer.content, answer %>
-                  <% answer_comments = answer.answer_comments %>
+                  
+                    <!--se podria hacer mas eficiente-->
+
+
+
+                          <% if ((user_signed_in?) and ((current_user.id) == (@question.user_id))) %>
+            <% if (@question.bestanswer == nil) %>
+                <td><%= button_to 'Elegir mejor respuesta', bestanswer_question_path(@question), method: :post, params: {'loque' => answer} %></td>
+                <hr>
+            <% else %>
+                <% if (answer.id == @question.bestanswer) %>
+                <td><%= button_to 'Remover mejor respuesta', removebestanswer_question_path(@question), method: :post, params: {'loque' => answer} %></td>
+                <hr>
+                <% end %>
+            <% end %>
+        <% end %>
+
+
+
+              <% answer_comments = answer.answer_comments %>
               </font> </p>
                   <ul class="list-group">
                     <% answer_comments.each do |comentario| %>

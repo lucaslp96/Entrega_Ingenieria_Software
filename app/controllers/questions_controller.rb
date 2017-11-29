@@ -1,5 +1,45 @@
 class QuestionsController < ApplicationController
 
+  def bestanswer
+    
+    preg = Question.find(params[:id])
+
+    preg.bestanswer = params[:loque]
+
+    preg.save
+
+    resp = Answer.find(params[:loque])
+
+    usuario = User.find(resp.user_id)
+
+    usuario.points += 20
+
+    usuario.save
+
+    redirect_to question_path
+
+  end
+
+  def removebestanswer
+    
+    preg = Question.find(params[:id])
+
+    preg.bestanswer = nil
+
+    preg.save
+
+    resp = Answer.find(params[:loque])
+
+    usuario = User.find(resp.user_id)
+
+    usuario.points -= 20
+
+    usuario.save
+
+    redirect_to question_path
+
+  end
+
   def upvote
 
       @question = Question.find(params[:id])
