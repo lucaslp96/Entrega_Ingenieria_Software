@@ -229,7 +229,13 @@ class QuestionsController < ApplicationController
         
   		  if @question.save
 
-             redirect_to questions_path
+  		  	params[:question][:tag_ids].each do |tag|
+        		if (tag != '')     #porque uno llega vacio no se que onda
+        			Tag.find(tag).update(usos: (Tag.find(tag).usos += 1))
+        		end
+        	end
+
+            redirect_to questions_path
 
   		  else
 
