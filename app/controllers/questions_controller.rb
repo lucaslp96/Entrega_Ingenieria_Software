@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
 
       @aux = User.find(@question.user_id)
 
-      @aux.points += 10
+      @aux.points += 5
 
       @aux.save
 
@@ -30,7 +30,7 @@ class QuestionsController < ApplicationController
 
       @aux = User.find(@question.user_id)
 
-      @aux.points -= 10
+      @aux.points -= 2
 
       @aux.save
 
@@ -64,7 +64,7 @@ class QuestionsController < ApplicationController
 
           @aux = User.find(@question.user_id)
 
-          @aux.points += 10
+          @aux.points += 2
 
           @aux.save
 
@@ -105,14 +105,14 @@ class QuestionsController < ApplicationController
 	   if (Question.nil?) then
 
 	   else
-	   
+
 		@questionMoreVisited = Question.masvisitada
 
 	   	@questionMoreVoted = Question.masvotada
 
 		@questionMoreAnswers = Question.masrespuestas
-	
-	   end		
+
+	   end
 
 	   @tags = Tag.order("usos DESC").first(5)
 
@@ -127,14 +127,23 @@ class QuestionsController < ApplicationController
   def show
 
 	@question = Question.find(params[:id])
+	
+	if(params[:orden].present?)
+		if (params[:orden] == "fecha")
+			@answers = @question.answers.porfecha
+		 end
+		 if (params[:orden] == "votos")
+			@answers = @question.answers.porvotos
+		 end
+	else
+		   @answers = @question.answers.porfecha
+	end
 
         @comments = @question.question_comments
 
 	@question.visits += 1
 
 	@question.save
-
-        @answers = @question.answers
 
         @tags_pregunta=@question.tags
 
@@ -185,7 +194,7 @@ class QuestionsController < ApplicationController
 
 	@auxUser.points += 20
 
-	@auxUser.save 
+	@auxUser.save
 
 	$best = @bestAnswer
 
@@ -193,7 +202,7 @@ class QuestionsController < ApplicationController
  end
 
   def cancelBestAnswer
-	
+
 
 	@userid = Answer.find($best).user_id
 

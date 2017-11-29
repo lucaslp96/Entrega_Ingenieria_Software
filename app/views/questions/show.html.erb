@@ -14,8 +14,9 @@
         Descripcion: <p><%= @question.content %></p>
 
         <!-- Tags -->
+        Etiquetas:
         <% @tags_pregunta.all.each do |tag| %>
-        Etiquetas: <span class="tags"><%= tag.content %></span>
+         <span class="tags"><%= tag.content %></span>
         <% end %>
 
         <!-- Author -->
@@ -67,7 +68,7 @@
  <!--mejor respuesta -->
 	<% if $best != nil %>
 <h2>
-<b> <p>Mejor respuesta:</p> 
+<b> <p>Mejor respuesta:</p>
 <p><%= Answer.find($best).content %></p>
 <p>Por: <%= Answer.find($best).user.name %></p>
 </b>
@@ -75,18 +76,25 @@
 <td><%= button_to 'Cancelar mejor respuesta', cancelBestAnswer_question_path, method: :post %></td>
 
 <% end %>
- 
+
+
+Ordenadas por:
+
+<a href="?orden=fecha">Fecha</a>
+<a href="?orden=votos">Votos</a>
+
 <!-- respuestas -->
+<h1 class="mt-4">Respuestas:</h1>
      <% @answers.each do |answer| %>
           <div class="media mb-4">
             <div class="media-body">
 
-               <h2 class="mt-4"><b><%= answer.user.name %> </b> </h2 >
-		
+               <h2 class="mt-4"><b><%= link_to answer.user.name,answer %> </b> </h2 >
+	       Votos: <%= answer.votes %>
 		<% if user_signed_in? and  (current_user.id == @question.user_id) and (current_user.id != answer.user_id)  and $best.nil? %>
-			<td><%= button_to 'Mejor respuesta', chooseBestAnswer_question_path(:answerid => answer.id), method: :post %></td>		
+			<td><%= button_to 'Mejor respuesta', chooseBestAnswer_question_path(:answerid => answer.id), method: :post %></td>
 		<% end %>
-			
+
                <p class="lead" > <font size = "5">
                   <%= answer.content %>
                   <% answer_comments = answer.answer_comments %>

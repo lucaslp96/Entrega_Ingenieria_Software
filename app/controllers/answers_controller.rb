@@ -12,7 +12,7 @@ class AnswersController < ApplicationController
 
         @aux.save
 
-        @answer.votes += 10
+        @answer.votes += 1
 
         @answer.save
 
@@ -30,11 +30,11 @@ class AnswersController < ApplicationController
 
         @aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
-        @aux.points -= 10
+        @aux.points -= 2
 
         @aux.save
 
-        @answer.votes -= 10
+        @answer.votes -= 1
 
         @answer.save
 
@@ -50,7 +50,7 @@ class AnswersController < ApplicationController
 
         if (@vote.good == true)
 
-            @answer.votes -= 10
+            @answer.votes -= 1
 
             @aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
@@ -60,11 +60,11 @@ class AnswersController < ApplicationController
 
         else
 
-            @answer.votes += 10
+            @answer.votes += 1
 
             @aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
-            @aux.points += 10
+            @aux.points += 2
 
             @aux.save
 
