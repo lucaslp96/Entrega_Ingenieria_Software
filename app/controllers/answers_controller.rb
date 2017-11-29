@@ -95,35 +95,16 @@ class AnswersController < ApplicationController
     end
 
     def new
-	
-	@answer = Answer.new
-
-	@questionid = params[:question]
-	byebug
+        @question_original = params[:question]
+        @answer = Answer.new
     end
+    def create
 
-    def create	
+      @answer = Answer.create(user_id: current_user.id, question_id: params[:answer][:question_id], content: params[:answer][:content], votes: "0")
+	     q = Question.find(params[:answer][:question_id])
+	      q.numanswers += 1
+	       q.save
+         redirect_to question_path(params[:answer][:question_id])
 
-	@answer = Answer.new(params.require(:answer).permit(:content))
-
-	@answer.votes = 0
-
-	@answer.question_id = @questionid
-
-	byebug
-
-	q = Question.find(@questionid)
-
-	q.numanswers += 1
-
-	q.save
-    
-	if @answer.save
-		redirect_to show_question_path(id: @answer.question_id)
-	else
-		render :new
-	end
-    end
-
-
+end
 end

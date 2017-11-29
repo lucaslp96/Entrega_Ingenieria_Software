@@ -1,0 +1,12 @@
+<!-- Answer Form -->
+<%= form_for @question_comment do |f| %>
+<div class="container">
+<div class="form-group">
+<%= f.text_area :content, class:"form-control", rows:"3" , required: true, placeholder: 'Escrbí tu comentario acá (debe tener más de 8 caracteres)' %>
+<%= f.hidden_field :question_id, value: @question_original %>
+<div>
+  <%= f.submit 'Comentar',class:'btn btn-primary',role: 'button' %>
+</div>
+</div>
+</div>
+<% end %>

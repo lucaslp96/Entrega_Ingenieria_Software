@@ -1,13 +1,15 @@
 <% if user_signed_in? %>
     <%= link_to '¡Creá tu pregunta acá!', "questions/new", class: 'btn btn-primary btn-block',role: 'button' %>
 <% end %>
+
 <!-- Buscador-->
-<p> <div class="container">
+<p> <div class="container">Buscar pregunta por título:
 <%= form_tag(questions_path, :method => "get", id: "search-form") do %>
 <%= text_field_tag :search, params[:search], placeholder: "Ingresa texto" %>
 <%= submit_tag "Buscar" %>
 <% end %>
 </div> </p>
+
 <% if @search_questions.present? %>
   <%= render @search_questions %>
 <% else %>

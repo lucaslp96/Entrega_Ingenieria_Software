@@ -13,20 +13,24 @@ Rails.application.routes.draw do
 			post 'upvote'
 			post 'downvote'
 			post 'unvote'
+			post 'chooseBestAnswer'
+			post 'cancelBestAnswer'
 		end
 		resources:question_comments, except: :index
     end
+		resources :question_comments
 
-	resources:users
-
+		resources:users
+		resources :answer_comments
     resources:tags
-
-    resources:answers do
+		resources :answers
+		resources:answers do
 		member do
 			post 'upvote'
 			post 'downvote'
 			post 'unvote'
-		end
+			end
+			resources :answer_comments
     end
 
 end

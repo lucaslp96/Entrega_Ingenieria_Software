@@ -174,4 +174,42 @@ class QuestionsController < ApplicationController
   		  end
   end
 
+
+  def chooseBestAnswer
+
+	@bestAnswer = params[:answerid]
+
+	@userid = Answer.find(@bestAnswer).user_id
+
+	@auxUser = User.find(@userid)
+
+	@auxUser.points += 20
+
+	@auxUser.save 
+
+	$best = @bestAnswer
+
+	redirect_to question_path(Answer.find(@bestAnswer).question_id)
+ end
+
+  def cancelBestAnswer
+	
+
+	@userid = Answer.find($best).user_id
+
+	@auxUser = User.find(@userid)
+
+	@auxUser.points -= 20
+
+	@auxUser.save
+
+	@auxAnswer = $best
+
+	$best = nil
+
+	redirect_to question_path(Answer.find(@auxAnswer).question_id)
+
+  end
+
+
 end

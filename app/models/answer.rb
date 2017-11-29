@@ -1,7 +1,11 @@
 class Answer < ApplicationRecord
+
 	belongs_to :question
 	belongs_to :user
 	has_many :answer_votes
 	has_many :answer_comments
 	has_many :answer_reports
+
+	validates_length_of :content, :minimum => 16, :allow_blank => false
+
 end

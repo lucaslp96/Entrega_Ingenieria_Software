@@ -1,5 +1,4 @@
 <body>
-<body>
 <!-- Page Content -->
     <div class="container">
 
@@ -8,107 +7,86 @@
         <!-- Post Content Column -->
         <div class="col-lg-8">
 
-          <!-- Title -->
-          <h1 class="mt-4"><%= @question.title  %></h1>
+        <!-- Title -->
+        <h1 class="mt-4"><%= @question.title  %></h1>
 
+        <!-- Post Content -->
+        Descripcion: <p><%= @question.content %></p>
 
-            <!-- Author -->
-            <p class="lead">
-              Por:<b>  <%= User.find(@question.user_id).name %> - Puntos: <%= User.find(@question.user_id).points %></b>
-            </p>
+        <!-- Tags -->
+        <% @tags_pregunta.all.each do |tag| %>
+        Etiquetas: <span class="tags"><%= tag.content %></span>
+        <% end %>
 
+        <!-- Author -->
+        <hr>
+        <p class="lead">Por:<b>  <%= User.find(@question.user_id).name %> - Puntos: <% if ((User.find(@question.user_id).points) < 1) %> 1 <% else %> <%= User.find(@question.user_id).points %> <% end %> </b></p>
 
-          <hr>
+        <!-- Date/Time -->
+        <hr>
+        <p>Fecha y Hora de publicación: <%= @question.created_at  %></p>
 
-          <!-- Date/Time -->
-          <p>Fecha y Hora de publicación: <%= @question.created_at  %></p>
+        <!-- Votos -->
+        <hr><p>Votos: <%= @question.votes %></p>
 
-          <hr>
-          <!-- Post Content -->
-          <p>
-          <%= @question.content %>
-          </p>
-	<p>
-            Votos: <%= @question.votes %>
-            </p>
-          <hr>
-
-	 <!-- aca un voton para votarla -->
-
-            <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
-
-              <p> <%= link_to "Comentar", new_question_question_comment_path(@question), class: "btn btn-primary" %>
-              </p>
-
-                <% if (@vote.exists?) %>
-
-                    <td><%= button_to 'Remover Voto', unvote_question_path(@question), method: :post %></td>
-
-                <% else %>
-
-                    <td><%= button_to 'Votar +', upvote_question_path(@question), method: :post %></td>
-
-                    <td><%= button_to 'Votar -  ', downvote_question_path(@question), method: :post %></td>
-                    <hr>
-
-                <% end %>
-
+        <!-- aca un Boton para votarla -->
+        <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+            <% if (@vote.exists?) %>
+                <td><%= button_to 'Remover Voto', unvote_question_path(@question), method: :post %></td>
+                <hr>
+            <% else %>
+                <td><%= button_to 'Votar +', upvote_question_path(@question), method: :post %></td>
+                <td><%= button_to 'Votar -  ', downvote_question_path(@question), method: :post %></td>
+                <hr>
             <% end %>
+        <% end %>
 
+	    <!-- aca un boton para comentar -->
+        <% if user_signed_in? %>
+            <p> <%= link_to "Comentar", new_question_question_comment_path(@question), class: "btn btn-primary" %></p>
+        <% end %>
 
 	    <!-- aca un boton para responder -->
-
-	    <% if user_signed_in? %>
-
-	    <%= button_to 'Responder', new_answer_path(@question), class: 'btn btn-primary', method: :get %>
-	    
-	    <% end %>	
-
-         
-            <% @tags_pregunta.all.each do |tag| %>
-                    <span class="tags"><%= tag.content %></span>
-            <% end %>
-
-
-
             <hr>
-            <!-- aca un voton para votarla -->
 
             <% if user_signed_in? and  current_user.id != @question.user_id %>
-          <!-- Comments Form -->
-
-          <div class="card my-4">
-              <h5 class="card-header">Deja un comentario:</h5>
-              <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
-                </div>
-                <!-- <button type="submit" class="btn btn-primary">RESPONDER</button> -->
-		
-              </form>
-            </div>
-          </div>
-
-
-                <button type="submit" class="btn btn-primary">RESPONDER</button>
+            <td><%= link_to "Responder", new_answer_path(:question => @question.id),class: "btn btn-primary" %></td>
 
             <% end %>
 
             <hr>
 
           <!--comentarios -->
+        <h1 class="mt-4">Comentarios:</h1>
           <ul class="list-group">
           <% @question_comments.each do |comentario| %>
               <font size = "2"><li class="list-group-item"><b><%= comentario.user.name %></b> : <%= comentario.content %></li></font>
           <% end %>
         </ul>
-          <!-- respuestas -->
-          <% @answers.each do |answer| %>
+
+ <!--mejor respuesta -->
+	<% if $best != nil %>
+<h2>
+<b> <p>Mejor respuesta:</p> 
+<p><%= Answer.find($best).content %></p>
+<p>Por: <%= Answer.find($best).user.name %></p>
+</b>
+</h1>
+<td><%= button_to 'Cancelar mejor respuesta', cancelBestAnswer_question_path, method: :post %></td>
+
+<% end %>
+ 
+<!-- respuestas -->
+     <% @answers.each do |answer| %>
           <div class="media mb-4">
             <div class="media-body">
 
                <h2 class="mt-4"><b><%= answer.user.name %> </b> </h2 >
+		
+		<% if user_signed_in? and  (current_user.id == @question.user_id) and (current_user.id != answer.user_id)  and $best.nil? %>
+			<td><%= button_to 'Mejor respuesta', chooseBestAnswer_question_path(:answerid => answer.id), method: :post %></td>		
+		<% end %>
+			
                <p class="lead" > <font size = "5">
                   <%= answer.content %>
                   <% answer_comments = answer.answer_comments %>
@@ -122,11 +100,10 @@
                 </div>
           </div>
           <hr>
-          <% end %>
+      <% end %>
+</div>
 
 
-
-        </div>
         <!-- Sidebar Widgets Column -->
 
               </div>
