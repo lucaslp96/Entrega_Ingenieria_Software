@@ -1,5 +1,45 @@
 class QuestionsController < ApplicationController
 
+    def bestanswer
+    
+    preg = Question.find(params[:id])
+
+    preg.bestanswer = params[:loque]
+
+    preg.save
+
+    resp = Answer.find(params[:loque])
+
+    usuario = User.find(resp.user_id)
+
+    usuario.points += 20
+
+    usuario.save
+
+    redirect_to question_path
+
+  end
+
+  def removebestanswer
+    
+    preg = Question.find(params[:id])
+
+    preg.bestanswer = nil
+
+    preg.save
+
+    resp = Answer.find(params[:loque])
+
+    usuario = User.find(resp.user_id)
+
+    usuario.points -= 20
+
+    usuario.save
+
+    redirect_to question_path
+
+  end
+
   def upvote
 
       @question = Question.find(params[:id])
@@ -126,99 +166,77 @@ class QuestionsController < ApplicationController
 
   def show
 
-	@question = Question.find(params[:id])
-	
-	if(params[:orden].present?)
-		if (params[:orden] == "fecha")
-			@answers = @question.answers.porfecha
-		 end
-		 if (params[:orden] == "votos")
-			@answers = @question.answers.porvotos
-		 end
-	else
+    @question = Question.find(params[:id])
+
+    if(params[:orden].present?)
+
+      if (params[:orden] == "fecha")
+
+        @answers = @question.answers.porfecha
+
+      elsif (params[:orden] == "votos")
+
+        @answers = @question.answers.porvotos
+
+      else
+
+        @answers = @question.answers.porfecha #no se debería entrar acá 
+
+      end
+
+    else
+
 		   @answers = @question.answers.porfecha
-	end
 
-        @comments = @question.question_comments
+    end
 
-	@question.visits += 1
+    @comments = @question.question_comments
 
-	@question.save
+  	@question.visits += 1
 
-        @tags_pregunta=@question.tags
+  	@question.save
 
-        @question_comments = @question.question_comments
+    @tags_pregunta = @question.tags
 
-        if (user_signed_in?)
+    @question_comments = @question.question_comments
 
-            @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id)
+    if (user_signed_in?)
 
-        end
+      @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id)
+
+    end
 
   end
 
   def new
-	   @question = Question.new
-       	   @tags=Tag.all
+
+    @question = Question.new
+    @tags=Tag.all
+
   end
 
+  def edit
 
-    def edit
-
-    end
-
-
+  end
 
   def create
+
         @question = Question.new(params.require(:question).permit(:title, :content, tag_ids: []))
-  	@question.user_id = current_user.id
-  	@question.votes=0
-  	@question.visits=0
-	@question.numanswers=0
+        @question.user_id = current_user.id
+        @question.votes=0
+        @question.visits=0
+      	@question.numanswers=0
+
   		  if @question.save
-  		#create(user_id: current_user.id, title: params[:question][:title], content: params[:question][:content], visits: 0, votes: 0)    #cambio
+
              redirect_to questions_path
+
   		  else
+
   		        render :new
+
   		  end
-  end
-
-
-  def chooseBestAnswer
-
-	@bestAnswer = params[:answerid]
-
-	@userid = Answer.find(@bestAnswer).user_id
-
-	@auxUser = User.find(@userid)
-
-	@auxUser.points += 20
-
-	@auxUser.save
-
-	$best = @bestAnswer
-
-	redirect_to question_path(Answer.find(@bestAnswer).question_id)
- end
-
-  def cancelBestAnswer
-
-
-	@userid = Answer.find($best).user_id
-
-	@auxUser = User.find(@userid)
-
-	@auxUser.points -= 20
-
-	@auxUser.save
-
-	@auxAnswer = $best
-
-	$best = nil
-
-	redirect_to question_path(Answer.find(@auxAnswer).question_id)
 
   end
-
 
 end

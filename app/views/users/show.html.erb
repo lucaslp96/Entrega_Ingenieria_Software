@@ -1,39 +1,3 @@
-<!--
-<br>
-
-<h3>
-
-<div class="container">
-<div class="UserName">
-
-
-<p>
-<%= current_user.name %>
-</p>
-</div>
-<hr>
-<p>
-Email: <%= current_user.email %>
-</p>
-<hr>
-<p>
-Universidad: <% if (current_user.university_id != nil) %> <%= current_user.university_id %> <% else %> Todavia no cuenta con una universidad asignada. <% end %>
-</p>
-<hr>
-<p>
-Sus preguntas:
-</p>
-<% @questions.each do |preg| %>
-
-        <li>-<%= link_to preg.title, preg %> </li>
-
-<% end %>
-
-</h3>
-
-</div>
--->
-
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
 	<div class="row">
@@ -41,11 +5,15 @@ Sus preguntas:
     	 <div class="well profile">
             <div class="col-sm-12">
                 <div class="col-xs-12 ">
-                    <p><strong>Nombre: </strong> <%= current_user.name %> </p>
-										<p><strong>Puntos: </strong> <% if ((current_user.points) < 1) %> 1 <% else %> <%= current_user.points %> <% end %> </p>
-                    <p><strong>Universidad: </strong> <% if (current_user.university_id != nil) %> <%= current_user.university_id %> <% else %> Todavia no cuenta con una universidad asignada. <% end %> </p>
+                    <p><strong>Nombre: </strong> <%= @user.name %> </p>
+										<p><strong>Puntos: </strong> <% if ((@user.points) < 1) %> 1 <% else %> <%= @user.points %> <% end %> </p>
+                    <p><strong>Universidad: </strong> <% if (@user.university_id != nil) %> <%= University.find(@user.university_id).name %> <% else %> Todavia no cuenta con una universidad asignada. <% end %> </p>
 										  <hr>
-                      <%= link_to 'Editar', 'user/edit', class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
+										  <% if (current_user == @user) %>
+
+                      <%= link_to 'Editar', edit_user_path(current_user.id), class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
+
+                      			<% end %>
                 </div>
             </div>
 
