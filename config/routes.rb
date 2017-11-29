@@ -13,8 +13,8 @@ Rails.application.routes.draw do
 			post 'upvote'
 			post 'downvote'
 			post 'unvote'
-			post 'chooseBestAnswer'
-			post 'cancelBestAnswer'
+			post 'bestanswer'
+			post 'removebestanswer'
 		end
 		resources:question_comments, except: :index
     end

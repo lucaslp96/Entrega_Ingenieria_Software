@@ -8,6 +8,8 @@ class CreateQuestions < ActiveRecord::Migration[5.1]
       t.integer :votes
       t.integer :numanswers
 
+      t.integer :bestanswer, default: nil
+
       t.timestamps
     end
   end

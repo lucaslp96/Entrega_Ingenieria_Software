@@ -1,18 +1,19 @@
 class UsersController < ApplicationController
 
     def show
-        @answers = current_user.answers
-        @questions = current_user.questions
+        @user = User.find(params[:id])
+        @answers = User.find(params[:id]).answers
+        @questions = User.find(params[:id]).questions
     end
 
     def edit
-      @user = current_user
+      @user = User.find(params[:id])
     end
 
     def update
-      @user = current_user
-      @user.update(name: params[:name], university_id: params[:university])
-      redirect_to edit_user_path(@user)
+      @user = User.find(params[:id])
+      @user.update(params.require(:user).permit(:name, :university_id))
+      redirect_to user_path(@user)
     end
 
 end
