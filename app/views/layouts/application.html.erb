@@ -12,10 +12,8 @@
     <%= render "layouts/header" %>
 
     <center>
-    <% if (flash[:notice]) %>
-        <br>
-        <%= notice %>
-        <br>
+    <% if flash[:notice] %>
+        <div class="alert alert-success"><center><%= flash[:notice] %></center></div>
     <% end %>
     <% if (flash[:alert]) %>
         <br>

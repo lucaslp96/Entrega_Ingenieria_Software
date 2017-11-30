@@ -1,15 +1,26 @@
+<% if flash[:error] %>
+    <div class="alert alert-success"><center><%= flash[:error] %></center></div>
+<% end %>
+
 <% if user_signed_in? %>
-
-    <p><ul><li> <%= link_to "Crear categoría", new_tag_path %> </ul></li></p>
-
+	<br>
+    	<center>
+    		<%= link_to "Crear categoría", new_tag_path %>
+    	</center>
+	<br>
 <% end %>
 
-<% @tags.each do |tag| %>
-
-        <p>
-
-            <ul><li> <%= tag.content %> - usada <%= tag.usos %> veces </li></ul>
-
-        </p>
-
-<% end %>
+<div class="container">
+	<% @tags.each do |tag| %>
+  		<div class="row">
+  			<div class="col-sm-4">
+  			</div>
+    		<div class="col-sm-2">
+				<%= tag.content %>
+    		</div>
+    		<div class="col-sm-2">
+				usada <%= tag.usos %> veces
+    		</div>
+  		</div>
+	<% end %>
+</div>
