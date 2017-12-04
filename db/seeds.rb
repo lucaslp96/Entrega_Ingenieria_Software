@@ -1,8 +1,17 @@
+Permit.destroy_all
 User.destroy_all
 Answer.destroy_all
 Question.destroy_all
 Tag.destroy_all
 University.destroy_all
+
+Permit.create(action: "create_question_answer", required_points: 1)
+Permit.create(action: "vote_pos_question_answer_comment", required_points: 15)
+Permit.create(action: "comment_anywhere", required_points: 20)
+Permit.create(action: "vote_negative", required_points: 100)
+Permit.create(action: "admin_tags", required_points: 300)
+Permit.create(action: "admin_universities", required_points: 500)
+Permit.create(action: "modify_contents", required_points: 1000)
 
 uni1 = University.create(name: "UNLP")
 uni2 = University.create(name: "UNRN")
