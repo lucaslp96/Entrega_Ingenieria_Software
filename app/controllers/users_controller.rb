@@ -4,6 +4,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @answers = User.find(params[:id]).answers
         @questions = User.find(params[:id]).questions
+        @permits = Permit.all
     end
 
     def edit

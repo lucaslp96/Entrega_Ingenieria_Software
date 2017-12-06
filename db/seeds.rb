@@ -5,13 +5,13 @@ Question.destroy_all
 Tag.destroy_all
 University.destroy_all
 
-Permit.create(action: "create_question_answer", required_points: 1)
-Permit.create(action: "vote_pos_question_answer_comment", required_points: 15)
-Permit.create(action: "comment_anywhere", required_points: 20)
-Permit.create(action: "vote_negative", required_points: 100)
-Permit.create(action: "admin_tags", required_points: 300)
-Permit.create(action: "admin_universities", required_points: 500)
-Permit.create(action: "modify_contents", required_points: 1000)
+Permit.create(action: "crear preguntas y respuestas", required_points: 1)
+Permit.create(action: "votar positivamente preguntas, respuestas y comentarios", required_points: 15)
+Permit.create(action: "comentar en cualquier parte", required_points: 20)
+Permit.create(action: "votar negativamente", required_points: 100)
+Permit.create(action: "administrar etiquetas", required_points: 300)
+Permit.create(action: "administrar universidades", required_points: 500)
+Permit.create(action: "modificar contenido", required_points: 1000)
 
 uni1 = University.create(name: "UNLP")
 uni2 = University.create(name: "UNRN")
@@ -31,7 +31,7 @@ tag9 = Tag.create(usos: 75, content: "Estadistica")
 #los usuarios deben tener emails distintos para no generar error
 
 user1 = User.create(name: "Juan", email: "Juan@example.com", password: "user123")
-user2 = User.create(name: "Augusto", email: "Augusto@example.com", password: "user123")
+user2 = User.create(name: "Augusto", email: "Augusto@example.com", password: "user123", points: 200)
 user3 = User.create(name: "Lucas", email: "Lucas@example.com", password: "user123")
 user4 = User.create(name: "Pedro", email: "Pedro@example.com", password: "user123")
 user5 = User.create(name: "Santiago", email: "Santiago@example.com", password: "user123")

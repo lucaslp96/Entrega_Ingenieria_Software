@@ -9,17 +9,27 @@
 										<p><strong>Puntos: </strong> <% if ((@user.points) < 1) %> 1 <% else %> <%= @user.points %> <% end %> </p>
                     <p><strong>Universidad: </strong> <% if (@user.university_id != nil) %> <%= University.find(@user.university_id).name %> <% else %> Todavia no cuenta con una universidad asignada. <% end %> </p>
 										  <hr>
-										  <% if (current_user == @user) %>
 
-                      <%= link_to 'Editar', edit_user_path(current_user.id), class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
+										<% if ((user_signed_in?) & (current_user == @user)) %>
 
-                      			<% end %>
+											<%= link_to 'Editar', edit_user_path(current_user.id), class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
+
+											<h2>Mis permisos:</h2>
+												<% @permits.each do |perm| %>
+													<% if ((@user.points) >= (perm.required_points)) %>
+														<p style="margin-left:2em;"><%= perm.action %></p>
+													<% end %>
+												<% end %>
+											<br>
+
+										<% end %>
                 </div>
             </div>
 
     	 </div>
 		</div>
 	</div>
+
 	<h2>Preguntas Hechas:</h2>
 	<hr>
 	<% @questions.each do |preg| %>
@@ -29,6 +39,7 @@
 					<li>Respuestas:<%= preg.answers.size %> </li>
 	<% end %>
 	<hr>
+
 	<h2>Respuestas Dadas:</h2>
 	<hr>
 	<% @answers.each do |resp| %>
