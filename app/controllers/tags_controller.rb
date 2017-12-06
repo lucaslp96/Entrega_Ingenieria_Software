@@ -20,15 +20,19 @@ class TagsController < ApplicationController
 
         @tag = Tag.new
 
-        if  not(Tag.exists?(:content => params[:tag][:content].upcase))    #no se si es necesario ya que está el validates
+        @tag.usos = 0
 
-            if (params[:tag][:content].length < 4)
+        @tag.content = (((params[:tag][:content].downcase).titleize).delete(' '))       # Twitter hashtag style
+
+        if  (not(Tag.exists?(content: @tag.content)))
+
+            if ((@tag.content.length) < 4)
 
                 flash[:error] = "La etiqueta que intentó crear tenia menos de 4 caracteres."
 
                 render :new
 
-            elsif (params[:tag][:content].length > 16)
+            elsif ((@tag.content.length) > 16)
 
                 flash[:error] = "La etiqueta que intentó crear tenia mas de 16 caracteres."
                 
@@ -36,9 +40,9 @@ class TagsController < ApplicationController
 
             else
 
-                if (Tag.create(content: params[:tag][:content].upcase, usos: 0))
+                if (@tag.save)
 
-                    flash[:notice] = "Creada exitosamente."
+                    flash[:success] = "Etiqueta creada exitosamente."
 
                     redirect_to tags_path
 
@@ -54,7 +58,7 @@ class TagsController < ApplicationController
 
         else
 
-            flash[:notice] = "La etiqueta que intentó crear ya existe."
+            flash[:alert] = "La etiqueta que intentó crear ya existe."
 
             redirect_to tags_path
 

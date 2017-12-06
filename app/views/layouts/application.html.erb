@@ -12,13 +12,26 @@
     <%= render "layouts/header" %>
 
     <center>
-    <% if flash[:notice] %>
-        <div class="alert alert-success"><center><%= flash[:notice] %></center></div>
-    <% end %>
-    <% if (flash[:alert]) %>
-        <br>
-        <%= alert %>
-        <br>
+    <% if not(flash.empty?) %>
+
+        <% if flash[:error] %>
+            <div class="alert alert-danger"><center><%= flash[:error] %></center></div>
+        <% end %>
+
+        <% if flash[:notice] %>
+            <div class="alert alert-info"><center><%= flash[:notice] %></center></div>
+        <% end %>
+
+        <% if flash[:success] %>
+            <div class="alert alert-success"><center><%= flash[:success] %></center></div>
+        <% end %>
+
+        <% if flash[:alert] %>
+            <div class="alert alert-warning"><center><%= flash[:alert] %></center></div>
+        <% end %>
+
+        <% flash.clear %>     <!-- vacia el hash para que no perduren los mensajes -->
+
     <% end %>
     </center>
 
