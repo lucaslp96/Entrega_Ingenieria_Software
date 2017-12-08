@@ -13,11 +13,11 @@
 										<% if ((user_signed_in?) & (current_user == @user)) %>
 
 											<%= link_to 'Editar', edit_user_path(current_user.id), class: 'btn btn-primary btn-lg btn-prymary-spacing',role: 'button' %>
-
+											<%= link_to "Eliminar cuenta", current_user, method: :delete, class: 'btn btn-danger btn-lg btn-prymary-spacing', data: { confirm: "¿Estás seguro de que querés eliminar tu cuenta?" } %>
 											<h2>Mis permisos:</h2>
 												<% @permits.each do |perm| %>
 													<% if ((@user.points) >= (perm.required_points)) %>
-														<p style="margin-left:2em;"><%= perm.action %></p>
+														 <p style="margin-left:2em;"><%= perm.action %></p>
 													<% end %>
 												<% end %>
 											<br>

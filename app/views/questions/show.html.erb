@@ -14,7 +14,7 @@
         Descripcion: <p><%= @question.content %></p>
 
         <!-- Tags -->
-        Etiquetas: 
+        Etiquetas:
         <% @tags_pregunta.all.each do |tag| %>
         <span class="tags"><%= tag.content %></span>
         <% end %>
@@ -31,7 +31,7 @@
         <hr><p>Votos: <%= @question.votes %></p>
 
         <!-- aca un Boton para votarla -->
-        <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id))) %>
+        <% if ((user_signed_in?) and ((current_user.id) != (@question.user_id)) and (current_user.points >= @permits.find(2).required_points)) %>
             <% if (@vote.exists?) %>
                 <td><%= button_to 'Remover Voto', unvote_question_path(@question), method: :post %></td>
                 <hr>
@@ -43,14 +43,14 @@
         <% end %>
 
       <!-- aca un boton para comentar -->
-        <% if user_signed_in? %>
+        <% if user_signed_in? and current_user.points >= @permits.find(3).required_points %>
             <p> <%= link_to "Comentar", new_question_question_comment_path(@question), class: "btn btn-primary" %></p>
+            <hr>
         <% end %>
 
       <!-- aca un boton para responder -->
-            <hr>
 
-            <% if user_signed_in? and  current_user.id != @question.user_id %>
+            <% if user_signed_in? and  current_user.id != @question.user_id and current_user.points >= @permits.find(1).required_points%>
             <td><%= link_to "Responder", new_answer_path(:question => @question.id),class: "btn btn-primary" %></td>
 
             <% end %>
@@ -71,10 +71,19 @@
           <div class="media mb-4">
             <div class="media-body">
 
-               <h2 class="mt-4"><b> <% if answer.user.name == '' %> <%= link_to answer.user.email, answer.user %> <% else %> <%= link_to answer.user.name, answer.user %> <% end %> </b> </h2 >
+               <h2 class="mt-4"><b> <% if !(answer.user.nil?) %>
+                                      <% if answer.user.name == '' %> <%= link_to answer.user.email, answer.user %>
+                                        <% else %> <%= link_to answer.user.name, answer.user %>
+                                      <% end %> </b> </h2 >
+                                    <% else %>
+                                      Anónimo
+                                    <% end %>
                <p class="lead" > <font size = "5">
-            <%= link_to answer.content, answer %>
-                  
+                 <% if !(answer.user.nil?) %>              <!-- si el usuario fue eliminado entonces no se muestra link a la respuesta -->
+                    <%= link_to answer.content, answer %>
+                <% else %>
+                      <%= answer.content %> 
+                <% end %>
                     <!--se podria hacer mas eficiente-->
 
 

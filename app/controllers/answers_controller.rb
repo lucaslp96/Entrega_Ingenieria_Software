@@ -81,6 +81,7 @@ class AnswersController < ApplicationController
     end
 
     def show
+        @permits = Permit.all
 
         @answer = Answer.find(params[:id])
 

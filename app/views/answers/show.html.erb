@@ -55,7 +55,7 @@
 
 
 
-            <% if user_signed_in? %>
+            <% if user_signed_in? and current_user.points >= @permits.find(3).required_points%>
 
               <p> <%= link_to "Comentar", new_answer_answer_comment_path(@answer), class: "btn btn-primary" %>
               </p>

@@ -165,7 +165,7 @@ class QuestionsController < ApplicationController
 
 
   def show
-
+    @permits=Permit.all
     @question = Question.find(params[:id])
 
     if(params[:orden].present?)
@@ -226,7 +226,7 @@ class QuestionsController < ApplicationController
         @question.votes=0
         @question.visits=0
       	@question.numanswers=0
-        
+
   		  if @question.save
 
   		  	params[:question][:tag_ids].each do |tag|
