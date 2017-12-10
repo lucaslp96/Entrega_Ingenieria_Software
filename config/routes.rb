@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
 	root 'questions#index'
 
-	resources:questions do
+	resources :questions do
 		member do
 			post 'upvote'
 			post 'downvote'
@@ -16,21 +16,29 @@ Rails.application.routes.draw do
 			post 'bestanswer'
 			post 'removebestanswer'
 		end
-		resources:question_comments, except: :index
+		resources :question_comments, except: :index
     end
-		resources :question_comments
+	
+	resources :question_comments
 
-		resources:users
-		resources :answer_comments
-    resources:tags
-		resources :answers
-		resources:answers do
+	resources :users
+
+	resources :answer_comments
+
+    resources :tags
+
+	resources :answers
+
+	resources :answers do
 		member do
 			post 'upvote'
 			post 'downvote'
 			post 'unvote'
 			end
 			resources :answer_comments
+    end
+
+    resources :universities do
     end
 
 end

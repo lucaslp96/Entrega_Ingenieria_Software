@@ -165,7 +165,9 @@ class QuestionsController < ApplicationController
 
 
   def show
+
     @permits=Permit.all
+
     @question = Question.find(params[:id])
 
     if(params[:orden].present?)
@@ -223,6 +225,7 @@ class QuestionsController < ApplicationController
 
         @question = Question.new(params.require(:question).permit(:title, :content, tag_ids: []))
         @question.user_id = current_user.id
+        @question.university_id = current_user.university_id    #hereda el university_id del usuario
         @question.votes=0
         @question.visits=0
       	@question.numanswers=0

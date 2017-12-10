@@ -1,0 +1,13 @@
+<h1><%= @uni.name %></h1>
+
+<hr>
+
+<% @questions.each do |preg| %>
+
+        <p>
+
+            <p><li><ul> <%= link_to preg.title, question_path(preg) %> </li></ul></p>
+
+        </p>
+
+<% end %>
