@@ -8,6 +8,28 @@
 	<br>
 <% end %>
 
+
+
+<div  style="background-color: lightblue">
+<p>
+    <ul><h1>Categorías más usadas:</h1></ul>
+</p>
+
+<% @toptags.each do |tagt| %>
+
+            <li><%= tagt.content %> - usada <%= tagt.usos %> veces</li>
+
+<% end %>
+</div>
+
+
+
+<hr>
+
+<p>
+    <ul><h1>Todas las categorias:</h1></ul>
+</p>
+
 <div class="container">
 	<% @tags.each do |tag| %>
   		<div class="row">

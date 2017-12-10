@@ -1,4 +1,5 @@
-<!-- Buscador-->
+<hr>
+<center>
 <p> <div class="container">Buscar universidad por nombre:
 <%= form_tag(universities_path, :method => "get", id: "search-form") do %>
 <%= text_field_tag :search, params[:search], placeholder: "Ingresa texto" %>
@@ -7,19 +8,34 @@
 </div> </p>
 
 <% if @search_universities.present? and !params[:search].blank? %>
-  <%= render @search_universities %>
+  <div class="jumbotron">
+  <h2> Universidades encontradas: </h2>
+  <% @search_universities.each do |univ| %>
+     <hr>
+      <h3>
+      <li><%= link_to univ.name, univ %> </li>
+      </h3>
+      <hr>
+  <% end %>
+  </div>
+
 <% else %>
   <% if !params[:search].blank? %> <!-- esto lo hago porque cuando apretaba en "inicio" buscaba en blanco, una solucion poco elegante -->
   <p>No hay preguntas que contengan los terminos: <%= params[:search] %>.</p>
   <% end %>
 <% end %>
 
+<hr>
+
+<p>
 <% @unis.each do |uni| %>
 
 		<p>
 
-            <ul><li><%= uni.name %><%= link_to uni.name, university_path(uni) %></li></ul>
+            <ul><li><%= link_to uni.name, university_path(uni) %></li></ul>
 
         </p>
 
 <% end %>
+</p>
+</center>

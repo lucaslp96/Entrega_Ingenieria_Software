@@ -4,6 +4,8 @@ class TagsController < ApplicationController
 
         @tags = Tag.all
 
+        @toptags = Tag.order("usos DESC").first(5)
+
     end
 
     def show
