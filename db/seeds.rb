@@ -31,7 +31,7 @@ tag9 = Tag.create(usos: 75, content: "Estadistica")
 #los usuarios deben tener emails distintos para no generar error
 
 user1 = User.create(name: "Juan", email: "Juan@example.com", password: "user123", university_id: uni1)
-user2 = User.create(name: "Augusto", email: "Augusto@example.com", password: "user123", points: 200)
+user2 = User.create(name: "Augusto", email: "Augusto@example.com", password: "user123", points: 2000)
 user3 = User.create(name: "Lucas", email: "Lucas@example.com", password: "user123")
 user4 = User.create(name: "Pedro", email: "Pedro@example.com", password: "user123")
 user5 = User.create(name: "Santiago", email: "Santiago@example.com", password: "user123")

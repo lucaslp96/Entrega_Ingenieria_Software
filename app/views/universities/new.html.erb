@@ -1,0 +1,22 @@
+<br><center>
+
+<% if (@permitido == "true") %>
+
+	<h1>Creacion de universidad</h1><hr><hr>
+	<%= form_for (@uni) do |univ| %>
+    	<%= univ.label 'Nombre' %>
+    	<%= univ.text_field :name %>
+    	<%= univ.submit 'Crear' %>
+	<% end %>
+
+<% else %>
+
+	<h1>Usted no puede estar aqui!!!</h1>
+	
+<% end %>
+
+<hr><hr><hr>
+
+<%= link_to "Todas las categorias", tags_path %>
+
+</center><br><br><br><br>

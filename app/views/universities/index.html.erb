@@ -18,12 +18,25 @@
       <hr>
   <% end %>
   </div>
-
 <% else %>
   <% if !params[:search].blank? %> <!-- esto lo hago porque cuando apretaba en "inicio" buscaba en blanco, una solucion poco elegante -->
   <p>No hay preguntas que contengan los terminos: <%= params[:search] %>.</p>
   <% end %>
 <% end %>
+
+
+
+<% if (@permitido == "true") %>
+	<br>
+    	<center>
+    		<%= link_to "Crear universidad", new_university_path %>
+    	</center>
+	<br>
+<% end %>
+
+
+
+
 
 <hr>
 
