@@ -1,0 +1,15 @@
+
+<br><br><br><br><br><br><center>
+
+La etiqueta debe tener entre 4 y 16 caracteres (sin contar los espacios)
+
+<br><br>
+
+<%= form_for (@tag) do |t| %>
+    <%= t.label 'Etiqueta:' %>
+    <%= t.text_field :content %>
+    <%= t.submit 'Guardar' %>
+<% end %>
+
+<br><br>
+</center><br><br><br><br>

@@ -33,7 +33,7 @@
 
 
 
-            <!-- aca un voton para botarla -->
+            <!-- aca un Boton para votarla -->
 
             <% if ((user_signed_in?) and ((current_user.id) != (@answer.user_id))) %>
 
@@ -42,16 +42,17 @@
                     <%= button_to 'Remover Voto', unvote_answer_path(@answer), method: :post %>
 
                 <% else %>
-
+                    <% if current_user.points >= @permits.find(2).required_points %>
                     <%= button_to 'Votar +', upvote_answer_path(@answer), method: :post %>
-
+                    <% end %>
+                    <% if current_user.points >= @permits.find(4).required_points %>
                     <%= button_to 'Votar -', downvote_answer_path(@answer), method: :post %>
-
+                    <% end %>
                 <% end %>
 
             <% end %>
 
-            <!-- aca un voton para botarla -->
+            <!-- aca un Boton para comentar -->
 
 
 

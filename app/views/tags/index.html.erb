@@ -1,36 +1,46 @@
-<br><br><center>
 
-<% if user_signed_in? %>
+<% if user_signed_in? and current_user.points >= @permits.find(5).required_points %> <!-- solo te deja si tenes permiso para administar etiquetas -->
 	<br>
     	<center>
-    		<%= link_to "Crear categoría", new_tag_path %>
+    		<%= link_to "Crear nueva categoría", new_tag_path, class: "btn btn-primary" %>
     	</center>
 	<br>
 <% end %>
 
 
-
 <div  style="background-color: lightblue">
-<p>
-    <ul><h1>Categorías más usadas:</h1></ul>
-</p>
 
-<% @toptags.each do |tagt| %>
-
-            <li><%= tagt.content %> - usada <%= tagt.usos %> veces</li>
-
+	<div class="row">
+		<div class="col-sm-4">
+		</div>
+		<div class="col-sm-6">
+			<h1>Categorías más usadas:</h1>
+		</div>
+	</div>
+	<hr>
+<% @toptags.each do |tag| %>
+		<div class="row">
+			<div class="col-sm-4">
+			</div>
+			<div class="col-sm-2">
+			<%= tag.content %>
+			</div>
+			<div class="col-sm-2">
+			usada <%= tag.usos %> veces
+			</div>
+		</div>
 <% end %>
 </div>
 
-
-
 <hr>
-
-<p>
-    <ul><h1>Todas las categorias:</h1></ul>
-</p>
-
-<div class="container">
+<div class="row">
+	<div class="col-sm-4">
+	</div>
+	<div class="col-sm-6">
+		<h1>Todas las categorias:</h1>
+	</div>
+</div>
+<hr>
 	<% @tags.each do |tag| %>
   		<div class="row">
   			<div class="col-sm-4">
@@ -41,8 +51,12 @@
     		<div class="col-sm-2">
 				usada <%= tag.usos %> veces
     		</div>
-  		</div>
+				<div class="col-sm-4">
+					<% if user_signed_in? and current_user.points >= @permits.find(5).required_points %>
+						<%= link_to "Borrar", tag, method: :delete, class: 'btn btn-danger ', data: { confirm: "¿Estás seguro de que querés eliminar esta etiqueta?" } %>
+					 	<%= link_to "Editar", edit_tag_path(tag.id), class: "btn btn-primary" %>
+				 <% end %>
+				</div>
+			</div>
+			<hr>
 	<% end %>
-</div>
-
-</center><br><br><br>

@@ -36,8 +36,12 @@
                 <td><%= button_to 'Remover Voto', unvote_question_path(@question), method: :post %></td>
                 <hr>
             <% else %>
-                <td><%= button_to 'Votar +', upvote_question_path(@question), method: :post %></td>
-                <td><%= button_to 'Votar -  ', downvote_question_path(@question), method: :post %></td>
+                <% if current_user.points >= @permits.find(2).required_points %>
+                  <td><%= button_to 'Votar +', upvote_question_path(@question), method: :post %></td>
+                <% end %>
+                <% if current_user.points >= @permits.find(4).required_points %>
+                  <td><%= button_to 'Votar -  ', downvote_question_path(@question), method: :post %></td>
+                <% end %>
                 <hr>
             <% end %>
         <% end %>
@@ -82,7 +86,7 @@
                  <% if !(answer.user.nil?) %>              <!-- si el usuario fue eliminado entonces no se muestra link a la respuesta -->
                     <%= link_to answer.content, answer %>
                 <% else %>
-                      <%= answer.content %> 
+                      <%= answer.content %>
                 <% end %>
                     <!--se podria hacer mas eficiente-->
 

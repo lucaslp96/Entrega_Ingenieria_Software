@@ -6,6 +6,8 @@ class TagsController < ApplicationController
 
         @toptags = Tag.order("usos DESC").first(5)
 
+        @permits = Permit.all
+
     end
 
     def show
@@ -37,7 +39,7 @@ class TagsController < ApplicationController
             elsif ((@tag.content.length) > 16)
 
                 flash[:error] = "La etiqueta que intentó crear tenia mas de 16 caracteres."
-                
+
                 render :new
 
             else
@@ -68,4 +70,37 @@ class TagsController < ApplicationController
 
     end
 
+
+        def edit
+          @tag = Tag.find(params[:id])
+        end
+
+        def update
+          @tag = Tag.find(params[:id])
+          @tag.update(params.require(:tag).permit(:content, :usos))
+          @tag.content = (((params[:tag][:content].downcase).titleize).delete(' '))       # Twitter hashtag style
+               if ((@tag.content.length) < 4)
+                  flash[:error] = "La etiqueta que intentó crear tenia menos de 4 caracteres."
+                  render :edit
+              else
+                  if ((@tag.content.length) > 16)
+                    flash[:error] = "La etiqueta que intentó crear tenia mas de 16 caracteres."
+                    render :edit
+                  else
+                      if (@tag.save)
+                        flash[:success] = "Etiqueta modificada exitosamente."
+                        redirect_to tags_path
+                      else
+                        flash[:error] = "La etiqueta que intentó crear ya existe."  #si llego a este punto el único error que puede haber es que ya exista la etiqueta
+                        render :edit
+                      end
+                  end
+              end
+            end
+
+        def destroy
+           @deleted_tag = Tag.destroy(params[:id])
+           flash[:success] = "La etiqueta ha sido borrada."
+    	     redirect_to tags_path
+        end
 end

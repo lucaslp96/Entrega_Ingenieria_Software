@@ -18,14 +18,14 @@ Rails.application.routes.draw do
 		end
 		resources :question_comments, except: :index
     end
-	
+
 	resources :question_comments
 
 	resources :users
 
 	resources :answer_comments
 
-    resources :tags
+  resources :tags
 
 	resources :answers
 
