@@ -246,4 +246,10 @@ class QuestionsController < ApplicationController
 
   end
 
+  def destroy
+    @deleted_question = Question.destroy(params[:id])
+    flash[:success] = "Tu pregunta ha sido borrada."
+    redirect_to questions_path
+  end
+
 end

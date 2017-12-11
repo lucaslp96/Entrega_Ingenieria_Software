@@ -9,4 +9,10 @@ class QuestionCommentsController < ApplicationController
 
     end
 
+    def destroy
+      @deleted_question_comment = QuestionComment.destroy(params[:id])
+      flash[:success] = "El comentario ha sido borrado."
+      redirect_to @deleted_question_comment.question
+    end
+
 end

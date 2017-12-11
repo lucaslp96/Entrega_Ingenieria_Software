@@ -8,8 +8,11 @@
         <div class="col-lg-8">
 
         <!-- Title -->
-        <h1 class="mt-4"><%= @question.title  %></h1>
-
+        <h1 class="mt-4"><%= @question.title  %>
+        <% if current_user.id == @question.user_id %>
+          <%= link_to "Eliminar", @question, method: :delete, class: 'btn btn-danger ', data: { confirm: "¿Estás seguro de que querés eliminar esta pregunta?" } %>
+        <% end %>
+        </h1>
         <!-- Post Content -->
         Descripcion: <p><%= @question.content %></p>
 
@@ -65,7 +68,16 @@
         <h1 class="mt-4">Comentarios:</h1>
           <ul class="list-group">
           <% @question_comments.each do |comentario| %>
-              <font size = "2"><li class="list-group-item"><b><%= comentario.user.name %></b> : <%= comentario.content %></li></font>
+              <font size = "2"><li class="list-group-item"><div class="row">
+                <div class="col-sm-10">
+                  <b><%= comentario.user.name %></b> : <%= comentario.content %>
+          			</div>
+            		<div class="col-sm-2">
+                  <% if current_user.id == comentario.user_id %>
+                    <%= link_to "Eliminar", comentario, method: :delete, class: 'btn btn-danger btn-sm ', data: { confirm: "¿Estás seguro de que querés eliminar este comentario?" } %>
+                  <% end %>
+        				</div>
+                </li></font>
           <% end %>
         </ul>
 
@@ -109,10 +121,28 @@
               <% answer_comments = answer.answer_comments %>
               </font> </p>
                   <ul class="list-group">
-                    <% answer_comments.each do |comentario| %>
-                      <li class="list-group-item"><font size = "2"> <b><%= comentario.user.name %></b> : <%= comentario.content %></li>
-                      </font><% end %>
-                  </ul>
+                  </font> </p>
+                      <ul class="list-group">
+                        <% answer_comments.each do |comentario| %>
+                        <font size = "2"><li class="list-group-item"><div class="row">
+                          <div class="col-sm-10">
+                            <b><%= comentario.user.name %></b> : <%= comentario.content %>
+                          </div>
+                          <div class="col-sm-2">
+                            <% if current_user.id == comentario.user_id %>
+                              <%= link_to "Eliminar", comentario, method: :delete, class: 'btn btn-danger btn-sm ', data: { confirm: "¿Estás seguro de que querés eliminar este comentario?" } %>
+                            <% end %>
+                          </div>
+                          </li></font>
+
+                          </ul>
+
+                    </div>
+                  </div>
+                  <hr>
+                  <% end %>
+
+                      </ul>
 
                 </div>
           </div>

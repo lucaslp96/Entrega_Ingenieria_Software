@@ -107,5 +107,12 @@ class AnswersController < ApplicationController
 	       q.save
          redirect_to question_path(params[:answer][:question_id])
 
-end
+    end
+
+    def destroy
+      @deleted_answer = Answer.destroy(params[:id])
+      flash[:success] = "Tu respuesta ha sido borrada."
+      redirect_to @deleted_answer.question
+    end
+
 end

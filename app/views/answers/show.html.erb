@@ -31,7 +31,11 @@
 
           <hr>
 
+              <% if current_user.id == @answer.user_id %>
+                        <%= link_to "Eliminar", @answer, method: :delete, class: 'btn btn-danger ', data: { confirm: "¿Estás seguro de que querés eliminar esta respuesta?" } %>
+              <% end %>
 
+              <hr>
 
             <!-- aca un Boton para votarla -->
 
@@ -62,13 +66,26 @@
               </p>
 
             <% end %>
-
+            <hr>
         <!-- respuestas -->
         <% @comments.each do |com| %>
             <div class="media mb-4">
             <div class="media-body">
+            <div class="row">
+            <div class="col-sm-10">
             <h4 class="mt-0"><b><%= com.user.name %> </b> </h4>
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8">
             <%= com.content %>
+          </div>
+          <div class="col-sm-2">
+            <% if current_user.id == com.user_id %>
+              <%= link_to "Eliminar comentario", com, method: :delete, class: 'btn btn-danger btn-sm ', data: { confirm: "¿Estás seguro de que querés eliminar este comentario?" } %>
+            <% end %>
+            </div>
+          </div>
             </div>
             </div>
             <hr>
