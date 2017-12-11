@@ -5,6 +5,7 @@
 <%= text_field_tag :search, params[:search], placeholder: "Ingresa texto" %>
 <%= submit_tag "Buscar" %>
 <% end %>
+</center>
 </div> </p>
 
 <% if @search_universities.present? and !params[:search].blank? %>
@@ -29,7 +30,7 @@
 <% if (@permitido == "true") %>
 	<br>
     	<center>
-    		<%= link_to "Crear universidad", new_university_path %>
+    		<%= link_to "Crear universidad", new_university_path, class: "btn btn-primary" %>
     	</center>
 	<br>
 <% end %>
@@ -40,15 +41,27 @@
 
 <hr>
 
-<p>
-<% @unis.each do |uni| %>
-
-		<p>
-
-            <ul><li><%= link_to uni.name, university_path(uni) %></li></ul>
-
-        </p>
-
-<% end %>
-</p>
-</center>
+<div class="row">
+	<div class="col-sm-4">
+	</div>
+	<div class="col-sm-6">
+		<h1>Lista de Universidades:</h1>
+	</div>
+</div>
+<hr>
+	<% @unis.each do |uni| %>
+  		<div class="row">
+  			<div class="col-sm-4">
+  			</div>
+    		<div class="col-sm-2">
+				<%= link_to uni.name, university_path(uni) %></li></ul>
+    		</div>
+    		<div class="col-sm-4">
+					<% if user_signed_in? and @permitido == "true" %>
+            <%= link_to "Borrar", uni, method: :delete, class: 'btn btn-danger ', data: { confirm: "¿Estás seguro de que querés eliminar esta etiqueta?" } %>
+            <%= link_to "Editar", edit_university_path(uni.id), class: "btn btn-primary" %>
+				 <% end %>
+				</div>
+			</div>
+			<hr>
+  <% end %>
