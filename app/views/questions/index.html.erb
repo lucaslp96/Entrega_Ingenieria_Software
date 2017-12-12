@@ -40,7 +40,18 @@
 <% end %>
 </center>
 
-
+<% if @trending.present? %>
+<% @trending.each do |preg| %>
+   <hr>
+        <h3>
+            <li><%= link_to preg.title, preg %> </li>
+      <li><%= preg.visits %> visitas - <%= preg.votes %> votos - <%= preg.answers.count %> respuestas</li>
+      <li>Creado por: <%= User.find(preg.user_id).name %> </li>
+      <li>Fecha: <%= User.find(preg.user_id).created_at %> </li>
+        </h3>
+    <hr>
+<% end %>
+<% end %>
 
 <% if (@questionMoreVisited.present?) %>
 <div class="masvis">

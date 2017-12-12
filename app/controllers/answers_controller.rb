@@ -110,9 +110,13 @@ class AnswersController < ApplicationController
     end
 
     def destroy
-      @deleted_answer = Answer.destroy(params[:id])
+      @deleted_answer = params[:id]
+      q = Question.find(Answer.find(@deleted_answer).question_id)
+      q.numanswers -= 1
+      q.save
+      Answer.destroy(@deleted_answer)
       flash[:success] = "Tu respuesta ha sido borrada."
-      redirect_to @deleted_answer.question
+      redirect_to q
     end
 
 end

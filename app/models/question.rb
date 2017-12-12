@@ -30,6 +30,24 @@ class Question < ApplicationRecord
 		Question.all.order("numanswers desc").first
 	end
 
+	def self.trending
+		if(Question.all.count < 10)
+			q = Question.porfecha
+		else
+			q = Question.porfecha.limit(10)
+		end
+		if(Question.all.count < 5)
+			q.order("numanswers desc")
+		else
+			q.order("numanswers desc").limit(5)
+		end
+		if(Question.all.count < 3)
+			#nada
+		else
+			q.order("votes desc").limit(3)
+		end
+	end
+
   private
 
   # para el buscador

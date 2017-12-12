@@ -146,6 +146,8 @@ class QuestionsController < ApplicationController
 
 	   else
 
+	   	@trending = Question.trending
+
 		@questionMoreVisited = Question.masvisitada
 
 	   	@questionMoreVoted = Question.masvotada
