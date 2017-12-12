@@ -73,7 +73,7 @@
                   <b><%= comentario.user.name %></b> : <%= comentario.content %>
           			</div>
             		<div class="col-sm-2">
-                  <% if current_user.id == comentario.user_id %>
+                  <% if user_signed_in? and current_user.id == comentario.user_id %>
                     <%= link_to "Eliminar", comentario, method: :delete, class: 'btn btn-danger btn-sm ', data: { confirm: "¿Estás seguro de que querés eliminar este comentario?" } %>
                   <% end %>
         				</div>
@@ -135,7 +135,7 @@
                             <b><%= comentario.user.name %></b> : <%= comentario.content %>
                           </div>
                           <div class="col-sm-2">
-                            <% if current_user.id == comentario.user_id %>
+                            <% if (user_signed_in?) and (current_user.id == comentario.user_id) %>
                               <%= link_to "Eliminar", comentario, method: :delete, class: 'btn btn-danger btn-sm ', data: { confirm: "¿Estás seguro de que querés eliminar este comentario?" } %>
                             <% end %>
                           </div>
