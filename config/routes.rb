@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
 	get 'static_views/about', as: "about"
 
 	get 'static_views/contact', as: "contact"
@@ -40,5 +44,8 @@ Rails.application.routes.draw do
 
     resources :universities do
     end
+
+  resources :password_resets,     only: [:new, :create, :edit, :update]
+
 
 end
