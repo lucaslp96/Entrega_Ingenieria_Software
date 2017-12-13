@@ -21,7 +21,7 @@
   </div>
 <% else %>
   <% if !params[:search].blank? %> <!-- esto lo hago porque cuando apretaba en "inicio" buscaba en blanco, una solucion poco elegante -->
-  <p>No hay preguntas que contengan los terminos: <%= params[:search] %>.</p>
+  <center><p>No hay preguntas que contengan los terminos: <%= params[:search] %>.</p></center>
   <% end %>
 <% end %>
 
@@ -35,9 +35,11 @@
 	<br>
 <% end %>
 
+<hr>
 
-
-
+<center>
+Universidad con mas preguntas: <%= @maspreg.name %>
+</center>
 
 <hr>
 
@@ -48,7 +50,7 @@
 		<h1>Lista de Universidades:</h1>
 	</div>
 </div>
-<hr>
+<hr><center>
 	<% @unis.each do |uni| %>
   		<div class="row">
   			<div class="col-sm-4">
@@ -65,3 +67,4 @@
 			</div>
 			<hr>
   <% end %>
+  </center>

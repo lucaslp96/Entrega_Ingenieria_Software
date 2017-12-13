@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20171213004124) do
 
   create_table "universities", force: :cascade do |t|
     t.string "name"
+    t.integer "question_uses"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

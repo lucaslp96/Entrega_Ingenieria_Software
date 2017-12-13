@@ -1,13 +1,25 @@
+<center>
+
 <h1><%= @uni.name %></h1>
 
 <hr>
+
+<p>Preguntas relacionadas:</p>
 
 <% @questions.each do |preg| %>
 
         <p>
 
-            <p><li><ul> <%= link_to preg.title, question_path(preg) %> </li></ul></p>
+            <p> <%= link_to preg.title, question_path(preg) %> </p>
 
         </p>
 
 <% end %>
+
+<hr><hr>
+
+<%= link_to "Todas las universidades", universities_path %>
+
+<hr>
+
+</center>

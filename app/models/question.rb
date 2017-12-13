@@ -3,7 +3,7 @@ class Question < ApplicationRecord
 		scope :porfecha, -> { order("created_at desc") }
 		scope :porvotos, -> { order("votes desc") }
 		scope :porvisitas, -> { order("visits desc") }
-		scope :porrespuestas, -> { order("numanswers desc") }
+		scope :porrespuestasmayor, -> { order("numanswers desc") }
 		scope :porrespuestasmenor, -> { order("numanswers asc") }
 
 		belongs_to :user
@@ -14,7 +14,7 @@ class Question < ApplicationRecord
 		has_many :question_tags
 		has_many :tags, through: :question_tags
 		validate :tags_between_1_and_5
-	  validates :title, :content, presence: true
+	  	validates :title, :content, presence: true
 
 
 	def self.masvisitada

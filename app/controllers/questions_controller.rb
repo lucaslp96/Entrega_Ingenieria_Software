@@ -132,8 +132,8 @@ class QuestionsController < ApplicationController
 		 if (params[:sort] == "visitas")
 			@questions = Question.porvisitas
 		 end
-		 if (params[:sort] == "respuestas")
-			@questions = Question.porrespuestas
+		 if (params[:sort] == "respuestasmayor")
+			@questions = Question.porrespuestasmayor
 		 end
 		 if (params[:sort] == "respuestasmenor")
 			@questions = Question.porrespuestasmenor
