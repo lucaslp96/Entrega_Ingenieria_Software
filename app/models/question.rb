@@ -32,19 +32,19 @@ class Question < ApplicationRecord
 
 	def self.trending
 		if(Question.all.count < 10)
-			q = Question.porfecha
+			q = Question.order("created_at desc")
 		else
-			q = Question.porfecha.limit(10)
+			q = Question.order("created_at desc").limit(10)
 		end
 		if(Question.all.count < 5)
-			q.order("numanswers desc")
+			q.order("votes desc")
 		else
-			q.order("numanswers desc").limit(5)
+			q.order("votes desc").limit(5)
 		end
 		if(Question.all.count < 3)
-			#nada
+			q = Question.all
 		else
-			q.order("votes desc").limit(3)
+			q.order("numanswers desc").limit(3)
 		end
 	end
 
