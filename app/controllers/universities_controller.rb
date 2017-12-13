@@ -20,6 +20,8 @@ class UniversitiesController < ApplicationController
 
         @uni = University.new
 
+        @uni.question_uses = 0
+
         @uni.name = ((params[:university][:name].upcase).delete(' '))
 
         if  (not(University.exists?(name: @uni.name)))
@@ -49,6 +51,8 @@ class UniversitiesController < ApplicationController
     end
 
     def index
+
+      @maspreg = University.all.order("question_uses desc").first
 
         if ((user_signed_in?) and ((current_user.points) >= (Permit.where(action: "administrar universidades").first.required_points)))
 

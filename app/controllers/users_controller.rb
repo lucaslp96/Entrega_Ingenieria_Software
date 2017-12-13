@@ -25,9 +25,12 @@ class UsersController < ApplicationController
     end
 
     def destroy
-       @deleted_user = User.destroy(current_user.id)
-       flash[:success] = "La cuenta ha sido eliminada."
-	     redirect_to questions_path
+
+      if (User.destroy(current_user.id))
+        flash[:success] = "La cuenta ha sido eliminada."
+      end
+	    redirect_to questions_path
+
     end
 
 end

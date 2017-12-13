@@ -107,22 +107,27 @@
 
 <center>
 <hr>
-<ul><li>Ordenar por:     <a href="?sort=fecha">Fecha</a>
+<ul><li>Ordenar por:
+<a href="?sort=fecha">Fecha</a>
 <a href="?sort=votos">Votos</a>
 <a href="?sort=visitas">Visitas</a>
-<a href="?sort=respuestas">Mas Respondidas</a>
+<a href="?sort=respuestasmayor">Mas Respondidas</a>
 <a href="?sort=respuestasmenor">Menos Respondidas</a>
 </li> </ul>
 </center>
 
 <% @questions.each do |preg| %>
-   <hr>
-        <h3>
-            <li><%= link_to preg.title, preg %> </li>
-	    <li><%= preg.visits %> visitas - <%= preg.votes %> votos - <%= preg.answers.count %> respuestas</li>
-	    <li>Creado por: <%= User.find(preg.user_id).name %> </li>
-	    <li>Fecha: <%= User.find(preg.user_id).created_at %> </li>
-        </h3>
+    <hr>
+      <h3>
+        <li><%= link_to preg.title, preg %> </li>
+	      <li><%= preg.visits %> visitas - <%= preg.votes %> votos - <%= preg.numanswers %> respuestas</li>
+        <% if (User.exists?(preg.user_id)) %>
+	        <li>Creado por: <%= User.find(preg.user_id).name %> </li>
+        <% else %>
+          <li>Creado por: Usuario retirado </li>
+        <% end %>
+	      <li>Fecha: <%= preg.created_at %> </li>
+      </h3>
     <hr>
 <% end %>
 

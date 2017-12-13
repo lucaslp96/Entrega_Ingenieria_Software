@@ -1,8 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 	has_many :questions
 	has_many :answers
 	has_many :answer_comments
@@ -19,7 +18,7 @@ class User < ApplicationRecord
   private
   
   def tags_between_1_and_5
-    errors.add(:tag_ids,"Cantidad errónea de etiquetas") if tag_ids.size > 5 || tag_ids.size < 1
+    errors.add(:tag_ids,"Cantidad errónea de etiquetas") if (tag_ids.size > 5)
   end
 
 end
