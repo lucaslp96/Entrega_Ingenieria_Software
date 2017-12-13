@@ -13,9 +13,8 @@ class Question < ApplicationRecord
 		has_many :question_votes
 		has_many :question_tags
 		has_many :tags, through: :question_tags
-
+		validate :tags_between_1_and_5
 	  validates :title, :content, presence: true
-	  validate :tags_between_1_and_5
 
 
 	def self.masvisitada
@@ -48,8 +47,8 @@ class Question < ApplicationRecord
 		end
 	end
 
-  private
 
+	private
   # para el buscador
     def self.search(search)
       where("title ILIKE ?", "%#{search}%")

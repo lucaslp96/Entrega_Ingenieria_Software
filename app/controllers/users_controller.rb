@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        @tags_usuario = @user.tags
         @answers = User.find(params[:id]).answers
         @questions = User.find(params[:id]).questions
         @permits = Permit.all
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
 
     def update
       @user = User.find(params[:id])
-      @user.update(params.require(:user).permit(:name, :university_id))
+      @user.update(params.require(:user).permit(:name, :university_id, tag_ids: []))
       redirect_to user_path(@user)
     end
 

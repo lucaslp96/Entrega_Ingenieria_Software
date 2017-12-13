@@ -8,7 +8,11 @@
                     <p><strong>Nombre: </strong> <%= @user.name %> </p>
 										<p><strong>Puntos: </strong> <% if ((@user.points) < 1) %> 1 <% else %> <%= @user.points %> <% end %> </p>
                     <p><strong>Universidad: </strong> <% if (@user.university_id != nil) %> <%= University.find(@user.university_id).name %> <% else %> Todavia no cuenta con una universidad asignada. <% end %> </p>
-										  <hr>
+										<p><strong>Etiquetas: </strong> <% @tags_usuario.all.each do |tag| %>
+																							<span class="tags"><%= tag.content %></span>
+																							<% end %>
+
+											 								<hr>
 
 										<% if ((user_signed_in?) & (current_user == @user)) %>
 
