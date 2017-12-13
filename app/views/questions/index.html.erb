@@ -14,6 +14,11 @@
     color: white;
     padding: 10px;
 }
+.tren {
+    background-color: lightblue;
+    color: white;
+    padding: 10px;
+}
 </style>
 
 <% if user_signed_in? %>
@@ -41,16 +46,17 @@
 </center>
 
 <% if @trending.present? %>
+<div class="tren">
+<h3><p>Preguntas trending:</p></h3>
 <% @trending.each do |preg| %>
    <hr>
         <h3>
             <li><%= link_to preg.title, preg %> </li>
       <li><%= preg.visits %> visitas - <%= preg.votes %> votos - <%= preg.answers.count %> respuestas</li>
-      <li>Creado por: <%= User.find(preg.user_id).name %> </li>
-      <li>Fecha: <%= User.find(preg.user_id).created_at %> </li>
         </h3>
     <hr>
 <% end %>
+</div>
 <% end %>
 
 <% if (@questionMoreVisited.present?) %>

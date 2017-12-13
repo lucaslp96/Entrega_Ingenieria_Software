@@ -31,7 +31,7 @@
 
           <hr>
 
-              <% if current_user.id == @answer.user_id %>
+              <% if user_signed_in? and current_user.id == @answer.user_id %>
                         <%= link_to "Eliminar", @answer, method: :delete, class: 'btn btn-danger ', data: { confirm: "¿Estás seguro de que querés eliminar esta respuesta?" } %>
               <% end %>
 

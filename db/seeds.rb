@@ -30,12 +30,12 @@ tag9 = Tag.create(usos: 75, content: "Estadistica")
 
 #los usuarios deben tener emails distintos para no generar error
 
-user1 = User.create(name: "Juan", email: "Juan@example.com", password: "user123", university_id: uni1, tags: [tag1,tag2])
-user2 = User.create(name: "Augusto", email: "Augusto@example.com", password: "user123", points: 2000)
-user3 = User.create(name: "Lucas", email: "Lucas@example.com", password: "user123")
-user4 = User.create(name: "Pedro", email: "Pedro@example.com", password: "user123")
-user5 = User.create(name: "Santiago", email: "Santiago@example.com", password: "user123")
-user6 = User.create(name: "Seba", email: "Seba@example.com", password: "user123")
+user1 = User.create(name: "Juan", email: "Juan@example.com", password: "user123", university_id: uni1, tags: [tag4])
+user2 = User.create(name: "Augusto", email: "Augusto@example.com", password: "user123", points: 2000, tags: [tag4])
+user3 = User.create(name: "Lucas", email: "Lucas@example.com", password: "user123", tags: [tag4])
+user4 = User.create(name: "Pedro", email: "Pedro@example.com", password: "user123", tags: [tag4])
+user5 = User.create(name: "Santiago", email: "Santiago@example.com", password: "user123", tags: [tag4])
+user6 = User.create(name: "Seba", email: "Seba@example.com", password: "user123", tags: [tag4])
 
 question1 = Question.create(title: "¿como derivar 5x?", numanswers: 0, content: "hola, como derivo esto?", user: user1, votes: 409, visits: 1200, tags: [tag1,tag2], university_id: 1)
 question2 = Question.create(title: "¿integral de 34e^x?", numanswers: 2, content: "hola, me cuesta integrar", user: user2, votes: 300, visits: 4520, tags: [tag3])
