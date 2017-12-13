@@ -120,41 +120,49 @@ class QuestionsController < ApplicationController
 
     end
 
- def index
+    def index
 
-	   if (params[:sort].present?)
-		 if (params[:sort] == "fecha")
-		        @questions = Question.porfecha
-		 end
-		 if (params[:sort] == "votos")
-			@questions = Question.porvotos
-		 end
-		 if (params[:sort] == "visitas")
-			@questions = Question.porvisitas
-		 end
-		 if (params[:sort] == "respuestasmayor")
-			@questions = Question.porrespuestasmayor
-		 end
-		 if (params[:sort] == "respuestasmenor")
-			@questions = Question.porrespuestasmenor
-		 end
-	   else
-		   @questions = Question.porfecha
-	   end
+	      if (params[:sort].present?)
 
-	   if (Question.nil?) then
+		        if (params[:sort] == "fecha")
 
-	   else
+		            @questions = Question.porfecha
 
-	   	@trending = Question.trending
+		        elsif (params[:sort] == "votos")
 
-		@questionMoreVisited = Question.masvisitada
+			          @questions = Question.porvotos
 
-	   	@questionMoreVoted = Question.masvotada
+		        elsif (params[:sort] == "visitas")
 
-		@questionMoreAnswers = Question.masrespuestas
+			          @questions = Question.porvisitas
 
-	   end
+		        elsif (params[:sort] == "respuestasmayor")
+
+			          @questions = Question.porrespuestasmayor
+
+		        elsif (params[:sort] == "respuestasmenor")
+
+			          @questions = Question.porrespuestasmenor
+
+            else
+
+                @questions = Question.all
+
+            end
+
+	      else
+
+		        @questions = Question.all
+
+	      end
+
+	   	  @trending = Question.trending
+
+		    @questionMoreVisited = Question.masvisitada
+
+	   	  @questionMoreVoted = Question.masvotada
+
+		    @questionMoreAnswers = Question.masrespuestas
 
 	   #para el buscador
       	   if params[:search]
