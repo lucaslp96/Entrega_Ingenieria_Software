@@ -6,11 +6,15 @@ class AnswersController < ApplicationController
 
         AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, good: true)
 
+        if(!@answer.user.nil?)
+
         @aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
         @aux.points += 10
 
         @aux.save
+
+        end
 
         @answer.votes += 1
 
@@ -28,11 +32,15 @@ class AnswersController < ApplicationController
 
         current_user.points -= 1
 
+        if(!@answer.user.nil?)
+
         @aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
         @aux.points -= 2
 
         @aux.save
+
+        end
 
         @answer.votes -= 1
 
@@ -52,21 +60,29 @@ class AnswersController < ApplicationController
 
             @answer.votes -= 1
 
+            if(!@answer.user.nil?)
+
             @aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
             @aux.points -= 10
 
             @aux.save
 
+            end
+
         else
 
             @answer.votes += 1
+
+            if(!@answer.user.nil?)
 
             @aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
             @aux.points += 2
 
             @aux.save
+
+            end
 
             current_user.points += 1
 

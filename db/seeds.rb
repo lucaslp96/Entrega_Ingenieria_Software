@@ -19,6 +19,7 @@ uni3 = University.create(name: "UNC", question_uses: 3)
 uni4 = University.create(name: "UNS", question_uses: 1)
 uni5 = University.create(name: "UTN", question_uses: 2)
 
+tag0 = Tag.create(usos: 0, content: "Varios")
 tag1 = Tag.create(usos: 4, content: "Arquitectura")
 tag2 = Tag.create(usos: 2, content: "Biologia")
 tag3 = Tag.create(usos: 5, content: "Fisica")

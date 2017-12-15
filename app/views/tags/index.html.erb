@@ -49,10 +49,14 @@
 				<%= tag.content %>
     		</div>
     		<div class="col-sm-2">
-				usada <%= tag.usos %> veces
+    			<% if tag.id != 1 %>
+					usada <%= tag.usos %> veces
+				<% else %>
+					uso genérico
+				<% end %>
     		</div>
 				<div class="col-sm-4">
-					<% if user_signed_in? and current_user.points >= @permits.find(5).required_points %>
+					<% if user_signed_in? and current_user.points >= @permits.find(5).required_points and tag.id != 1 %>
 						<%= link_to "Borrar", tag, method: :delete, class: 'btn btn-danger ', data: { confirm: "¿Estás seguro de que querés eliminar esta etiqueta?" } %>
 					 	<%= link_to "Editar", edit_tag_path(tag.id), class: "btn btn-primary" %>
 				 <% end %>

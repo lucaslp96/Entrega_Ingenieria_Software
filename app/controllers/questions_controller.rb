@@ -10,11 +10,15 @@ class QuestionsController < ApplicationController
 
     resp = Answer.find(params[:loque])
 
-    usuario = User.find(resp.user_id)
+    if(resp.user_id != nil)
 
-    usuario.points += 20
+   		usuario = User.find(resp.user_id)
 
-    usuario.save
+	    usuario.points += 20
+
+    	usuario.save
+
+	end
 
     redirect_to question_path
 
@@ -30,11 +34,15 @@ class QuestionsController < ApplicationController
 
     resp = Answer.find(params[:loque])
 
-    usuario = User.find(resp.user_id)
+    if(resp.user_id != nil)
 
-    usuario.points -= 20
+    	usuario = User.find(resp.user_id)
 
-    usuario.save
+    	usuario.points -= 20
+
+    	usuario.save
+
+    end
 
     redirect_to question_path
 
@@ -46,11 +54,15 @@ class QuestionsController < ApplicationController
 
       QuestionVote.create(user_id: current_user.id, question_id: @question.id, good: true)
 
-      @aux = User.find(@question.user_id)
+      if(!@question.user.nil?)
 
-      @aux.points += 5
+      	@aux = User.find(@question.user_id)
 
-      @aux.save
+      	@aux.points += 5
+
+      	@aux.save
+
+  	  end
 
       @question.votes += 1
 
@@ -68,11 +80,15 @@ class QuestionsController < ApplicationController
 
       current_user.points -= 1
 
-      @aux = User.find(@question.user_id)
+      if(!@question.user.nil?)
 
-      @aux.points -= 2
+	      @aux = User.find(@question.user_id)
 
-      @aux.save
+     	  @aux.points -= 2
+
+      	  @aux.save
+
+      end
 
       @question.votes -= 1
 
@@ -85,28 +101,36 @@ class QuestionsController < ApplicationController
     def unvote
 
       @question = Question.find(params[:id])
-
+      
       @vote = QuestionVote.where(user_id: current_user.id, question_id: @question.id).first      #sin el .first no anda... habria que hacer un uniqueness
 
       if (@vote.good == true)
 
           @question.votes -= 1
 
-          @aux = User.find(@question.user_id)
+          if(!@question.user.nil?)
 
-          @aux.points -= 10
+          	@aux = User.find(@question.user_id)
 
-          @aux.save
+          	@aux.points -= 10
+
+          	@aux.save
+
+      	  end
 
       else
 
           @question.votes += 1
 
-          @aux = User.find(@question.user_id)
+          if(!@question.user.nil?)
 
-          @aux.points += 2
+          	@aux = User.find(@question.user_id)
 
-          @aux.save
+          	@aux.points += 2
+
+          	@aux.save
+
+          end
 
           current_user.points += 1
 

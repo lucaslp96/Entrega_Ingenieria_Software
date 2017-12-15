@@ -18,10 +18,14 @@
 
         <!-- Tags -->
         Etiquetas:
-        <% @tags_pregunta.all.each do |tag| %>
-        <span class="tags"><%= tag.content %></span>
+        <% if @tags_pregunta.all.count == 0 %>
+        	<span class="tags"><%= Tag.find(1).content %></span>
         <% end %>
-
+        <% if @tags_pregunta.all.count != 0 %>
+        	<% @tags_pregunta.all.each do |tag| %>
+        		<span class="tags"><%= tag.content %></span>
+        	<% end %>
+        <% end %>	
         <!-- Author -->
         <hr>
         <p class="lead"> Por: <b>
@@ -113,11 +117,9 @@
                                       usuario retirado
                                     <% end %>
                <p class="lead" > <font size = "5">
-                 <% if !(answer.user.nil?) %>              <!-- si el usuario fue eliminado entonces no se muestra link a la respuesta -->
+                              <!-- si el usuario fue eliminado entonces no se muestra link a la respuesta -->
                     <%= link_to answer.content, answer %>
-                <% else %>
-                      <%= answer.content %>
-                <% end %>
+                
                     <!--se podria hacer mas eficiente-->
                 <p>Votos <%= answer.votes %></p>
 

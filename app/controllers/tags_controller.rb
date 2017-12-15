@@ -80,11 +80,11 @@ class TagsController < ApplicationController
           @tag.update(params.require(:tag).permit(:content, :usos))
           @tag.content = (((params[:tag][:content].downcase).titleize).delete(' '))       # Twitter hashtag style
                if ((@tag.content.length) < 4)
-                  flash[:error] = "La etiqueta que intentó crear tenia menos de 4 caracteres."
+                  flash[:error] = "La etiqueta modificada tenia menos de 4 caracteres."
                   render :edit
               else
                   if ((@tag.content.length) > 16)
-                    flash[:error] = "La etiqueta que intentó crear tenia mas de 16 caracteres."
+                    flash[:error] = "La etiqueta modificada tenia mas de 16 caracteres."
                     render :edit
                   else
                       if (@tag.save)
@@ -99,8 +99,13 @@ class TagsController < ApplicationController
             end
 
         def destroy
-           @deleted_tag = Tag.destroy(params[:id])
-           flash[:success] = "La etiqueta ha sido borrada."
+           @tag = Tag.find(params[:id])
+           if(@tag.content == "Varios")
+              flash[:error] = "La etiqueta 'Varios' no puede ser borrada."
+           else
+              @deleted_tag = Tag.destroy(params[:id])
+              flash[:success] = "La etiqueta ha sido borrada."
+            end
     	     redirect_to tags_path
         end
 end
