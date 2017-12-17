@@ -18,11 +18,11 @@ class QuestionsController < ApplicationController
 
     	usuario.save
 
-	end
+	  end
 
     redirect_to question_path
 
-  end
+    end
 
   def removebestanswer
 
@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
 
       QuestionVote.create(user_id: current_user.id, question_id: @question.id, good: true)
 
-      if(!@question.user.nil?)
+      if(User.exists?(@question.user_id))
 
       	@aux = User.find(@question.user_id)
 
@@ -80,7 +80,7 @@ class QuestionsController < ApplicationController
 
       current_user.points -= 1
 
-      if(!@question.user.nil?)
+      if(User.exists?(@question.user_id))
 
 	      @aux = User.find(@question.user_id)
 
@@ -108,7 +108,7 @@ class QuestionsController < ApplicationController
 
           @question.votes -= 1
 
-          if(!@question.user.nil?)
+          if(User.exists?(@question.user_id))
 
           	@aux = User.find(@question.user_id)
 
@@ -122,7 +122,7 @@ class QuestionsController < ApplicationController
 
           @question.votes += 1
 
-          if(!@question.user.nil?)
+          if(User.exists?(@question.user_id))
 
           	@aux = User.find(@question.user_id)
 

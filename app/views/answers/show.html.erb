@@ -12,7 +12,7 @@
 
             <!-- Autor -->
             <p class="lead">
-              <% if !@answer.user.nil? %>
+              <% if User.exists?(@answer.user_id) %>
                 Por:<b>  <%= User.find(@answer.user_id).name %> -Puntos: <% if ((User.find(@answer.user_id).points) < 0) %> 0 <% else %> <%= User.find(@answer.user_id).points %> <% end %> </b>
               <% else %>
                 Por: usuario retirado

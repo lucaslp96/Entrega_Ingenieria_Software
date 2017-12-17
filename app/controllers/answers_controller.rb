@@ -6,13 +6,13 @@ class AnswersController < ApplicationController
 
         AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, good: true)
 
-        if(!@answer.user.nil?)
+        if(User.exists?(@answer.user_id))
 
-        @aux = User.find(@answer.user_id)    #duda sobre si se guarda
+        	@aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
-        @aux.points += 10
+        	@aux.points += 10
 
-        @aux.save
+        	@aux.save
 
         end
 
@@ -32,13 +32,13 @@ class AnswersController < ApplicationController
 
         current_user.points -= 1
 
-        if(!@answer.user.nil?)
+        if(User.exists?(@answer.user_id))
 
-        @aux = User.find(@answer.user_id)    #duda sobre si se guarda
+        	@aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
-        @aux.points -= 2
+        	@aux.points -= 2
 
-        @aux.save
+        	@aux.save
 
         end
 
@@ -60,13 +60,13 @@ class AnswersController < ApplicationController
 
             @answer.votes -= 1
 
-            if(!@answer.user.nil?)
+            if(User.exists?(@answer.user_id))
 
-            @aux = User.find(@answer.user_id)    #duda sobre si se guarda
+            	@aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
-            @aux.points -= 10
+            	@aux.points -= 10
 
-            @aux.save
+            	@aux.save
 
             end
 
@@ -74,13 +74,13 @@ class AnswersController < ApplicationController
 
             @answer.votes += 1
 
-            if(!@answer.user.nil?)
+            if(User.exists?(@answer.user_id))
 
-            @aux = User.find(@answer.user_id)    #duda sobre si se guarda
+            	@aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
-            @aux.points += 2
+            	@aux.points += 2
 
-            @aux.save
+            	@aux.save
 
             end
 

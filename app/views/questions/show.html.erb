@@ -109,9 +109,9 @@
           <div class="media mb-4">
             <div class="media-body">
 
-               <h2 class="mt-4"><b> <% if !(answer.user.nil?) %>
-                                      <% if answer.user.name == '' %> <%= link_to answer.user.email, answer.user %>
-                                        <% else %> <%= link_to answer.user.name, answer.user %>
+               <h2 class="mt-4"><b> <% if (User.exists?(answer.user_id)) %>
+                                      <% if User.find(answer.user_id).name == '' %> <%= link_to User.find(answer.user_id).email, User.find(answer.user_id) %>
+                                        <% else %> <%= link_to User.find(answer.user_id).name, User.find(answer.user_id) %>
                                       <% end %> </b> </h2 >
                                     <% else %>
                                       usuario retirado

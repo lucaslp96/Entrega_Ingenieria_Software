@@ -6,7 +6,7 @@ class Question < ApplicationRecord
 		scope :porrespuestasmayor, -> { order("numanswers desc") }
 		scope :porrespuestasmenor, -> { order("numanswers asc") }
 
-		belongs_to :user
+
 		has_many :answers
 		has_many :question_reports
 		has_many :question_comments
