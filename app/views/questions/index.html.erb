@@ -1,7 +1,33 @@
+<style>
+.masvot {
+    background-color: tomato;
+    color: white;
+    padding: 10px;
+}
+.masvis {
+    background-color: orange;
+    color: white;
+    padding: 10px;
+}
+.masres {
+    background-color: violet;
+    color: white;
+    padding: 10px;
+}
+.tren {
+    background-color: lightblue;
+    color: white;
+    padding: 10px;
+}
+</style>
+
 <% if user_signed_in? %>
     <%= link_to '¡Creá tu pregunta acá!', "questions/new", class: 'btn btn-primary btn-block',role: 'button' %>
 <% end %>
 
+
+
+<center>
 <!-- Buscador-->
 <p> <div class="container">Buscar pregunta por título:
 <%= form_tag(questions_path, :method => "get", id: "search-form") do %>
@@ -10,83 +36,102 @@
 <% end %>
 </div> </p>
 
-<% if @search_questions.present? %>
+<% if @search_questions.present? and !params[:search].blank? %>
   <%= render @search_questions %>
 <% else %>
   <% if !params[:search].blank? %> <!-- esto lo hago porque cuando apretaba en "inicio" buscaba en blanco, una solucion poco elegante -->
   <p>No hay preguntas que contengan los terminos: <%= params[:search] %>.</p>
   <% end %>
 <% end %>
+</center>
 
-<% if (@questionMoreVisited.present?) %>
-<hr>
-        <h3>
-	    <li>Pregunta más visitada:</li>
-            <li><%= link_to @questionMoreVisited.title, @questionMoreVisited %> </li> 
-	    <li><%= @questionMoreVisited.visits %> visitas - <%= @questionMoreVisited.votes %> votos - <%= @questionMoreVisited.answers.count %> respuestas</li>
-	    <li>Creado por: <%= User.find(@questionMoreVisited.user_id).name %> </li>
-	    <li>Fecha: <%= User.find(@questionMoreVisited.user_id).created_at %> </li>
-        </h3>
-<hr>
-<% end %>
-
-<% if (@questionMoreVoted.present?) %>
-<hr>
-        <h3>
-	    <li>Pregunta más votada:</li>
-            <li><%= link_to @questionMoreVoted.title, @questionMoreVoted %> </li> 
-	    <li><%= @questionMoreVoted.visits %> visitas - <%= @questionMoreVoted.votes %> votos - <%= @questionMoreVoted.answers.count %> respuestas</li>
-	    <li>Creado por: <%= User.find(@questionMoreVoted.user_id).name %> </li>
-	    <li>Fecha: <%= User.find(@questionMoreVoted.user_id).created_at %> </li>
-        </h3>
-<hr>
-<% end %>
-
-<% if (@questionMoreAnswers.present?) %>
-<hr>
-        <h3>
-	    <li>Pregunta más respondida:</li>
-            <li><%= link_to @questionMoreAnswers.title, @questionMoreAnswers %> </li> 
-	    <li><%= @questionMoreAnswers.visits %> visitas - <%= @questionMoreAnswers.votes %> votos - <%= @questionMoreAnswers.answers.count %> respuestas</li>
-	    <li>Creado por: <%= User.find(@questionMoreAnswers.user_id).name %> </li>
-	    <li>Fecha: <%= User.find(@questionMoreAnswers.user_id).created_at %> </li>
-        </h3>
-<hr>
-<% end %>
-    
-<ul><li>Ordenar por:     <a href="?sort=fecha">Fecha</a>
-<a href="?sort=votos">Votos</a>
-<a href="?sort=visitas">Visitas</a>
-<a href="?sort=respuestas">Respuestas +</a>
-<a href="?sort=respuestasmenor">Respuestas -</a>
-</li> </ul>
-
-
-<% @questions.each do |preg| %>
+<% if @trending.present? %>
+<div class="tren">
+<h3><p>Preguntas trending:</p></h3>
+<% @trending.each do |preg| %>
    <hr>
         <h3>
-            <li><%= link_to preg.title, preg %> </li> 
-	    <li><%= preg.visits %> visitas - <%= preg.votes %> votos - <%= preg.answers.count %> respuestas</li>
-	    <li>Creado por: <%= User.find(preg.user_id).name %> </li>
-	    <li>Fecha: <%= User.find(preg.user_id).created_at %> </li>
+            <li><%= link_to preg.title, preg %> </li>
+      <li><%= preg.visits %> visitas - <%= preg.votes %> votos - <%= preg.answers.count %> respuestas</li>
         </h3>
     <hr>
 <% end %>
-
-<p>
-    <ul><h1>Categorías más usadas:</h1></ul>
-</p>
-
-<% @tags.each do |tag| %>
-
-        <p>
-
-            <ul><li><%= tag.content %> - usada <%= tag.usos %> veces</li></ul>
-
-        </p>
-
+</div>
 <% end %>
 
+<% if (@questionMoreVisited.present?) %>
+<div class="masvis">
+<hr>
+        <h3>
+	    <li>Pregunta más visitada:</li>
+            <li><%= link_to @questionMoreVisited.title, @questionMoreVisited %> </li>
+	    <li><%= @questionMoreVisited.visits %> visitas</li>
+        </h3>
+<hr>
+</div>
+<% end %>
+
+
+
+<% if (@questionMoreVoted.present?) %>
+<div class="masvot">
+<hr>
+        <h3>
+	    <li>Pregunta más votada:</li>
+            <li><%= link_to @questionMoreVoted.title, @questionMoreVoted %> </li>
+	    <li><%= @questionMoreVoted.votes %> votos</li>
+        </h3>
+<hr>
+</div>
+<% end %>
+
+
+
+<% if (@questionMoreAnswers.present?) %>
+<div class="masres">
+<hr>
+      <h3>
+	      <li>Pregunta más respondida:</li>
+        <li><%= link_to @questionMoreAnswers.title, @questionMoreAnswers %> </li>
+        <li><%= @questionMoreAnswers.answers.count %> respuestas</li>
+      </h3>
+<hr>
+</div>
+<% end %>
+
+
+
+<center><h1>Todas las preguntas:</h1></center>
+
+<center>
+<hr>
+<ul><li>Ordenar por:
+<a href="?sort=fecha">Fecha</a>
+<a href="?sort=votos">Votos</a>
+<a href="?sort=visitas">Visitas</a>
+<a href="?sort=respuestasmayor">Mas Respondidas</a>
+<a href="?sort=respuestasmenor">Menos Respondidas</a>
+</li> </ul>
+</center>
+
+<% @questions.each do |preg| %>
+    <hr>
+      <h3>
+        <li><%= link_to preg.title, preg %> </li>
+	      <li><%= preg.visits %> visitas - <%= preg.votes %> votos - <%= preg.numanswers %> respuestas</li>
+        <% if (User.exists?(preg.user_id)) %>
+	        <li>Creado por: <%= User.find(preg.user_id).name %> </li>
+        <% else %>
+          <li>Creado por: Usuario retirado </li>
+        <% end %>
+	      <li>Fecha: <%= preg.created_at %> </li>
+      </h3>
+    <hr>
+<% end %>
+
+<center>
 <p><li><ul> <%= link_to "Ver categorías", tags_path %> </li></ul></p>
+<p><li><ul> <%= link_to "Ver universidades", universities_path %> </li></ul></p>
+</center>
 
 <hr>

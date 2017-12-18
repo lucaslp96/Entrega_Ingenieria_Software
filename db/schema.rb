@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124131302) do
+ActiveRecord::Schema.define(version: 20171213140333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20171124131302) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "permissions", force: :cascade do |t|
-    t.integer "action"
+  create_table "permits", force: :cascade do |t|
+    t.string "action"
     t.integer "required_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -77,8 +77,10 @@ ActiveRecord::Schema.define(version: 20171124131302) do
     t.integer "visits"
     t.integer "votes"
     t.integer "numanswers"
+    t.integer "bestanswer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "university_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -90,13 +92,21 @@ ActiveRecord::Schema.define(version: 20171124131302) do
 
   create_table "universities", force: :cascade do |t|
     t.string "name"
+    t.integer "question_uses"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_tags", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.integer "points", default: 0
+    t.integer "points", default: 1
     t.integer "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -110,6 +120,7 @@ ActiveRecord::Schema.define(version: 20171124131302) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.string "reset_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

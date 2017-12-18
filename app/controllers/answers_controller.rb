@@ -6,11 +6,15 @@ class AnswersController < ApplicationController
 
         AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, good: true)
 
-        @aux = User.find(@answer.user_id)    #duda sobre si se guarda
+        if(User.exists?(@answer.user_id))
 
-        @aux.points += 10
+        	@aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
-        @aux.save
+        	@aux.points += 10
+
+        	@aux.save
+
+        end
 
         @answer.votes += 1
 
@@ -28,11 +32,15 @@ class AnswersController < ApplicationController
 
         current_user.points -= 1
 
-        @aux = User.find(@answer.user_id)    #duda sobre si se guarda
+        if(User.exists?(@answer.user_id))
 
-        @aux.points -= 2
+        	@aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
-        @aux.save
+        	@aux.points -= 2
+
+        	@aux.save
+
+        end
 
         @answer.votes -= 1
 
@@ -52,21 +60,29 @@ class AnswersController < ApplicationController
 
             @answer.votes -= 1
 
-            @aux = User.find(@answer.user_id)    #duda sobre si se guarda
+            if(User.exists?(@answer.user_id))
 
-            @aux.points -= 10
+            	@aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
-            @aux.save
+            	@aux.points -= 10
+
+            	@aux.save
+
+            end
 
         else
 
             @answer.votes += 1
 
-            @aux = User.find(@answer.user_id)    #duda sobre si se guarda
+            if(User.exists?(@answer.user_id))
 
-            @aux.points += 2
+            	@aux = User.find(@answer.user_id)    #duda sobre si se guarda
 
-            @aux.save
+            	@aux.points += 2
+
+            	@aux.save
+
+            end
 
             current_user.points += 1
 
@@ -81,6 +97,7 @@ class AnswersController < ApplicationController
     end
 
     def show
+        @permits = Permit.all
 
         @answer = Answer.find(params[:id])
 
@@ -106,5 +123,16 @@ class AnswersController < ApplicationController
 	       q.save
          redirect_to question_path(params[:answer][:question_id])
 
-end
+    end
+
+    def destroy
+      @deleted_answer = params[:id]
+      q = Question.find(Answer.find(@deleted_answer).question_id)
+      q.numanswers -= 1
+      q.save
+      Answer.destroy(@deleted_answer)
+      flash[:success] = "Tu respuesta ha sido borrada."
+      redirect_to q
+    end
+
 end

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
 	get 'static_views/about', as: "about"
 
 	get 'static_views/contact', as: "contact"
@@ -8,23 +12,28 @@ Rails.application.routes.draw do
 
 	root 'questions#index'
 
-	resources:questions do
+	resources :questions do
 		member do
 			post 'upvote'
 			post 'downvote'
 			post 'unvote'
-			post 'chooseBestAnswer'
-			post 'cancelBestAnswer'
+			post 'bestanswer'
+			post 'removebestanswer'
 		end
-		resources:question_comments, except: :index
+		resources :question_comments, except: :index
     end
-		resources :question_comments
 
-		resources:users
-		resources :answer_comments
-    resources:tags
-		resources :answers
-		resources:answers do
+	resources :question_comments
+
+	resources :users
+
+	resources :answer_comments
+
+  resources :tags
+
+	resources :answers
+
+	resources :answers do
 		member do
 			post 'upvote'
 			post 'downvote'
@@ -32,5 +41,11 @@ Rails.application.routes.draw do
 			end
 			resources :answer_comments
     end
+
+    resources :universities do
+    end
+
+  resources :password_resets,     only: [:new, :create, :edit, :update]
+
 
 end

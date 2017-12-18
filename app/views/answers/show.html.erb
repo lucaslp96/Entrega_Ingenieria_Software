@@ -12,7 +12,11 @@
 
             <!-- Autor -->
             <p class="lead">
+              <% if User.exists?(@answer.user_id) %>
                 Por:<b>  <%= User.find(@answer.user_id).name %> -Puntos: <% if ((User.find(@answer.user_id).points) < 0) %> 0 <% else %> <%= User.find(@answer.user_id).points %> <% end %> </b>
+              <% else %>
+                Por: usuario retirado
+              <% end %>
             </p>
 
             <!-- Pregutna -->
@@ -31,9 +35,13 @@
 
           <hr>
 
+              <% if user_signed_in? and current_user.id == @answer.user_id %>
+                        <%= link_to "Eliminar", @answer, method: :delete, class: 'btn btn-danger ', data: { confirm: "¿Estás seguro de que querés eliminar esta respuesta?" } %>
+              <% end %>
 
+              <hr>
 
-            <!-- aca un voton para botarla -->
+            <!-- aca un Boton para votarla -->
 
             <% if ((user_signed_in?) and ((current_user.id) != (@answer.user_id))) %>
 
@@ -42,32 +50,46 @@
                     <%= button_to 'Remover Voto', unvote_answer_path(@answer), method: :post %>
 
                 <% else %>
-
+                    <% if current_user.points >= @permits.find(2).required_points %>
                     <%= button_to 'Votar +', upvote_answer_path(@answer), method: :post %>
-
+                    <% end %>
+                    <% if current_user.points >= @permits.find(4).required_points %>
                     <%= button_to 'Votar -', downvote_answer_path(@answer), method: :post %>
-
+                    <% end %>
                 <% end %>
 
             <% end %>
 
-            <!-- aca un voton para botarla -->
+            <!-- aca un Boton para comentar -->
 
 
 
-            <% if user_signed_in? %>
+            <% if user_signed_in? and current_user.points >= @permits.find(3).required_points%>
 
               <p> <%= link_to "Comentar", new_answer_answer_comment_path(@answer), class: "btn btn-primary" %>
               </p>
 
             <% end %>
-
+            <hr>
         <!-- respuestas -->
         <% @comments.each do |com| %>
             <div class="media mb-4">
             <div class="media-body">
-            <h4 class="mt-0"><b><%= com.user.name %> </b> </h4>
+            <div class="row">
+            <div class="col-sm-10">
+            <h4 class="mt-0"><b><% if User.exists?(com.user_id) %> <%= com.user.name %> <% else %> usuario retirado <% end %> </b> </h4>
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8">
             <%= com.content %>
+          </div>
+          <div class="col-sm-2">
+            <% if current_user.id == com.user_id %>
+              <%= link_to "Eliminar comentario", com, method: :delete, class: 'btn btn-danger btn-sm ', data: { confirm: "¿Estás seguro de que querés eliminar este comentario?" } %>
+            <% end %>
+            </div>
+          </div>
             </div>
             </div>
             <hr>

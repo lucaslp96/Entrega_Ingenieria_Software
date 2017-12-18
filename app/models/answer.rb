@@ -4,7 +4,6 @@ class Answer < ApplicationRecord
 	scope :porvotos, -> { order("votes desc") }
 
 	belongs_to :question
-	belongs_to :user
 	has_many :answer_votes
 	has_many :answer_comments
 	has_many :answer_reports

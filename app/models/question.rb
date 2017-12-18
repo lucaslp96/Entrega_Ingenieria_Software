@@ -3,19 +3,18 @@ class Question < ApplicationRecord
 		scope :porfecha, -> { order("created_at desc") }
 		scope :porvotos, -> { order("votes desc") }
 		scope :porvisitas, -> { order("visits desc") }
-		scope :porrespuestas, -> { order("numanswers desc") }
+		scope :porrespuestasmayor, -> { order("numanswers desc") }
 		scope :porrespuestasmenor, -> { order("numanswers asc") }
 
-		belongs_to :user
+
 		has_many :answers
 		has_many :question_reports
 		has_many :question_comments
 		has_many :question_votes
 		has_many :question_tags
 		has_many :tags, through: :question_tags
-
-	  validates :title, :content, presence: true
-	  validate :tags_between_1_and_5
+		validate :tags_between_1_and_5
+	  	validates :title, :content, presence: true
 
 
 	def self.masvisitada
@@ -30,8 +29,14 @@ class Question < ApplicationRecord
 		Question.all.order("numanswers desc").first
 	end
 
-  private
+	def self.trending
+		Question.order("created_at desc").limit(10)&
+		Question.order("votes desc").limit(5)&
+		Question.order("numanswers desc").limit(5)
+	end
 
+
+	private
   # para el buscador
     def self.search(search)
       where("title ILIKE ?", "%#{search}%")

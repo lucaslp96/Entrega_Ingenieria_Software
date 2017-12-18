@@ -4,6 +4,10 @@ class TagsController < ApplicationController
 
         @tags = Tag.all
 
+        @toptags = Tag.order("usos DESC").first(5)
+
+        @permits = Permit.all
+
     end
 
     def show
@@ -18,21 +22,39 @@ class TagsController < ApplicationController
 
     def create
 
-        if  not(Tag.exists?(:content => params[:tag][:content].upcase))    #no se si es necesario ya que está el validates
+        @tag = Tag.new
 
-            if ((params[:tag][:content].length < 4) or (params[:tag][:content].length > 16))
+        @tag.usos = 0
 
-                flash[:notice] = "La etiqueta debe tener de 4 a 16 caracteres."
+        @tag.content = (((params[:tag][:content].downcase).titleize).delete(' '))       # Twitter hashtag style
+
+        if  (not(Tag.exists?(content: @tag.content)))
+
+            if ((@tag.content.length) < 4)
+
+                flash[:error] = "La etiqueta que intentó crear tenia menos de 4 caracteres."
+
+                render :new
+
+            elsif ((@tag.content.length) > 16)
+
+                flash[:error] = "La etiqueta que intentó crear tenia mas de 16 caracteres."
+
+                render :new
 
             else
 
-                if (Tag.create(content: params[:tag][:content].upcase, usos: 0))
+                if (@tag.save)
 
-                    flash[:notice] = "Creada exitosamente."
+                    flash[:success] = "Etiqueta creada exitosamente."
+
+                    redirect_to tags_path
 
                 else
 
-                    flash[:notice] = "Problema al crear."
+                    flash[:error] = "Problema al crear."
+
+                    render :new
 
                 end
 
@@ -40,12 +62,50 @@ class TagsController < ApplicationController
 
         else
 
-            flash[:notice] = "La etiqueta ya existe."
+            flash[:alert] = "La etiqueta que intentó crear ya existe."
+
+            redirect_to tags_path
 
         end
 
-        redirect_to tags_path
-
     end
 
+
+        def edit
+          @tag = Tag.find(params[:id])
+        end
+
+        def update
+          @tag = Tag.find(params[:id])
+          @tag.update(params.require(:tag).permit(:content, :usos))
+          @tag.content = (((params[:tag][:content].downcase).titleize).delete(' '))       # Twitter hashtag style
+               if ((@tag.content.length) < 4)
+                  flash[:error] = "La etiqueta modificada tenia menos de 4 caracteres."
+                  render :edit
+              else
+                  if ((@tag.content.length) > 16)
+                    flash[:error] = "La etiqueta modificada tenia mas de 16 caracteres."
+                    render :edit
+                  else
+                      if (@tag.save)
+                        flash[:success] = "Etiqueta modificada exitosamente."
+                        redirect_to tags_path
+                      else
+                        flash[:error] = "La etiqueta que intentó crear ya existe."  #si llego a este punto el único error que puede haber es que ya exista la etiqueta
+                        render :edit
+                      end
+                  end
+              end
+            end
+
+        def destroy
+           @tag = Tag.find(params[:id])
+           if(@tag.content == "Varios")
+              flash[:error] = "La etiqueta 'Varios' no puede ser borrada."
+           else
+              @deleted_tag = Tag.destroy(params[:id])
+              flash[:success] = "La etiqueta ha sido borrada."
+            end
+    	     redirect_to tags_path
+        end
 end
